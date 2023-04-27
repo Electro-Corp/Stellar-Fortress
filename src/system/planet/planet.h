@@ -1,11 +1,12 @@
 #ifndef PLANET_H
 #define PLANET_H
-class Planet;
+class Planet{
+public:
+	Planet();
 
-Planet::Planet();
+	void reduceFood();
 
-Planet::reduceFood();
-
-// Buildings
-Planet::addBuilding();
+	// Buildings
+	void addBuilding();
+};
 #endif
