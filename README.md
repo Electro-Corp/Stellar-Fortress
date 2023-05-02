@@ -6,8 +6,6 @@
 
 
 ## Game Structure:
-
-(Does this work chinmay)
  - ### Home world (Starting area)
    - Player could choose basic planet stuff
      - Color and other more cosmetic things
