@@ -1,0 +1,10 @@
+{
+  "name": "United States Of America",
+  "Democracy": 7,
+  "workCond": 8,
+  "StartMoney": 25000,
+  "poplation": 405,
+  "color": [0, 179, 255],
+  "Political Tension": 9,
+  "Racial Tension": 4
+}

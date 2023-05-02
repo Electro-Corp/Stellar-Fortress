@@ -1,0 +1,10 @@
+{
+  "name": "China",
+  "Democracy": 0,
+  "workCond": 2,
+  "StartMoney": 20000,
+  "poplation": 1100,
+  "color": [245, 69, 66],
+  "Political Tension": 0,
+  "Racial Tension": 2
+}

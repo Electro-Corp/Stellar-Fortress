@@ -1,13 +1,22 @@
-#include "size.cpp"
 #ifndef SIZE_H
 #define SIZE_H
+
 class Size {
 public:
-  int size_x;
-  int size_y;
+    Size();
+    Size(int x, int y);
 
-  Size(int x, int y);
-  int get_x();
-  int get_y();
+    // Getter methods
+    int getX() const;
+    int getY() const;
+
+    // Setter methods
+    void setX(int x);
+    void setY(int y);
+
+private:
+    int x_;
+    int y_;
 };
-#endif
+
+#endif // SIZE_H

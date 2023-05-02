@@ -1,11 +1,21 @@
-Size::Size(int x, int y) {
-  this->size_x = x;
-  this->size_y = y;
+#include "Size.h"
+
+Size::Size() : x_(0), y_(0) {}
+
+Size::Size(int x, int y) : x_(x), y_(y) {}
+
+int Size::getX() const {
+    return x_;
 }
 
-int Size::get_x() {
-  return this->size_x;
+int Size::getY() const {
+    return y_;
 }
-int Size::get_y() {
-  return this->size_y;
+
+void Size::setX(int x) {
+    x_ = x;
+}
+
+void Size::setY(int y) {
+    y_ = y;
 }

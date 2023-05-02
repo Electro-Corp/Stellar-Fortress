@@ -25,3 +25,4 @@
       - Lower o2 levels could mean higher dificulty but better resources
         - Maybe: Its harder to survive/farm and special tech might be needed
         - Some resources like food or water would have to be imported
+

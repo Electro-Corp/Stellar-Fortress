@@ -6,6 +6,8 @@ class System{
 private:
 	std::vector<Planet> planets;
 public:
-	System();
+	System(); 
+
+  
 };
 #endif

@@ -1,0 +1,10 @@
+{
+  "name": "Russia",
+  "Democracy": 2,
+  "workCond": 7,
+  "StartMoney": 5000,
+  "poplation": 203,
+  "color": [42, 184, 47],
+  "Political Tension": 1,
+  "Racial Tension": 0
+}
