@@ -2,8 +2,9 @@
 //#include "other/size.h" (andrew doesnt know much about that)
 // Systems
 #include "system/system.h"
+#include "system/utils/readJson.h" //debug, main.cpp will not need this
 #include "render/window.h"
-#include "system/team.h"
+#include "system/team/team.h"
 void gameplayLoop();
 /*int main(){
   printf("\033[48;2;0;0;0m");

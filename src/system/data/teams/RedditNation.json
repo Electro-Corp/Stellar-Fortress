@@ -1,0 +1,10 @@
+{
+  "name": "Reddit Nation",
+  "Democracy": 0, 
+  "workCond": 0,
+  "StartMoney": 0.03,
+  "poplation": 106,
+  "color": [255, 30, 30],
+  "Political Tension": 10,
+  "Racial Tension": 10
+}

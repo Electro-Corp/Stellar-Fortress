@@ -1,6 +1,5 @@
 { pkgs }: {
     deps = [
-        pkgs.neofetch
-        pkgs.cowsay
+        pkgs.jsoncpp
     ];
 }

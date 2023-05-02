@@ -1,0 +1,5 @@
+{
+  "Name": "Earth",
+  "Resources": ["water","ironOre","bauxite","silicon"],
+  "MapDimensions": [50,50]
+}

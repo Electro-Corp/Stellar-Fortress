@@ -26,7 +26,7 @@ void Window::addObject(Building b){
 */
 void Window::RenderScreen(){
   char blank = ' ';
-  int* color[]
+  //int* color[]
   int r = 199, g = 63, b = 0;
   // for random colors
   std::random_device dev;

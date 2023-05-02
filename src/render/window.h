@@ -10,7 +10,7 @@ public:
   char* title;
   int width, height, x, y;
   std::vector<Building> buildings;
-  Window(char* title, int width, int height, int x, int y);
+  Window(char* title, int width, int height, int x, int y, Planet* p);
   int getMousePos();
   // Object functions
   void addObject(Building b);
