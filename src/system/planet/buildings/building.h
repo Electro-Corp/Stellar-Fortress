@@ -1,3 +1,5 @@
+#ifndef BUILDING_H
+#define BUILDING_H
 class Building{
 public:
   int width, height, x, y;
@@ -7,3 +9,4 @@ public:
   
 };
 #include "building.cpp"
+#endif

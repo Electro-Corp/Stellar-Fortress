@@ -3,4 +3,4 @@
 class Base : Building{
 public:
   Base();
-}
+};

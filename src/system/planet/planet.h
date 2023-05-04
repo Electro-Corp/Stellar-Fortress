@@ -2,11 +2,15 @@
 #define PLANET_H
 class Planet{
 public:
-	Planet();
+  //char* resources[];
+  //char* colors[];
 
+	Planet();
+  int init();
 	void reduceFood();
 
 	// Buildings
 	void addBuilding();
+  
 };
 #endif

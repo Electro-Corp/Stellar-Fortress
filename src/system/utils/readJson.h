@@ -7,7 +7,7 @@ class JsonReader{
 public:
   char* name;
   JsonReader(char* fileName){
-    this->name = name;
+    this->name = fileName;
   }
   /*
     How to use JSON Reader

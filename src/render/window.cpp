@@ -1,4 +1,3 @@
-#include "window.h"
 #include <cstdio>
 #include <cstring>
 #include <unistd.h>
@@ -52,6 +51,16 @@ void Window::RenderScreen(){
     }
     
   }
+  // Render Humans. Gives errors but I'm too tired to fix them(tervar))
+  /*for(int i = 0; i < Humans.size(); i++){
+    for(int yDraw = Humans[i].y + y; yDraw < Humans[i].y + Humans[i].height + y; yDraw++){
+      for(int xDraw = Humans[i].x + x; xDraw < Humans[i].x + Humans[i].width + x; xDraw++){
+        printf("\033[%d;%dH", yDraw, xDraw);
+        printf("\033[48;2;255;215;119m");
+      }
+    }
+    
+  }*/
 }
 // RENDER UI
 void Window::RenderPanel(UI* ui){
