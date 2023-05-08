@@ -56,7 +56,7 @@ void Window::RenderScreen(){
     for(int yDraw = Humans[i].y + y; yDraw < Humans[i].y + Humans[i].height + y; yDraw++){
       for(int xDraw = Humans[i].x + x; xDraw < Humans[i].x + Humans[i].width + x; xDraw++){
         printf("\033[%d;%dH", yDraw, xDraw);
-        printf("\033[48;2;255;215;119m");
+        printf("\033[48;2;255;215;119m ");
       }
     }
     

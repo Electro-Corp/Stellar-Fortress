@@ -1,19 +1,32 @@
 
 // Lookup table
-char* adj[] = {"great","amazing","good","ok","fine","bad","terrible"}; // Adj
+// char* adj[] = {"great","amazing","good","ok","fine","bad","terrible"}; // Adj
 
-Human::Human(char* name, int x, int y, Team* WHichTeam){
+#include "human.h"
+/*
+Human::Human(char* name, int x, int y, Team* whichTeam) : GameObject() {
   this->name = name;
-  this->x = x;
-  this->y = y;
-  this->loyalTeam = WHichTeam;
+  this->loyalTeam = whichTeam;
+  // Need to define locaiton
+  // Happiness starts at 50 if everything is at a normal level. todo: add living conditions to this
+  this->happiness = (50 + ((this->loyalTeam->getWorkC()-5) * 2));
+}
+*/
+
+Human::Human(char* name, int x, int y, Team* whichTeam) : GameObject(x, y) {
+  this->name = name;
+  // this->x = x;
+  // this->y = y;
+  this->loyalTeam = whichTeam;
   //Happiness starts at 50 if everything is at a normal level. todo: add living conditions to this
   this->happiness = (50 + ((this->loyalTeam->getWorkC()-5) * 2));
 }
-char* Human::Statement(){
+
+/*char* Human::Statement(){
   
-} 
+} */
 // The directions start at North and go clock wise increasing. I.E 1 for north 2 for north east etc. 
+/*
 void Human::Move(int direction){
   switch (direction) {
     case 1:
@@ -47,3 +60,4 @@ void Human::Move(int direction){
   }
 
 }
+*/

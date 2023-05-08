@@ -4,10 +4,10 @@
 #include <vector>
 class System{
 private:
-	std::vector<Planet> planets;
+	std::vector<Planet> planets;  
+  int currentPlanetIndex = 0;
 public:
 	System(); 
-
-  
+  void SystemTick();
 };
 #endif

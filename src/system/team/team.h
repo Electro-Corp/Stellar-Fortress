@@ -10,9 +10,10 @@ private:
 	std::string name, Government;
   int WorkCond, StartMoney, Population;
 public:
-	Team(std::string name);
-  Team(char* name);
-  char* getName();
-  int getWorkC();
+	Team(std::string t);
+  Team(char* t);
+  char* getTeam();
+  void AddHuman(Human Person);
+  inline int getWorkC() { return WorkCond; }
 };
 #endif

@@ -7,6 +7,9 @@
 #include "system/team/team.h"
 #include <json/value.h>
 #include <json/json.h>
+#include <fstream>
+#include "system/planet/gameObject.h"
+
 void gameplayLoop();
 /*int main(){
   printf("\033[48;2;0;0;0m");
@@ -40,18 +43,11 @@ void gameplayLoop();
 }*/
 int main(){
   // gameplayLoop();
-  JsonReader test("system/data/planets/Earth.json");
+  JsonReader test("src/system/data/teams/USA.json");
   Json::Value out = test.read();
-  std::cout << out["Name"] << std::endl;
-
-  
-  // idk what error is me neithe rlamofo
-  // so whatevery you acces it prints out null null     why (yes)
-  // did you tes this poreviosuly
-
-  // so its just not reading the correct fil e at all'
-  // like I jus tpassed a file that doesnt exist and it stull printed nullnull  
+  std::cout << out["name"] << std::endl;
 }
+
 void gameplayLoop(){
   
 }
