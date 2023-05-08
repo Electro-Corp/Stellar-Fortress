@@ -41,13 +41,14 @@ void gameplayLoop();
   char* i = win.GetInput("Test");
   return 0;
 }*/
+
 int main(){
   // gameplayLoop();
-  JsonReader test("src/system/data/teams/USA.json");
+  JsonReader test("game/data/teams/USA.json");
   Json::Value out = test.read();
   std::cout << out["name"] << std::endl;
 }
-
 void gameplayLoop(){
+  // gaming
   
 }
