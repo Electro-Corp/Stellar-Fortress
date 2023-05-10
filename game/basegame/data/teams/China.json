@@ -1,10 +1,10 @@
 {
   "name": "China",
-  "Democracy": 0,
+  "Goverment": "Dictatorship",
   "workCond": 2,
   "StartMoney": 20000,
   "poplation": 1100,
-  "color": [245, 69, 66],
+  "color": [255, 0, 0],
   "Political Tension": 0,
   "Racial Tension": 2
 }

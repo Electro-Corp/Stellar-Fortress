@@ -1,6 +1,6 @@
 {
   "name": "Russia",
-  "Democracy": 2,
+  "Goverment": "Presidential Dictatorship",
   "workCond": 7,
   "StartMoney": 5000,
   "poplation": 203,

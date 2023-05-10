@@ -1,10 +1,13 @@
 {
   "name": "United States Of America",
-  "Democracy": 7, 
+  "Goverment": "Democracy", 
   "workCond": 8,
   "StartMoney": 25000,
-  "poplation": 405,
-  "color": [0, 179, 255],
+  "Population": 405,
+  "color": [61, 90, 255],
   "Political Tension": 9,
   "Racial Tension": 4
+  "Laws": {
+  
+  }
 }

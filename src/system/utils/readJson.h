@@ -3,10 +3,13 @@
 #include <json/value.h>
 #include <json/json.h>
 #include <fstream>
-class JsonReader{
+class JsonReader {
 public:
-  char* name;
+  std::string name;
   JsonReader(char* fileName){
+    this->name = fileName;
+  }
+  JsonReader(std::string fileName){
     this->name = fileName;
   }
   /*

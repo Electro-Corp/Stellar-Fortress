@@ -1,10 +1,10 @@
 { 
   "name": "Reddit Nation",
-  "Democracy": 0, 
+  "Goverment": "Dictatorship", 
   "workCond": 0,
-  "StartMoney": 0.03,
+  "StartMoney": 179,
   "poplation": 106,
-  "color": [255, 30, 30],
+  "color": [255, 75, 30],
   "Political Tension": 10,
   "Racial Tension": 10
 }

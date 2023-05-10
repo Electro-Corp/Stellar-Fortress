@@ -4,18 +4,20 @@
 // teams
 #include "system/team/team.h"
 class Game {
-
   public:
-    Game(std::string, std::string);
+    // info, config
+    inline Game(std::string d, std::string c) : data(d), config(c) {};
     int gameplay_loop();
   private:
+    
     void load();
     void loadingMenu(std::string info);
   protected:
     std::string data;
     std::string config;
     int width, height;
-    std::vector<Team>
+    std::vector<Team> teams; // Ha bro really forgot a semicolon
+  // and a name lol bad
 };
-#include "game.cpp"
+// #include "game.cpp"
 #endif

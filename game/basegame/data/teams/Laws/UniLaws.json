@@ -1,0 +1,29 @@
+{       
+  "comment" : "for refresh, null means special condition. and obviously true means refreshes ",
+  "Longer work days" : {
+        "Description" : "Increase working hours for your pops",
+        "Effects" : {
+          "Production" : 1.25,
+          "Happiness" : 0.75,
+          "Refreshes" : null,
+        }
+  },
+  "Shorter work days" : {
+        "Description" : "Decrease working hours for your pops",
+        "Effects" : {
+          "Production" : 0.8,
+          "Happiness" : 1.2,
+          "Refreshes" : null,
+        }
+  },  
+  "Legalize nuclear bombs" : {
+        "Description" : "Swag Messiah, bees make honey"
+        "Effects" : {
+          "Population" : 0,
+          "Happiness" : 10,
+          "Government" : "Anarchy"
+          "Refreshes" : true,
+      }
+  },
+}
+

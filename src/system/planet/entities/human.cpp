@@ -14,11 +14,8 @@ Human::Human(char* name, int x, int y, Team* whichTeam) : GameObject() {
 }
 */
 
-Human::Human(char* name, int x, int y, Team* whichTeam) : GameObject(x, y) {
-  this->name = name;
-  // this->x = x;
-  // this->y = y;
-  this->loyalTeam = whichTeam;
+Human::Human(char* name_, int x, int y, Team* whichTeam) : GameObject(x, y), name(name_), loyalTeam(whichTeam) {
+
   //Happiness starts at 50 if everything is at a normal level. todo: add living conditions to this
   this->happiness = (50 + ((this->loyalTeam->getWorkC()-5) * 2));
 }
