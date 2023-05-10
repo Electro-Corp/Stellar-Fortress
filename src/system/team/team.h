@@ -12,8 +12,9 @@ private:
 public:
 	Team(std::string t);
   Team(char* t);
-  char* getTeam();
+  std::string getTeam();
   void AddHuman(Human Person);
-  inline int getWorkC() { return WorkCond; }
+  inline int getWorkC() { return workCond; }
 };
+#include "team.cpp"
 #endif

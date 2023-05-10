@@ -3,6 +3,7 @@
 // char* adj[] = {"great","amazing","good","ok","fine","bad","terrible"}; // Adj
 
 #include "human.h"
+#include "../../team/team.h"
 /*
 Human::Human(char* name, int x, int y, Team* whichTeam) : GameObject() {
   this->name = name;

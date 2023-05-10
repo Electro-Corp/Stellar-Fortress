@@ -10,7 +10,9 @@
     "Creation": {
       "CreateBuilding" : "B"
     }
-  }
+  },
+  "GameWidth" : 100,
+  "GameHeight": 25,
   "ModsLoadedByDefault": [],
   "LoadDefaultGame": true
 }
