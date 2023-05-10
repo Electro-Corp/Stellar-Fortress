@@ -25,7 +25,9 @@ Human::Human(char* name, int x, int y, Team* whichTeam) : GameObject(x, y) {
 /*char* Human::Statement(){
   
 } */
-// The directions start at North and go clock wise increasing. I.E 1 for north 2 for north east etc. 
+/*
+ The directions start at North and go clock wise increasing. I.E 1 for north 2 for north east etc. 
+*/
 /*
 void Human::Move(int direction){
   switch (direction) {

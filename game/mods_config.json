@@ -1,0 +1,6 @@
+{
+  "base_game_disabled": 0,
+  "Comment_Mods": "Must put full directory in mods array",
+  "Mod_Dir": "mods/",
+  "Mods": []
+}

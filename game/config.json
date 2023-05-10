@@ -1,4 +1,16 @@
 {
-  "ModDirs": ["None"],
-  "UserName": "Player"
+  "UserName": "Player",
+  "Keybindings" : {
+    "Camera": {
+      "CameraMoveUp" : "Arrow_Up",
+      "CameraMoveDown" : "Arrow_Down",
+      "CameraMoveLeft" : "Arrow_Left",
+      "CameraMoveRight" : "Arrow_Right"
+    },
+    "Creation": {
+      "CreateBuilding" : "B"
+    }
+  }
+  "ModsLoadedByDefault": [],
+  "LoadDefaultGame": true
 }
