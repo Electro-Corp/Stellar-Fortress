@@ -1,3 +1,5 @@
+#include "render/renderImage.h"
+std::string lastImagePath = "NO_FILE_LOADED_TET";
 Game::Game(std::string data, std::string config){
   this->data = data;
   this->config = config;
@@ -11,15 +13,22 @@ void Game::load(){
   Json::Value configJson = cJ.read();
   this->width = configJson["GameWidth"].asInt();
   this->height = configJson["GameHeight"].asInt();
-  loadingMenu("Loading from info.json..");
-  Json::Value infoJson   = iJ.read();  
-  loadingMenu("Loading teams...");
-}
-void Game::loadingMenu(std::string info){
+  Json::Value infoJson   = iJ.read();
+  std::string loadFPath = "game/" + infoJson["LoadingImages"].asString();
   printf("\033[2J");
+  while(1)
+  loadingMenu("Loading teams...",loadFPath);
+  
+}
+void Game::loadingMenu(std::string info, std::string loadFPath){
+  
   printf("\033[%d;%dH",0, 0);
   printf("STELLAR FORTRESS IS LOADING");
   // add terminal image renderer? (by me)
+  if(loadFPath != lastImagePath){
+    renderImage(loadFPath.c_str(),0,1);
+    lastImagePath = loadFPath;
+  }
   printf("\033[%d;%dH",height, 0);
   printf("%s\n",info.c_str());
 }
@@ -27,3 +36,4 @@ void Game::loadingMenu(std::string info){
 int Game::gameplay_loop() {
   return 0;
 }
+

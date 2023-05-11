@@ -86,6 +86,7 @@ int main() {
           // probably creates a new game class or smhtn idk 
           // yeah i imagne so
           game_menu();
+          goto endmenuloop;
         } else if (highlight == 2) {
           // Mod Menu
           mod_menu();  // andrew when he learns about forward decleration (ill tell u later)
@@ -119,6 +120,7 @@ int main() {
     refresh();
   }
 
+  endmenuloop:
   return 0;
 }
 
@@ -276,6 +278,7 @@ int game_menu(){
               case '\n':
                 if(s_highlight == 1) {
                   system("clear");
+                  endwin();
                   Game game("game/basegame/info.json","game/config.json");
                 } else if(s_highlight == 4) {
                   return 0;

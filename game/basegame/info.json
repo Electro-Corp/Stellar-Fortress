@@ -3,5 +3,6 @@
   "Systems_Dir": "basegame/data/system",
   "Systems": ["SolarSystem.json"],
   "Team_Dir": "basegame/data/teams/",
-  "Teams": ["China.json","Europe.json","RedditNation.json","Russia.json","USA.json"]
+  "Teams": ["China.json","Europe.json","RedditNation.json","Russia.json","USA.json"],
+  "LoadingImages": "basegame/data/images/loading/load1.ppm"
 }

@@ -12,7 +12,7 @@ class Game {
   private:
     
     void load();
-    void loadingMenu(std::string info);
+    void loadingMenu(std::string info, std::string loadFPath);
   protected:
     std::string data;
     std::string config;
