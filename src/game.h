@@ -6,7 +6,8 @@
 class Game {
   public:
     // info, config
-    inline Game(std::string d, std::string c) : data(d), config(c) {};
+    // inline Game(std::string d, std::string c) : data(d), config(c) {};
+    Game(std::string info, std::string config);
     int gameplay_loop();
   private:
     
@@ -19,5 +20,5 @@ class Game {
     std::vector<Team> teams; // Ha bro really forgot a semicolon
   // and a name lol bad
 };
-// #include "game.cpp"
+#include "game.cpp"
 #endif

@@ -18,7 +18,7 @@ void Game::load(){
 void Game::loadingMenu(std::string info){
   printf("\033[2J");
   printf("\033[%d;%dH",0, 0);
-  printf("STELLAR FORTRESS IS LOADING");x
+  printf("STELLAR FORTRESS IS LOADING");
   // add terminal image renderer? (by me)
   printf("\033[%d;%dH",height, 0);
   printf("%s\n",info.c_str());

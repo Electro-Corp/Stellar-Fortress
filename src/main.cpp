@@ -37,7 +37,7 @@ int game_menu();
 int settings_menu();
 int mod_menu();
 
-
+    
 int main() {
   int n_choices = sizeof(choices) / sizeof(char*);
   int highlight = 1;
