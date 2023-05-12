@@ -3,6 +3,7 @@
 #include "system/utils/readJson.h"
 // teams
 #include "system/team/team.h"
+#include "system/system.h"
 class Game {
   public:
     // info, config
@@ -13,11 +14,13 @@ class Game {
     
     void load();
     void loadingMenu(std::string info, std::string loadFPath);
+    void setupSettings();
   protected:
     std::string data;
     std::string config;
     int width, height;
     std::vector<Team> teams; // Ha bro really forgot a semicolon
+    std::vector<System> systems;
   // and a name lol bad
 };
 #include "game.cpp"

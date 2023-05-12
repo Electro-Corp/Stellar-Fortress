@@ -1,0 +1,7 @@
+ {
+  "Name" : "Republic",
+  "Description" : "A form of government where the people can control the government",
+  "PP" : 1,
+  "Happiness" : 1.2,
+  "LawCooldown" : 2
+}

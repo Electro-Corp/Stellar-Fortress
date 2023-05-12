@@ -1,0 +1,7 @@
+ {
+  "Name" : "Dictatorship",
+  "Description" : "A form of government where a single person holds absolute power",
+  "PP" : 1.25,
+  "Happiness" : 0.8,
+  "LawCooldown" : 0.5
+}

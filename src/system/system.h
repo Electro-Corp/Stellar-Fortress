@@ -11,4 +11,5 @@ public:
 	System(std::string loadFromFile); 
   void SystemTick();
 };
+#include "system.cpp"
 #endif

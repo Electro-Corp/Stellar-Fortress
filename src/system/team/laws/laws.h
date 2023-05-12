@@ -6,6 +6,7 @@ private:
 	char* name, description;
   Json::Value LawJson.
   int ;
+  std::map<std::string, int> properties;
 public:
 	Laws(char* name, char* lawTeam);
 };

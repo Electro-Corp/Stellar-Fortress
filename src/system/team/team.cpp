@@ -1,6 +1,6 @@
-Team::Team(char* t) {
+Team::Team(std::string t) {
   this->name = t;
-  std::string loc = std::string(t) + (char*)".json";
+  std::string loc = std::string(t);
   this->TeamJson = JsonReader(loc).read();
   this->Government = TeamJson["Government"].asString(); 
   this->StartMoney = TeamJson["StartMoney"].asInt();

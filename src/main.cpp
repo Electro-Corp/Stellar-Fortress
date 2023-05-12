@@ -41,7 +41,7 @@ int game_menu();
 int settings_menu();
 int mod_menu();
 int view_mods();
-    
+std::string readJSON(std::string filename);
 int main() {
   int n_choices = sizeof(choices) / sizeof(char*);
   int highlight = 1;
@@ -252,7 +252,7 @@ int game_menu(){
   int s_highlight = 1;
   int c;
 
-  // I feel like you should maybe 
+  // I feel like you should maybe  (maybe)
           clear();
           
           mvprintw(2, 2, "Use arrow keys to navigate, press Enter to select:");
@@ -312,8 +312,89 @@ int game_settings() {
   return 0;
 }
 
+
+
 int view_mods() {
-  std::string path = "game/mods";
-    for (const auto & entry : fs::directory_iterator(path))
-        std::cout << entry.path() << std::endl;
+  std::vector<std::string> folderNames;
+
+    //definetly not taken from stack overflow
+    for (const auto& entry : std::filesystem::directory_iterator("../game/mods")) {
+        if (entry.is_directory()) {
+            std::filesystem::path infoFilePath = entry.path() / "info.json";
+            if (std::filesystem::exists(infoFilePath)) {
+                folderNames.push_back(entry.path().filename().string());
+            }
+        }
+    }
+
+    int highlight = 1;
+    int choice;
+    bool done = false;
+    while (!done) {
+        clear();
+        mvprintw(0, 0, "Select a mod:");
+        for (int i = 0; i < folderNames.size(); i++) {
+            if (i+1 == highlight) {
+                attron(A_REVERSE);
+            }
+            mvprintw(i+2, 0, "%s", folderNames[i].c_str());
+            if (i+1 == highlight) {
+                attroff(A_REVERSE);
+            }
+        }
+        refresh();
+        choice = getch();
+        switch(choice) {
+            case KEY_UP:
+                if (highlight > 1) {
+                    highlight--;
+                }
+                break;
+            case KEY_DOWN:
+                if (highlight < folderNames.size()) {
+                    highlight++;
+                }
+                break;
+            case '\n':
+                clear();
+                std::string selectedMod = folderNames[highlight-1];
+                std::string infoFilePath = "game/mods/" + selectedMod + "/info.json";
+                std::string modName = readJSON(infoFilePath);
+                // idk 
+                
+                done = true;
+                break;
+            //case 'q':
+            //    done = true;
+            //    break;
+            
+          // default:
+          //       break;
+        }
+    }
+
+    endwin();
+    return 0;
+}
+
+
+std::string readJSON(std::string filename) {
+    std::ifstream f(filename, std::ifstream::binary);
+    if (!f.good()) {
+        std::cerr << "Error: Could not open file " << filename << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    Json::Value v;
+    Json::CharReaderBuilder builder;
+    builder["collectComments"] = false; // ignore comments in JSON file
+    std::string errs;
+
+    bool parsingSuccessful = Json::parseFromStream(builder, f, &v, &errs);
+    if (!parsingSuccessful) {
+        std::cerr << "Error: Failed to parse JSON file " << filename << std::endl;
+        std::cerr << "Parsing errors: " << errs << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    return v["Name"].asString();
 }

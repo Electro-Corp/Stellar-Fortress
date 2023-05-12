@@ -7,8 +7,7 @@
           "Production" : 1.25,
           "Happiness" : 0.75,
           "Government" : null,
-          "Refreshes" : null,
-        }
+          "Refreshes" : null        }
   },
   "Shorter work days" : {
         "Description" : "Decrease working hours for your pops",
@@ -17,7 +16,7 @@
           "Production" : 0.8,
           "Happiness" : 1.2,
           "Government" : null,
-          "Refreshes" : null,
+          "Refreshes" : null
         }
   },  
   "Legalize nuclear bombs" : {
@@ -26,10 +25,10 @@
           "Population" : 0,
           "Production" : 0,
           "Happiness" : 99,
-          "Government" : "Anarchy"
-          "Refreshes" : true,
+          "Government" : "Anarchy",
+          "Refreshes" : true
       }
-  },
+  }
   
 }
 

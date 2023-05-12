@@ -12,7 +12,7 @@
     }
   },
   "GameWidth" : 100,
-  "GameHeight": 25,
+  "GameHeight": 20,
   "ModsLoadedByDefault": [],
   "LoadDefaultGame": true
 }

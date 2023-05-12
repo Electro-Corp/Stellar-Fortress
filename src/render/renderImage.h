@@ -1,3 +1,7 @@
+/*
+  Modified version of [@the_electro_bros]'s terminal PPM P3 
+  rendering library
+*/
 typedef struct {
   int r, g, b;
 } color;
