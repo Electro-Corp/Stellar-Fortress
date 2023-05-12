@@ -1,0 +1,11 @@
+{
+  "Name": "Example Modification",
+  "HasSystems": 1;
+  "Systems_Dir": "ExampleMod/data/systems",
+  "Systems": ["ExampleSystem/SolarSystem.json"],
+  "HasTeams", 0;
+  "Team_Dir": "",
+  "Teams": [""],
+  "HasLoadingImages": 0,
+  "LoadingImages": ""
+}

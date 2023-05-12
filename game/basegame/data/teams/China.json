@@ -1,7 +1,7 @@
 {
   "name": "China",
   "Goverment": "Dictatorship",
-  "workCond": 2,
+  "workCond": 1,
   "StartMoney": 20000,
   "poplation": 1100,
   "color": [255, 0, 0],

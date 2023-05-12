@@ -1,0 +1,12 @@
+{ 
+  "name": "Principality of Sealand",
+  "Goverment": "Constitutional Monarchy", 
+  "workCond": 10,
+  "StartMoney": 2147483647,
+  "poplation": "Too many to count",
+  "color": [199, 36, 36],
+  "Political Tension": 0,
+  "Racial Tension": 0,
+  "Military Power" : "Infinite",
+  "Status" : "The Goat"
+}

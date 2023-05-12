@@ -1,9 +1,0 @@
-{
-  "Name": "Earth",
-  "Resources": ["water","ironOre","bauxite","silicon"],
-  "MapDimensions": [50,50],
-  "_comment1": "[ground],[resource1],[resource2],[resource3],[resource4]",
-  "MapDesign": [[74,229,79],[28,163,236]] //  tf does this mean 
-
-
-}

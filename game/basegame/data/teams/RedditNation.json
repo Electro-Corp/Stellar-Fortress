@@ -1,8 +1,8 @@
 { 
   "name": "Reddit Nation",
-  "Goverment": "Dictatorship", 
+  "Goverment": "Dysfunctional", 
   "workCond": 0,
-  "StartMoney": 179,
+  "StartMoney": 180,
   "poplation": 106,
   "color": [255, 75, 30],
   "Political Tension": 10,

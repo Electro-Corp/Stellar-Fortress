@@ -4,7 +4,7 @@ class Building{
 public:
   int width, height, x, y;
   int r,g,b;
-  Building(int width, int height, int x, int y);
+  // Building(int width, int height, int x, int y);
   void setColor(int r, int g, int b);
   
 };

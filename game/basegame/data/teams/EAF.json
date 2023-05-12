@@ -1,0 +1,10 @@
+{
+  "name" : "East African Federation",
+  "Government" : "Federation",
+  "workCond" : 4,
+  "StartMoney" : 3000,
+  "population" : 1500,
+  "color": [50, 168, 82],
+  "Political Tension": 3,
+  "Racial Tension": 3  
+}

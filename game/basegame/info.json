@@ -1,7 +1,8 @@
 {
   "Name": "Stellar Fortress",
-  "Systems_Dir": "basegame/data/system",
-  "Systems": ["SolarSystem.json"],
+  "Developer" : "The Stellar Fortress Authors",
+  "Systems_Dir": "basegame/data/systems",
+  "Systems": ["default/SolarSystem.json"],
   "Team_Dir": "basegame/data/teams/",
   "Teams": ["China.json","Europe.json","RedditNation.json","Russia.json","USA.json"],
   "LoadingImages": "basegame/data/images/loading/load1.ppm"

@@ -3,6 +3,9 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include "game.h"
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 #define CTRLD 4
@@ -23,7 +26,8 @@ char *game_options[] = {
 };
 
 char *mod_options[] = {
-  "Install Mod", // Does it open mod folder or a dif menu?
+  "Installed Mods",
+  "Add Mod", // Does it open mod folder or a dif menu?
   "Uninstall Mod",
   "Back"
 };
@@ -36,7 +40,7 @@ char *settings_options[] = {
 int game_menu();
 int settings_menu();
 int mod_menu();
-
+int view_mods();
     
 int main() {
   int n_choices = sizeof(choices) / sizeof(char*);
@@ -159,7 +163,7 @@ int settings_menu() {
                 break;
               case '\n':
                 if(s_highlight == 1) {
-                  
+                  break;
                 } else if(s_highlight == 2) {
                   // Break out to Main menu again ig
                   // might have to make this its own method I think it would be easier
@@ -217,10 +221,11 @@ int mod_menu() {
                 break;
               case '\n':
                 if(m_highlight == 1) {
-                  
+                  // Installed Mods
+                  view_mods();
                 } else if(m_highlight == 2) {
                   
-                } else if(m_highlight == 3) {
+                } else if(m_highlight == 4) {
                   // Back
                   return 0;
                 }
@@ -305,4 +310,10 @@ int game_settings() {
   // TODO: Make menu to decide settings world name that type of stuff
   // Maybe the mods 
   return 0;
+}
+
+int view_mods() {
+  std::string path = "game/mods";
+    for (const auto & entry : fs::directory_iterator(path))
+        std::cout << entry.path() << std::endl;
 }
