@@ -1,15 +1,26 @@
 #include "render/renderImage.h"
 #include <filesystem>
+#include "settings.h"
 namespace fs = std::filesystem;
-#define DEBUG 1
+// #define DEBUG 1
+
+
 std::string lastImagePath = "NO_FILE_LOADED_YET";
-Game::Game(std::string data, std::string config){
+
+
+Game::Game(const std::string& data, const std::string& config, Settings& settings ){
   this->data = data;
   this->config = config;
-  printf("DEBUG_GAME_STARTED\n");
-  load();
+  this->settings = settings;
+  load(); 
 }
+
+// Look at the loading section in the design notes
 void Game::load(){
+
+  // setupSettings();
+
+  
   JsonReader iJ(data.c_str());
   JsonReader cJ(config.c_str());
   // read configuration data
@@ -23,7 +34,8 @@ void Game::load(){
   printf("STELLAR FORTRESS IS LOADING");
  // while(1)
   loadingMenu("Loading teams...",loadFPath);
-  // Load teams from team json
+
+  
   std::string teamFilePath = "game/" + infoJson["Team_Dir"].asString();
   // now we need to go through every file
   for (const auto & entry : fs::directory_iterator(teamFilePath)){
@@ -32,35 +44,39 @@ void Game::load(){
       teams.push_back(Team(std::string{entry.path().u8string()}));
   }
   // teams have been loaded, start loading systems
-  loadingMenu("Loading systems...",loadFPath);
+
+
+  loadingMenu("Loading systems...", loadFPath);
   std::string systemFilePath = "game/" + infoJson["Systems_Dir"].asString();
-  for (const auto & entry : fs::directory_iterator(teamFilePath)){
-      if(fs::is_directory(entry)){
-        // Load the system inside
-        for (const auto & systemJson : fs::directory_iterator(std::string{entry.path().u8string()})){
-          if(!fs::is_directory(entry)){
-            systems.push_back(System(std::string{entry.path().u8string()}));
-          }
-        }
-      }else{
-        printf("\033[2J");
-        printf("\033[%d;%dH",0, 0);
-        printf("Fatal Error:\n");
-        printf("Detected non-directory in root system directory (%s), quitting.\n",systemFilePath.c_str());
-      }
+  Json::Value systems = infoJson["Systems"];
+
+  for (int i = 0; i < systems.size(); i++) {   
+    if(!fs::is_directory(systemFilePath + "/"+ systems[i].asString())) {
+      // for(int j=0; j<10; j++) { 
+        std::string g = systemFilePath + "/" + systems[i].asString();
+        loadingMenu(g,loadFPath);
+        this->systems.push_back(System(g));
+      
+        #ifdef DEBUG
+          getchar();
+        #endif
+     // }
+    } else{
+      loadingMenu("Fatal ERROR, there was in fact, not a file at "+ systemFilePath +"/"+ systems[i].asString(),loadFPath);
+    }
   }
-  
 
-  //JsonReader tJ(teamFilePath.c_str());
+  #ifdef DEBUG
+  getchar();
+  #endif
 
-  
-}
-
-
-
-void Game::setupSettings() {
+  // while(1) {
+    
+  // }
   
 }
+
+
 
 
 void Game::loadingMenu(std::string info, std::string loadFPath){
@@ -68,7 +84,9 @@ void Game::loadingMenu(std::string info, std::string loadFPath){
   if(loadFPath != lastImagePath){
     renderImage(loadFPath.c_str(),0,1);
     lastImagePath = loadFPath;
-  }
+  } //else { // You dont have enough images for this to make sense
+    // renderImage(loadFPath.c_str(),0,1);
+  // }
   printf("\033[%d;%dH",height, 0);
   printf("%s\n",info.c_str());
   #ifdef DEBUG

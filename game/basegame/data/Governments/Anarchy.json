@@ -1,0 +1,7 @@
+ {
+  "Name" : "Anarchy",
+  "Description" : "A form of government where there is none",
+  "PP" : 1.25,
+  "Happiness" : 2,
+  "LawCooldown" : 0.5
+}

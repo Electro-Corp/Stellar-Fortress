@@ -12,7 +12,7 @@ public:
   int width, height, x, y;
   std::vector<Building> buildings;
   std::vector<Human> Humans;
-  Window(char* title, int width, int height, int x, int y, Planet* p);
+  Window(char* title, int width, int height, int x, int y);
   int getMousePos();
   // Object functions
   void addObject(Building b);

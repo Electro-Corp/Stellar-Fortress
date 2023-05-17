@@ -1,5 +1,5 @@
 {
-  "Name": "Example Modification",
+  "Name": "Test Mod 3",
   "HasSystems": 1,
   "Systems_Dir": "ExampleMod/data/systems",
   "Systems": ["ExampleSystem/SolarSystem.json"],

@@ -4,12 +4,26 @@
 #include <stdlib.h>
 #include "game.h"
 #include <filesystem>
+#include "settings.h"
 
 namespace fs = std::filesystem;
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 #define CTRLD 4
+
+
+void set_item_name(ITEM *itm, const char* name){
+    int len = strlen(name);
+    char* n;    
+    if (itm->name.str!=NULL) free((void*)(itm->name).str);
+    n=strdup(name);
+    itm->name.length=len;
+    itm->name.str=n;
+}
+
+
 int c = 0;
+
 char *choices[] = {
   "Play Stellar Fortress",
   "Mod Menu",
@@ -37,11 +51,26 @@ char *settings_options[] = {
   "Back"
 };
 
+char *setup_choices[] = {
+  "Start",
+  "Name: ",
+  "Presets",
+  "Mods",
+  "Resource",
+  "Back"
+};
+
+
 int game_menu();
 int settings_menu();
 int mod_menu();
 int view_mods();
-std::string readJSON(std::string filename);
+std::string readJSONPropName(std::string filename);
+std::string getModDirFromName(const std::string& modName);
+void setup_menu();
+
+Settings c_settings;
+
 int main() {
   int n_choices = sizeof(choices) / sizeof(char*);
   int highlight = 1;
@@ -83,18 +112,15 @@ int main() {
         }
         break;
       case '\n':
-        // Im cracked ik (too good)
-    //https://docs.google.com/document/d/1_Yi43bByeCOJEtDY150Kx_A0CSBt9PQAB_HWoJLZgiQ/edit
         if (highlight == 1) {
-          // Stellar Fortress
-          // probably creates a new game class or smhtn idk 
-          // yeah i imagne so
+          
+          endwin();
+          setup_menu();
           game_menu();
-          goto endmenuloop;
+          // goto endmenuloop;
         } else if (highlight == 2) {
           // Mod Menu
-          mod_menu();  // andrew when he learns about forward decleration (ill tell u later)
-          // why cpp act like inheritance without inhertence
+          mod_menu();
         } else if (highlight == 3) {
           // Achievements
         } else if (highlight == 4) {
@@ -205,7 +231,7 @@ int mod_menu() {
             }
           }
           refresh();
-        
+        //andrew is fucking many men in many places hee hee hee hah!!
           while(1) {
             c = getch();
             switch(c) {
@@ -284,7 +310,9 @@ int game_menu(){
                 if(s_highlight == 1) {
                   system("clear");
                   endwin();
-                  Game game("game/basegame/info.json","game/config.json");
+                  setup_menu();
+                  Game game("game/basegame/info.json","game/config.json", c_settings);
+                  return 0;
                 } else if(s_highlight == 4) {
                   return 0;
                 }
@@ -315,14 +343,15 @@ int game_settings() {
 
 
 int view_mods() {
-  std::vector<std::string> folderNames;
+  std::vector<std::string> modNames;
 
     //definetly not taken from stack overflow
-    for (const auto& entry : std::filesystem::directory_iterator("../game/mods")) {
+    for (const auto& entry : std::filesystem::directory_iterator("game/mods")) {
         if (entry.is_directory()) {
             std::filesystem::path infoFilePath = entry.path() / "info.json";
             if (std::filesystem::exists(infoFilePath)) {
-                folderNames.push_back(entry.path().filename().string());
+                std::string name = readJSONPropName(infoFilePath.string());
+                modNames.push_back(name);
             }
         }
     }
@@ -333,11 +362,11 @@ int view_mods() {
     while (!done) {
         clear();
         mvprintw(0, 0, "Select a mod:");
-        for (int i = 0; i < folderNames.size(); i++) {
+        for (int i = 0; i < modNames.size(); i++) {
             if (i+1 == highlight) {
                 attron(A_REVERSE);
             }
-            mvprintw(i+2, 0, "%s", folderNames[i].c_str());
+            mvprintw(i+2, 0, "%s", modNames[i].c_str());
             if (i+1 == highlight) {
                 attroff(A_REVERSE);
             }
@@ -351,25 +380,19 @@ int view_mods() {
                 }
                 break;
             case KEY_DOWN:
-                if (highlight < folderNames.size()) {
+                if (highlight < modNames.size()) {
                     highlight++;
                 }
                 break;
             case '\n':
                 clear();
-                std::string selectedMod = folderNames[highlight-1];
-                std::string infoFilePath = "game/mods/" + selectedMod + "/info.json";
-                std::string modName = readJSON(infoFilePath);
+                std::string selectedMod = modNames[highlight-1];
+                std::string infoFilePath = getModDirFromName(selectedMod) + "/info.json";
+                std::string modName = readJSONPropName(infoFilePath);
                 // idk 
                 
                 done = true;
                 break;
-            //case 'q':
-            //    done = true;
-            //    break;
-            
-          // default:
-          //       break;
         }
     }
 
@@ -378,7 +401,7 @@ int view_mods() {
 }
 
 
-std::string readJSON(std::string filename) {
+std::string readJSONPropName(std::string filename) {
     std::ifstream f(filename, std::ifstream::binary);
     if (!f.good()) {
         std::cerr << "Error: Could not open file " << filename << std::endl;
@@ -397,4 +420,111 @@ std::string readJSON(std::string filename) {
     }
 
     return v["Name"].asString();
+}
+
+std::string getModDirFromName(const std::string& modName) {
+    for (const auto& entry : std::filesystem::directory_iterator("game/mods")) {
+        if (entry.is_directory()) {
+            std::filesystem::path infoFilePath = entry.path() / "info.json";
+            if (std::filesystem::exists(infoFilePath)) {
+                std::string name = readJSONPropName(infoFilePath.string());
+                if (name == modName) {
+                    return entry.path().string();
+                }
+            }
+        }
+    }
+    return "";
+}
+
+
+void setup_menu() {
+  
+  
+  int n_choices = sizeof(setup_choices) / sizeof(char*);
+  int highlight = 1;
+  int c;
+  
+  // init
+  initscr();
+  clear();
+  noecho();
+  cbreak();
+  keypad(stdscr, TRUE);
+  curs_set(0);
+
+  mvprintw(2, 2, "Use arrow keys to navigate, press Enter to select:");
+  for (int i = 0; i < n_choices; i++) {
+    if (i == highlight - 1) {
+      attron(A_REVERSE);
+    }
+    mvprintw(4 + i, 2, "%s", setup_choices[i]);
+    if (i == highlight - 1) {
+      attroff(A_REVERSE);
+    }
+  }
+  refresh();
+
+  while (1) {
+    c = getch();
+    switch(c) {
+      case KEY_UP:
+        if (highlight > 1) {
+          highlight--;
+        }
+        break;
+      case KEY_DOWN:
+        if (highlight < n_choices) {
+          highlight++;
+        }
+        break;
+      case '\n':
+        if (highlight == 1) {
+          // Start Game
+        } else if (highlight == 2) {
+          // Text Input for name
+          echo();
+          clear();
+          mvprintw(2, 2, "Enter the world name: "); // look at line 15 of main.cpp, see if thats what you want (
+          refresh();
+          // I tried to figure out how to do this through so
+          char name[100];
+          getstr(name);
+          char buf[100];
+          sprintf(buf, "Name: %s", name);
+          setup_choices[1] = buf;  
+          
+          // Need to change the c_settings to have a value of the name with the key "Name" 
+          clear();
+          noecho();          
+        } else if (highlight == 3) {
+          // Open Presets dropdown/menu
+        } else if (highlight == 4) {
+          // Mod Settings dropdown/menu
+        } else if(highlight == n_choices) {
+          // back
+          return 0;
+        } 
+        
+      default:
+        break;
+    }
+
+    
+    clear();
+    mvprintw(2, 2, "Use arrow keys to navigate, press Enter to select:");
+    for (int i = 0; i < n_choices; i++) {
+      if (i == highlight - 1) {
+        attron(A_REVERSE);
+      }
+      mvprintw(4 + i, 2, "%s", setup_choices[i]);
+      if (i == highlight - 1) {
+        attroff(A_REVERSE);
+      }
+    }
+    refresh();
+  }
+
+  endmenuloop:
+  return 0;
 }
