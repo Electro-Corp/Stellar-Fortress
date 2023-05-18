@@ -5,6 +5,7 @@
 #include "system/team/team.h"
 #include "system/system.h"
 #include "settings.h"
+#include "system/planet/tile.h"
 
 class Game {
   public:
@@ -24,7 +25,8 @@ class Game {
     Settings settings;
 
     int width, height;
-    std::vector<Team> teams; // Ha bro really forgot a semicolon
+    std::vector<std::vector<Tile>> map;
+    std::vector<Team> teams; // Ha bro really forgot a semicolon (:cri:)
     std::vector<System> systems;
   // and a name lol bad
 };

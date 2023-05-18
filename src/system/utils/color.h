@@ -1,3 +1,6 @@
+/*
+  Amazing (art)
+*/
 typedef struct{
-  int x,y,z;
+  int r,g,b;
 } Color;

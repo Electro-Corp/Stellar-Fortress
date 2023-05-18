@@ -5,22 +5,10 @@
 #include "game.h"
 #include <filesystem>
 #include "settings.h"
-
 namespace fs = std::filesystem;
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
 #define CTRLD 4
-
-
-void set_item_name(ITEM *itm, const char* name){
-    int len = strlen(name);
-    char* n;    
-    if (itm->name.str!=NULL) free((void*)(itm->name).str);
-    n=strdup(name);
-    itm->name.length=len;
-    itm->name.str=n;
-}
-
 
 int c = 0;
 
@@ -68,6 +56,8 @@ int view_mods();
 std::string readJSONPropName(std::string filename);
 std::string getModDirFromName(const std::string& modName);
 void setup_menu();
+void setup_mods_menu();
+void init_c_settings();
 
 Settings c_settings;
 
@@ -76,6 +66,7 @@ int main() {
   int highlight = 1;
   int c;
 
+  init_c_settings();
 
   
   // init
@@ -272,6 +263,13 @@ int mod_menu() {
           }
 }
 
+void init_c_settings() {
+  // c_settings.set("Name", "default");
+  // c_settings.set("seed", "167802");
+  c_settings.set("height", "20");
+  c_settings.set("width", "30");
+  
+}
 
 int game_menu(){
   int set_choices = sizeof(game_options) / sizeof(char*);
@@ -311,7 +309,6 @@ int game_menu(){
                   system("clear");
                   endwin();
                   setup_menu();
-                  Game game("game/basegame/info.json","game/config.json", c_settings);
                   return 0;
                 } else if(s_highlight == 4) {
                   return 0;
@@ -333,14 +330,6 @@ int game_menu(){
           refresh();
           }
 }
-
-int game_settings() {
-  // TODO: Make menu to decide settings world name that type of stuff
-  // Maybe the mods 
-  return 0;
-}
-
-
 
 int view_mods() {
   std::vector<std::string> modNames;
@@ -400,7 +389,6 @@ int view_mods() {
     return 0;
 }
 
-
 std::string readJSONPropName(std::string filename) {
     std::ifstream f(filename, std::ifstream::binary);
     if (!f.good()) {
@@ -437,10 +425,7 @@ std::string getModDirFromName(const std::string& modName) {
     return "";
 }
 
-
-void setup_menu() {
-  
-  
+void setup_menu() { 
   int n_choices = sizeof(setup_choices) / sizeof(char*);
   int highlight = 1;
   int c;
@@ -481,6 +466,7 @@ void setup_menu() {
       case '\n':
         if (highlight == 1) {
           // Start Game
+          Game game("game/basegame/info.json","game/config.json", c_settings);
         } else if (highlight == 2) {
           // Text Input for name
           echo();
@@ -493,7 +479,8 @@ void setup_menu() {
           char buf[100];
           sprintf(buf, "Name: %s", name);
           setup_choices[1] = buf;  
-          
+
+          c_settings.set("Name", name);
           // Need to change the c_settings to have a value of the name with the key "Name" 
           clear();
           noecho();          
@@ -526,5 +513,10 @@ void setup_menu() {
   }
 
   endmenuloop:
+  return 0;
+}
+
+void setup_mods_menu() {
+  // TODO
   return 0;
 }

@@ -6,5 +6,6 @@
   "poplation": 1100,
   "color": [255, 0, 0],
   "Political Tension": 0,
-  "Racial Tension": 2
+  "Racial Tension": 2,
+  "Size" : 37
 }

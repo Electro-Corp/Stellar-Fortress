@@ -5,7 +5,12 @@
 #include <vector>
 #include "../system/planet/planet.h"
 #include "../system/planet/entities/human.h"
+// Internal game engine componets
+#include "../system/planet/tile.h"
+
 class Window {
+private:
+  int xViewPortMin, xViewPortMax, yViewPortMax, yViewPortMin;
 public:
   Planet* curPlanet;
   char* title;
@@ -17,7 +22,9 @@ public:
   // Object functions
   void addObject(Building b);
   // Render Functions
-  void RenderScreen();
+  void SetMapViewport(int xViewPortMin, int xViewPortMax, int yViewPortMin, int yViewPortMax);
+  void RenderMap(std::vector<std::vector<Tile>> tiles);
+  void renderTile(Tile t);
   // For UI
   void RenderPanel(UI* ui);
   char* GetInput(char* prompt);

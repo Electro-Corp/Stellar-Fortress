@@ -12,8 +12,10 @@ public:
 
     std::string get(const std::string& key) const;
 
+    int saveToFile(std::string filename);
 private:
     std::unordered_map<std::string, std::string> m_settingsMap;
+    
 };
 #include "settings.cpp"
 #endif

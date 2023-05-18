@@ -1,14 +1,17 @@
+#ifndef TILE_H
+#define TILE_H
 // small enough that it can be in just a header
-#include "../utils/color.h"
-class Tile{
+#include "../utils/rgb.h"
+class Tile {
   public:
   int x,y;
-  Color color;
+  RGB rgb;
   bool isOccupied = false;
-  Tile(Color color, int x, int y, bool isO){
-    this->color = color;
+  Tile(RGB color, int x, int y, bool isO){
+    this->rgb = color;
     this->x = x;
     this->y = y;
     this->isOccupied = isO;
   }
-}
+};
+#endif

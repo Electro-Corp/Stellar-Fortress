@@ -4,8 +4,7 @@
 #include <termios.h>
 #include <random>
 
-// Internal game engine componets
-#include "../system/planet/tile.h"
+
 
 Window::Window(char* title, int width, int height, int x, int y){
   this->title = title;
@@ -13,14 +12,43 @@ Window::Window(char* title, int width, int height, int x, int y){
   this->height = height;
   this->x = x;
   this->y = y;
+  //
+  this->xViewPortMin = 0;
+  this->xViewPortMax = 50;
+  this->yViewPortMin = 0;
+  this->yViewPortMax = 50;
+}
+
+void Window::SetMapViewport(int xViewPortMin, int xViewPortMax, int yViewPortMin, int yViewPortMax){
+  this->xViewPortMin = xViewPortMin;
+  this->xViewPortMax = xViewPortMax;
+  this->yViewPortMin = yViewPortMin;
+  this->yViewPortMax = yViewPortMax;
+}
+
+void Window::RenderMap(std::vector<std::vector<Tile>> tiles){
+  for(int y = 0; y < tiles.size(); y++){
+    for(int x = 0; x < tiles[y].size(); x++){
+      if((tiles[y][x].x > xViewPortMin && tiles[y][x].x < xViewPortMax) && (tiles[y][x].y > yViewPortMin && tiles[y][x].y < yViewPortMax)){
+        renderTile(tiles[y][x]);
+      }
+    }
+  }
+}
+
+void Window::renderTile(Tile t){
+  //if((t.x - yViewPortMin)+x < width + x && (t.x - xViewPortMin)+y < height + y){
+  printf("\033[%d;%dH", (t.y - yViewPortMin)+y , (t.x - xViewPortMin)+x);
+  printf("\033[48;2;%d;%d;%dm %c ",(int)t.rgb.r,(int)t.rgb.g,(int)t.rgb.b,' ');
+  //printf("\033[48;2;%d;%d;%dm %c ",255,0,0,' ');
+  //}else{
+  //  printf("unable to print\n");
+  //}
 }
 
 
-void Window::RenderMap(std::vector<Tile> tiles, int xViewPortMin, int xViewPortMax, int yViewPortMin, int yViewPortMax){
-  // Loser isnt even 
-}
 
-
+// hola. 
 // RENDER UI
 void Window::RenderPanel(UI* ui){
   printf("\033[48;2;0;0;0m");

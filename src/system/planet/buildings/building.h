@@ -2,6 +2,7 @@
 #define BUILDING_H
 class Building{
 public:
+  Building(int, int, int, int);
   int width, height, x, y;
   int r,g,b;
   // Building(int width, int height, int x, int y);
