@@ -1,0 +1,25 @@
+{
+  "Starting" {
+    "Power-0" {
+      "Name" : "Nuclear Power",
+      "Description" : "Power plants utilizing the heat from fission reactions",
+      "Prerequisites" : null,
+      "Effects" : {
+        "Buildings" : ["PowerPlant"]
+      }
+    },
+    "Engine-0" : {
+      "Name" : "Liquid Fuel Rocket Engines",
+      "Description" : "'I played Kerbal Space Program once, so I know all about it.' - Nasa intern"
+    }
+  },
+  "Power-1" {
+    "Name" : "Fusion Power",
+    "Description" : "Power plants utilizing the heat from fusion reactions",
+    "Prerequisites" : ["Power0"],
+    "Effects" : {
+      "PowerGen" : 2,
+      "PowerPlantMaint" : 2
+    }
+  }
+} 

@@ -1,10 +1,11 @@
 { 
   "name": "Reddit Nation",
-  "Goverment": "Dysfunctional", 
+  "Goverment": "Memarchy", 
   "workCond": 0,
   "StartMoney": 180,
   "poplation": 106,
   "color": [255, 75, 30],
   "Political Tension": 10,
-  "Racial Tension": 10
+  "Racial Tension": 10,
+  "Size" : 1
 }

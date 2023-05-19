@@ -1,5 +1,4 @@
 #include "render/renderImage.h"
-#include "render/window.h"
 #include <filesystem>
 #include "settings.h"
 #include<iostream>
@@ -9,7 +8,7 @@
 
 namespace fs = std::filesystem;
 // #define DEBUG 1
-
+// #define 
 
 std::string lastImagePath = "NO_FILE_LOADED_YET";
 
@@ -84,8 +83,8 @@ void Game::load(){
   }
 
   // Perlin Noise Generation Settings and stuff
-  const double frequency = 8; // Idk this value can be messed with. Range - [0.1 .. 64.0]
-  const std::int32_t octaves = 6; // Same. Range - [1 .. 16]
+  const double frequency = 4; // Idk this value can be messed with. Range - [0.1 .. 64.0]
+  const std::int32_t octaves = 2; // Same. Range - [1 .. 16] // could let the player mess with these
   siv::PerlinNoise::seed_type seed; // Range - [0 .. 2^32-1]
   if(this->settings.get("seed").compare("") != 0) {
      seed = std::stoi(settings.get("seed"));
@@ -103,8 +102,18 @@ void Game::load(){
       std::vector<Tile> l;
       this->map.push_back(l);
 			for (std::int32_t x = 0; x < this->width; ++x) {
-				RGB color(perlin.octave2D_01((x * fx), (y * fy), octaves));
-	      Tile t(color, x, y, false);
+				double height = perlin.octave2D_01((x * fx), (y * fy), octaves) * 4;
+          // loadingMenu(std::to_string(val), lastImagePath);
+        // double height = 1;  
+        #ifdef DEBUG
+            getchar();
+          #endif
+	      // double height = val / 0.015625; // guh? whats the constant "0.01"
+        RGB color(100, 175, 80);
+        color = make_color_grey(color, pow(height,1.2));    // its is the number that scales the color value down from 0-256 -> 0-4
+        // to make color more grey we will have to decrease each value except the defining color value so like on green scale the other two down
+        // ah makes sense 
+        Tile t(color, x, y, height);
         this->map[y].push_back(t);
 			}
 		}
@@ -116,7 +125,8 @@ void Game::load(){
   Window win(settings.get("Name").c_str(), configJson["width"].asInt(), configJson["height"].asInt(), 0, 0);
   system("clear");
   win.RenderMap(this->map);
-  while(1){}
+
+  // Initilize UI
   
 }
 
@@ -142,3 +152,19 @@ int Game::gameplay_loop() {
   return 0;
 }
 
+// Make more better
+RGB Game::make_color_grey(const RGB& rgb, double scale_factor) {
+    // Calculate the average of the color channels
+    scale_factor = std::max(0.0, std::min(scale_factor, 4.0));
+    double grey = (rgb.r + rgb.g + rgb.b) / 3.0;
+
+    double color_amount = 1.0 - scale_factor / 4.0;
+    
+    // Calculate the new color channels
+    double new_red = rgb.r * color_amount + grey * (1.0 - color_amount);
+    double new_green = rgb.g * color_amount + grey * (1.0 - color_amount);
+    double new_blue = rgb.b * color_amount + grey * (1.0 - color_amount);
+    
+    return RGB
+      (new_red, new_green, new_blue);
+}

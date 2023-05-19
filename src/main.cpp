@@ -5,6 +5,7 @@
 #include "game.h"
 #include <filesystem>
 #include "settings.h"
+#include "system/utils/rgb.h"
 namespace fs = std::filesystem;
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
@@ -41,7 +42,7 @@ char *settings_options[] = {
 
 char *setup_choices[] = {
   "Start",
-  "Name: ",
+  "Name:",
   "Presets",
   "Mods",
   "Resource",
@@ -265,8 +266,8 @@ int mod_menu() {
 
 void init_c_settings() {
   // c_settings.set("Name", "default");
-  // c_settings.set("seed", "167802");
-  c_settings.set("height", "20");
+  // c_settings.set("seed", "24");
+  c_settings.set("height", "15");
   c_settings.set("width", "30");
   
 }

@@ -1,0 +1,7 @@
+ {
+  "Name" : "Oligarchy",
+  "Description" : "A form of government where a small group of people hold power",
+  "PP" : 1.1,
+  "Happiness" : 0.8,
+  "LawCooldown" : 0.33
+}
