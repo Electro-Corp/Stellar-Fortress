@@ -7,19 +7,25 @@
 #include "settings.h"
 #include "system/planet/tile.h"
 #include "render/window.h"
+#include "system/planet/terraintypes/terraintype.h"
 
 class Game {
   public:
-    // info, config
-    // inline Game(std::string d, std::string c) : data(d), config(c) {};
     Game(const std::string& data, const std::string& config, Settings& settings);
     int gameplay_loop();
     RGB make_color_grey(const RGB& rgb, double scale_factor);
+
+    std::vector<TerrainType> regions;
+    std::vector<std::vector<RGB>> colorM;
   private:
     
     void load();
     void loadingMenu(std::string info, std::string loadFPath);
-   //  void setupSettings();
+    std::vector<std::vector<double>> generateNoise();
+    std::vector<std::vector<double>> noiseM;    
+    void init_map();
+    std::vector<std::vector<RGB>> generate_colors();
+    void generate_terrain_types();
   protected:
 
     std::string data;
@@ -30,10 +36,11 @@ class Game {
     std::vector<std::vector<Tile>> map;
     std::vector<Team> teams; // Ha bro really forgot a semicolon (:cri:)
     std::vector<System> systems;
-
+    
 
     //(char* title, int width, int height, int x, int y)
-    Window Tech("Tech-Tree",20,50,30,30);
+    // char* t_name = "Tech-Tree";
+    // Window Tech(t_name,20,50,30,30);
     
   // and a name lol bad
 };

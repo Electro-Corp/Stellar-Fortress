@@ -1,15 +1,20 @@
 #include "render/renderImage.h"
 #include <filesystem>
 #include "settings.h"
-#include<iostream>
-#include<cstdlib>
+#include <iostream>
+#include <cstdlib>
 #include "system/utils/PerlinNoise.hpp"
 #include "system/utils/rgb.h"
+#include <limits>
 
 namespace fs = std::filesystem;
-// #define DEBUG 1
-// #define 
 
+
+// #define DEBUG 1
+#define VIEW_MAP 1
+
+
+static double inverseLerp(double xx, double yy, double value);
 std::string lastImagePath = "NO_FILE_LOADED_YET";
 
 Game::Game(const std::string& data, const std::string& config, Settings& settings){
@@ -21,10 +26,6 @@ Game::Game(const std::string& data, const std::string& config, Settings& setting
 
 // Look at the loading section in the design notes
 void Game::load(){
-
-
-  
-  
   JsonReader iJ(data.c_str());
   JsonReader cJ(config.c_str());
   // read configuration data
@@ -83,54 +84,18 @@ void Game::load(){
   }
 
   // Perlin Noise Generation Settings and stuff
-  const double frequency = 4; // Idk this value can be messed with. Range - [0.1 .. 64.0]
-  const std::int32_t octaves = 2; // Same. Range - [1 .. 16] // could let the player mess with these
-  siv::PerlinNoise::seed_type seed; // Range - [0 .. 2^32-1]
-  if(this->settings.get("seed").compare("") != 0) {
-     seed = std::stoi(settings.get("seed"));
-  } else {
-    srand((unsigned) time(NULL));
-    seed = rand();
-  }
+  generate_terrain_types();
+  this->noiseM = generateNoise();
+  this->colorM = generate_colors();
   
-  const siv::PerlinNoise perlin{ seed };
-  
-  const double fx = (frequency / this->width);
-	const double fy = (frequency / this->height);
-
-  for (std::int32_t y = 0; y < this->height; ++y) {
-      std::vector<Tile> l;
-      this->map.push_back(l);
-			for (std::int32_t x = 0; x < this->width; ++x) {
-				double height = perlin.octave2D_01((x * fx), (y * fy), octaves) * 4;
-          // loadingMenu(std::to_string(val), lastImagePath);
-        // double height = 1;  
-        #ifdef DEBUG
-            getchar();
-          #endif
-	      // double height = val / 0.015625; // guh? whats the constant "0.01"
-        RGB color(100, 175, 80);
-        color = make_color_grey(color, pow(height,1.2));    // its is the number that scales the color value down from 0-256 -> 0-4
-        // to make color more grey we will have to decrease each value except the defining color value so like on green scale the other two down
-        // ah makes sense 
-        Tile t(color, x, y, height);
-        this->map[y].push_back(t);
-			}
-		}
-
-  #ifdef DEBUG
-  getchar();
-  #endif
-
   Window win(settings.get("Name").c_str(), configJson["width"].asInt(), configJson["height"].asInt(), 0, 0);
   system("clear");
   win.RenderMap(this->map);
 
-  // Initilize UI
-  
+  #ifdef VIEW_MAP
+    getchar();
+  #endif
 }
-
-
 
 
 void Game::loadingMenu(std::string info, std::string loadFPath){
@@ -148,10 +113,6 @@ void Game::loadingMenu(std::string info, std::string loadFPath){
   #endif
 }
 
-int Game::gameplay_loop() {
-  return 0;
-}
-
 // Make more better
 RGB Game::make_color_grey(const RGB& rgb, double scale_factor) {
     // Calculate the average of the color channels
@@ -167,4 +128,176 @@ RGB Game::make_color_grey(const RGB& rgb, double scale_factor) {
     
     return RGB
       (new_red, new_green, new_blue);
+}
+
+std::vector<std::vector<double>> Game::generateNoise() {
+  std::vector<std::vector<double>> noiseMap;
+  
+  const double scale = 1;
+  const int octaves = 2;    
+  const double persistance = 1.2;  // Random value rn
+  const double lacunarity = 1.3; // Random value rn
+
+  double minValue = std::numeric_limits<double>::lowest();
+  double maxValue = std::numeric_limits<double>::max();
+  
+  siv::PerlinNoise::seed_type seed;
+
+  if(this->settings.get("seed").compare("") != 0) {
+     seed = std::stoi(settings.get("seed"));
+  } else {
+      srand((unsigned) time(NULL));
+      seed = rand();
+  }  
+  
+  const siv::PerlinNoise perlin{ seed };
+  
+  
+  for (std::int32_t y = 0; y < this->height; ++y) {
+    std::vector<double> l; /**/ noiseMap.push_back(l);
+			for (std::int32_t x = 0; x < this->width; ++x) {
+
+        double amplitude = 1;
+        double frequency = 4;  
+        double noiseHeight = 0;
+
+        double halfW = this->width/2;
+        double halfH = this->height/2;
+        
+        for(int i=0; i < octaves; ++i) {
+          double sampleX = (x-halfW) / scale * frequency;
+          double sampleY = (y-halfH) / scale * frequency;
+
+          double perlinVal = perlin.noise2D(sampleX, sampleY); // Returns range [-1,1]
+          noiseHeight += perlinVal * amplitude;
+
+          amplitude *= persistance;
+          frequency *= lacunarity;
+        }
+        if(noiseHeight > maxValue) {
+          maxValue = noiseHeight;
+        } else if (noiseHeight < minValue) {
+          minValue = noiseHeight;
+        }
+        noiseMap[y].push_back(noiseHeight);
+			}
+		}
+    for (std::int32_t y = 0; y < this->height; ++y) {
+			for (std::int32_t x = 0; x < this->width; ++x) {
+        noiseMap[y][x] = inverseLerp(minValue, maxValue, noiseMap[y][x]); 
+
+      }
+    }
+  return noiseMap;
+}
+
+/* BACKUP
+void Game::GenerateNoise() {
+  const double frequency = 4; // Idk this value can be messed with. Range - [0.1 .. 64.0]
+  const std::int32_t octaves = 2; // Same. Range - [1 .. 16] // could let the player mess with these
+  siv::PerlinNoise::seed_type seed; // Range - [0 .. 2^32-1]
+
+  
+  if(this->settings.get("seed").compare("") != 0) {
+     seed = std::stoi(settings.get("seed"));
+  } else {
+    srand((unsigned) time(NULL));
+    seed = rand();
+  }
+
+  
+  const siv::PerlinNoise perlin{ seed };
+  
+  const double fx = (frequency / this->width);
+	const double fy = (frequency / this->height);
+
+  for (std::int32_t y = 0; y < this->height; ++y) {
+      // std::vector<Tile> l;
+      // this->map.push_back(l);
+			for (std::int32_t x = 0; x < this->width; ++x) {
+				
+        double height = perlin.octave2D_01((x * fx), (y * fy), octaves) * 5;
+
+        RGB color(100, 175, 80);
+        color = make_color_grey(color,  pow(height,1.2) );  
+
+        
+        
+        Tile t(color, x, y, height);
+        this->map[y].push_back(t);
+			}
+		}
+
+  #ifdef DEBUG
+  getchar();
+  #endif
+}
+*/
+
+void Game::init_map() {
+  for (std::int32_t y = 0; y < this->height; ++y) {
+      std::vector<Tile> l;
+      this->map.push_back(l);
+			for (std::int32_t x = 0; x < this->width; ++x) {
+        RGB color(0,0,0);
+        Tile t(color, x, y, 2);
+        map[y].push_back(t);
+			}
+		}
+}
+
+
+std::vector<std::vector<RGB>> Game::generate_colors() {
+  std::vector<std::vector<RGB>> colorMap;
+  for(int y = 0; y < this->height; ++y) {
+    std::vector<RGB> l; colorMap.push_back(l);
+    for(int x = 0; y < this->width; ++x) {
+      double cur_height = noiseM[y][x];
+      for(int i=0;i < regions.size(); ++i) {
+        if(cur_height <= regions[i].height) {
+          colorMap[y].push_back(regions[i].color);
+          break;
+        }
+      }
+    }
+  }
+  return colorMap;
+ }
+
+void Game::generate_terrain_types() {
+  RGB dw(0, 100, 255);
+  TerrainType deep_water("deep_water", .4, dw);
+  regions.push_back(deep_water);
+  
+  RGB sw(100, 155, 255);
+  TerrainType shallow_water("shallow_water", 1, sw);
+  regions.push_back(shallow_water);
+
+  RGB be(220, 220, 60);
+  TerrainType beach("beach", 1.2, be);
+  regions.push_back(beach);
+
+  RGB gr(150, 220, 75);
+  TerrainType plain("plain", 2, gr);
+  regions.push_back(plain);
+
+  RGB hi(130, 180, 80);
+  TerrainType hill("hill", 3, hi);
+  regions.push_back(hill);
+
+  RGB mtb(90, 70, 70);
+  TerrainType bottom_mt("bottom_mt", 4, mtb);
+  regions.push_back(bottom_mt);
+
+  RGB mt(70, 56, 56);
+  TerrainType mount("mt", 4.6, mt);
+  regions.push_back(mount);
+
+  RGB pk(225);
+  TerrainType peak("peak", 5, pk);
+  regions.push_back(peak);
+}
+
+double inverseLerp(double xx, double yy, double value) {
+  return (value - xx)/(yy - xx);
 }

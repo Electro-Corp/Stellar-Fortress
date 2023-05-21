@@ -13,11 +13,13 @@ class Tile {
   RGB rgb;
   bool isOccupied = false;
   /*
-    [0 = Flat]
-    [1 = (NULL)]
-    [2 = (NULL)]
-    [3 = (NULL)]
-    [4 = Very Tall]
+    [0 = Deep Water]
+    [1 = Shallow water]
+    [2 = Flat Lowground]
+    [3 = Small Hill]
+    [4 = Mountain]
+    [5 = Mountain Peak]
+
   */
   double height;
   Tile(RGB color, int x, int y, bool isO, double h){
