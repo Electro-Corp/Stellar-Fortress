@@ -26,6 +26,7 @@ class Game {
     void init_map();
     std::vector<std::vector<RGB>> generate_colors();
     void generate_terrain_types();
+    std::vector<std::vector<Tile>> generate_map();
   protected:
 
     std::string data;

@@ -30,19 +30,22 @@ void Window::RenderMap(std::vector<std::vector<Tile>> tiles){
   int c = 0;
   for(int y = 0; y < tiles.size(); y++){
     for(int x = 0; x < tiles[y].size(); x++){
-      //if((tiles[y][x].x > xViewPortMin && tiles[y][x].x < xViewPortMax) && (tiles[y][x].y > yViewPortMin && tiles[y][x].y < yViewPortMax)){
-        renderTile(tiles[y][x]);
-       
-      //}
-       c++;
+      if((tiles[y][x].x > xViewPortMin && tiles[y][x].x < xViewPortMax) && (tiles[y][x].y > yViewPortMin && tiles[y][x].y < yViewPortMax)){
+        renderTile(tiles[y][x],x+1);
+        renderTile(tiles[y][x],x+2); 
+      }
+      c++;
     }
   }
   //printf("dimentsions(x,y) = %d %d (rendered %d) (expected %d)\n",tiles[0].size(),tiles.size(),c,tiles[0].size()*tiles.size());
 }
 
-void Window::renderTile(Tile t){
+void Window::renderTile(Tile t, int offset){
   //if((t.x - yViewPortMin)+x < width + x && (t.x - xViewPortMin)+y < height + y){
-  printf("\033[%d;%dH", (t.y - yViewPortMin) + y , (t.x - xViewPortMin)+ x);
+  // printf(as_char(t.height));
+  // std::cout << t.height;
+  printf("\033[%d;%dH", (t.y - yViewPortMin) + y , (t.x - xViewPortMin)+ x + offset);
+  // printf("\033[48;2;%d;%d;%dm %c ",(int)t.rgb.r,(int)t.rgb.g,(int)t.rgb.b,std::to_string(t.height).c_str());
   printf("\033[48;2;%d;%d;%dm %c ",(int)t.rgb.r,(int)t.rgb.g,(int)t.rgb.b,' ');
   //printf("\033[48;2;%d;%d;%dm %c ",255,0,0,' ');
   //}else{

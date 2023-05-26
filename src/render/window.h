@@ -24,7 +24,7 @@ public:
   // Render Functions
   void SetMapViewport(int xViewPortMin, int xViewPortMax, int yViewPortMin, int yViewPortMax);
   void RenderMap(std::vector<std::vector<Tile>> tiles);
-  void renderTile(Tile t);
+  void renderTile(Tile t, int offset);
   // For UI
   void RenderPanel(UI* ui);
   char* GetInput(char* prompt);

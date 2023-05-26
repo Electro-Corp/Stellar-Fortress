@@ -44,8 +44,15 @@ char *setup_choices[] = {
   "Start",
   "Name:",
   "Presets",
+  "Map",
   "Mods",
   "Resource",
+  "Back"
+};
+
+char *map_choices[] = {
+  "Width:",
+  "Height:",
   "Back"
 };
 
@@ -267,8 +274,8 @@ int mod_menu() {
 void init_c_settings() {
   // c_settings.set("Name", "default");
   // c_settings.set("seed", "24");
-  c_settings.set("height", "15");
-  c_settings.set("width", "30");
+  c_settings.set("height", "25");
+   c_settings.set("width", "30");
   
 }
 
@@ -426,6 +433,102 @@ std::string getModDirFromName(const std::string& modName) {
     return "";
 }
 
+int map_menu() {
+  int n_choices = sizeof(map_choices) / sizeof(char*);
+  int highlight = 1;
+  int c;
+  
+  // init
+  initscr();
+  clear();
+  noecho();
+  cbreak();
+  keypad(stdscr, TRUE);
+  curs_set(0);
+
+  mvprintw(2, 2, "Use arrow keys to navigate, press Enter to select:");
+  for (int i = 0; i < n_choices; i++) {
+    if (i == highlight - 1) {
+      attron(A_REVERSE);
+    }
+    mvprintw(4 + i, 2, "%s", map_choices[i]);
+    if (i == highlight - 1) {
+      attroff(A_REVERSE);
+    }
+  }
+  refresh();
+
+  while (1) {
+    c = getch();
+    switch(c) {
+      case KEY_UP:
+        if (highlight > 1) {
+          highlight--;
+        }
+        break;
+      case KEY_DOWN:
+        if (highlight < n_choices) {
+          highlight++;
+        }
+        break;
+      case '\n':
+        if (highlight == 1) {
+          // Input for width
+          echo();
+          clear();
+          mvprintw(2, 2, "Enter the world width: "); 
+          refresh();
+          char width[100];
+          getstr(width);
+          char buf[100];
+          sprintf(buf, "Width: %s", width);
+          map_choices[highlight-1] = buf;  
+          c_settings.set("Width", width);
+          clear();
+          noecho();  
+
+        } else if (highlight == 2) {
+          // Input for Height
+          echo();
+          clear();
+          mvprintw(2, 2, "Enter the world height: "); 
+          refresh();
+          char height[100];
+          getstr(height);
+          char buf[100];
+          sprintf(buf, "Heigth: %s", height);
+          map_choices[highlight-1] = buf;  
+          c_settings.set("Height", height);
+          clear();
+          noecho();          
+        } else if(highlight == n_choices) {
+          // back
+          return 0;
+        } 
+        
+      default:
+        break;
+    }
+
+    
+    clear();
+    mvprintw(2, 2, "Use arrow keys to navigate, press Enter to select:");
+    for (int i = 0; i < n_choices; i++) {
+      if (i == highlight - 1) {
+        attron(A_REVERSE);
+      }
+      mvprintw(4 + i, 2, "%s", map_choices[i]);
+      if (i == highlight - 1) {
+        attroff(A_REVERSE);
+      }
+    }
+    refresh();
+  }
+
+  endmenuloop:
+  return 0;
+}
+
 void setup_menu() { 
   int n_choices = sizeof(setup_choices) / sizeof(char*);
   int highlight = 1;
@@ -487,7 +590,9 @@ void setup_menu() {
           noecho();          
         } else if (highlight == 3) {
           // Open Presets dropdown/menu
-        } else if (highlight == 4) {
+        } else if(highlight == 4) {
+          map_menu();
+        } else if (highlight == 5) {
           // Mod Settings dropdown/menu
         } else if(highlight == n_choices) {
           // back

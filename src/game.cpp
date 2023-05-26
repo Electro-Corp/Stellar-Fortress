@@ -1,4 +1,4 @@
-#include "render/renderImage.h"
+  #include "render/renderImage.h"
 #include <filesystem>
 #include "settings.h"
 #include <iostream>
@@ -13,6 +13,7 @@ namespace fs = std::filesystem;
 // #define DEBUG 1
 #define VIEW_MAP 1
 
+double scaleValue(double value, double inputMin, double inputMax, double outputMin, double outputMax);
 
 static double inverseLerp(double xx, double yy, double value);
 std::string lastImagePath = "NO_FILE_LOADED_YET";
@@ -87,6 +88,7 @@ void Game::load(){
   generate_terrain_types();
   this->noiseM = generateNoise();
   this->colorM = generate_colors();
+  this->map = generate_map();
   
   Window win(settings.get("Name").c_str(), configJson["width"].asInt(), configJson["height"].asInt(), 0, 0);
   system("clear");
@@ -154,38 +156,56 @@ std::vector<std::vector<double>> Game::generateNoise() {
   
   
   for (std::int32_t y = 0; y < this->height; ++y) {
-    std::vector<double> l; /**/ noiseMap.push_back(l);
+    std::vector<double> l; noiseMap.push_back(l);
 			for (std::int32_t x = 0; x < this->width; ++x) {
 
-        double amplitude = 1;
+         double amplitude = 1;
         double frequency = 4;  
         double noiseHeight = 0;
 
         double halfW = this->width/2;
         double halfH = this->height/2;
         
+        /*
         for(int i=0; i < octaves; ++i) {
           double sampleX = (x-halfW) / scale * frequency;
           double sampleY = (y-halfH) / scale * frequency;
 
-          double perlinVal = perlin.noise2D(sampleX, sampleY); // Returns range [-1,1]
+          double perlinVal = perlin.noise2D_01(sampleX, sampleY); // Returns range [-1,1]
           noiseHeight += perlinVal * amplitude;
 
           amplitude *= persistance;
           frequency *= lacunarity;
-        }
+        } 
+        */
+        
+        noiseHeight = perlin.noise2D_01(y, x);
+        
         if(noiseHeight > maxValue) {
           maxValue = noiseHeight;
         } else if (noiseHeight < minValue) {
           minValue = noiseHeight;
         }
+        
         noiseMap[y].push_back(noiseHeight);
 			}
 		}
     for (std::int32_t y = 0; y < this->height; ++y) {
 			for (std::int32_t x = 0; x < this->width; ++x) {
-        noiseMap[y][x] = inverseLerp(minValue, maxValue, noiseMap[y][x]); 
+        // std::cout << minValue << " " << maxValue << " " << noiseMap[y][x] << std::endl; 
+        // std::cout << noiseMap[y][x] << std::endl;
+        // This does bad \/
+        // noiseMap[y][x] = inverseLerp(minValue, maxValue, noiseMap[y][x]);
+        // std::cout << noiseMap[y][x];
+        // std::cout << maxValue << " ";
+        // This does bad \/
+        // noiseMap[y][x] = (noiseMap[y][x] - minValue) / (maxValue - minValue);
+        //  noiseMap[y][x] = noiseMap[y][x];
+        // std::cout << noiseMap[y][x];
 
+        // Same as other ones
+        // Idk why but this makes the number 0 
+        // noiseMap[y][x] = scaleValue(noiseMap[y][x], minValue, maxValue, 0, 5);
       }
     }
   return noiseMap;
@@ -234,28 +254,16 @@ void Game::GenerateNoise() {
 }
 */
 
-void Game::init_map() {
-  for (std::int32_t y = 0; y < this->height; ++y) {
-      std::vector<Tile> l;
-      this->map.push_back(l);
-			for (std::int32_t x = 0; x < this->width; ++x) {
-        RGB color(0,0,0);
-        Tile t(color, x, y, 2);
-        map[y].push_back(t);
-			}
-		}
-}
-
 
 std::vector<std::vector<RGB>> Game::generate_colors() {
   std::vector<std::vector<RGB>> colorMap;
   for(int y = 0; y < this->height; ++y) {
     std::vector<RGB> l; colorMap.push_back(l);
-    for(int x = 0; y < this->width; ++x) {
-      double cur_height = noiseM[y][x];
+    for(int x = 0; x < this->width; ++x) {
+      double cur_height = this->noiseM[y][x];
       for(int i=0;i < regions.size(); ++i) {
-        if(cur_height <= regions[i].height) {
-          colorMap[y].push_back(regions[i].color);
+        if(cur_height <= regions[i].height) { // Im doing something right if it goes wrong
+          colorMap[y].push_back(regions[i].color); // why it blue (is it supposed to be (blu))
           break;
         }
       }
@@ -265,39 +273,56 @@ std::vector<std::vector<RGB>> Game::generate_colors() {
  }
 
 void Game::generate_terrain_types() {
-  RGB dw(0, 100, 255);
-  TerrainType deep_water("deep_water", .4, dw);
-  regions.push_back(deep_water);
+  // RGB dw(0, 100, 255);
+  // TerrainType deep_water("deep_water", .1, dw);
+  // regions.push_back(deep_water);
   
   RGB sw(100, 155, 255);
-  TerrainType shallow_water("shallow_water", 1, sw);
+  TerrainType shallow_water("shallow_water", .3, sw);
   regions.push_back(shallow_water);
 
   RGB be(220, 220, 60);
-  TerrainType beach("beach", 1.2, be);
+  TerrainType beach("beach", .4, be);
   regions.push_back(beach);
 
   RGB gr(150, 220, 75);
-  TerrainType plain("plain", 2, gr);
+  TerrainType plain("plain", .75, gr);
   regions.push_back(plain);
 
-  RGB hi(130, 180, 80);
-  TerrainType hill("hill", 3, hi);
-  regions.push_back(hill);
+  // RGB hi(130, 180, 80);
+  // TerrainType hill("hill", .85, hi);
+  // regions.push_back(hill);
 
-  RGB mtb(90, 70, 70);
-  TerrainType bottom_mt("bottom_mt", 4, mtb);
-  regions.push_back(bottom_mt);
+  // RGB mtb(90, 70, 70);
+  // TerrainType bottom_mt("bottom_mt", .9, mtb);
+  // regions.push_back(bottom_mt);
 
-  RGB mt(70, 56, 56);
-  TerrainType mount("mt", 4.6, mt);
-  regions.push_back(mount);
+  // RGB mt(70, 56, 56);
+  // TerrainType mount("mt", .95, mt);
+  // regions.push_back(mount);
 
-  RGB pk(225);
-  TerrainType peak("peak", 5, pk);
-  regions.push_back(peak);
+  // RGB pk(225, 225, 225);
+  // TerrainType peak("peak", 1, pk);
+  // regions.push_back(peak);
 }
 
-double inverseLerp(double xx, double yy, double value) {
-  return (value - xx)/(yy - xx);
+std::vector<std::vector<Tile>> Game::generate_map() {
+  std::vector<std::vector<Tile>> m;
+  for(int y = 0; y < this->height; ++y) {
+    std::vector<Tile> l; m.push_back(l);
+    for(int x = 0; x < this->width; ++x) {
+      Tile f(colorM[y][x], x, y, noiseM[y][x]);
+      m[y].push_back(f);
+    }
+  }
+  return(m);
+}
+
+double inverseLerp(double start, double end, double value) {
+  return (value - start)/(end - start);
+}
+
+double scaleValue(double value, double inputMin, double inputMax, double outputMin, double outputMax) {
+    double scaledValue = (value - inputMin) / (inputMax - inputMin) * (outputMax - outputMin) + outputMin;
+    return scaledValue;
 }
