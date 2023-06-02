@@ -2,8 +2,24 @@
   "Name": "Earth",
   "Resources": ["water","ironOre","bauxite","silicon","oil"],
   "MapDimensions": [50,50],
-  "_comment1": "[ground],[resource1],[resource2],[resource3],[resource4]",
-  "MapDesign": [[74,229,79],[28,163,236]] //  tf does this mean 
-
-
+  "_comment": "[name, max_height, [r, g, b]]",
+  "Regions": [
+    ["deep_water", .1, [0, 100, 255]],
+    ["water", .3, [100, 155, 255]],
+    ["beach", .4, [220, 220, 60]],
+    ["plains", .75, [150, 220, 75]]
+    ["hills", .85, [130, 180, 80]],
+    ["bottom_mt", .9, [90, 70, 70]],
+    ["mt", .97, [70, 56, 56]],
+    ["peak", 1, [225, 225, 225]]
+  ],
+  "_comment1": "[base, req, min_surrounding_count]",
+  "Reqs": [
+    ["deep_water", "water", 4], 
+    ["beach", "water", 1],
+    ["peak", "mt", 4],
+    ["mt", "bottom_mt", 2]
+  ],
+  "_comment2": "[base, exc, max_surrounding_count]",
+  "Exc": []
 }
