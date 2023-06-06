@@ -7,8 +7,10 @@
 #include "settings.h"
 #include "system/planet/tile.h"
 #include "render/window.h"
+#include "render/screen.h"
 #include "system/planet/terraintypes/terraintype.h"
 #include "./map_generation/planetmap.h"
+#include <thread>
 
 class Game {
   public:
@@ -29,6 +31,12 @@ class Game {
     void generate_terrain_types();
     std::vector<std::vector<Tile>> generate_map();
     int render_from_pmap(PlanetMap pm);
+    void GameLoop();
+    void InitThreads();
+
+    // Threads
+    void UIUpdate();
+    void MapUpdate();
   protected:
     PlanetMap* curMap;
     std::string data;
@@ -39,7 +47,12 @@ class Game {
     std::vector<std::vector<Tile>> map;
     std::vector<Team> teams; // Ha bro really forgot a semicolon (:cri:)
     std::vector<System> systems;
-    
+    std::vector<std::thread> threads;
+
+
+    Screen mainScreen;
+    Window win;
+
 
     //(char* title, int width, int height, int x, int y)
     // char* t_name = "Tech-Tree";

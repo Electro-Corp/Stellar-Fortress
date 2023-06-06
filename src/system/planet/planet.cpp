@@ -1,4 +1,5 @@
 #include "planet.h"
+#include "terraintypes/terrainreqs.h"
 
 Planet::Planet(std::string name, int size) {
   this->size = size;
@@ -11,7 +12,12 @@ int Planet::init() {
     generate_terrain_types();
     Logger l("test1");
     l.log("PlanetCpp", "Init");
-    PlanetMap *m = new PlanetMap(this->size, this->regions);
+
+    std::vector<TerrainReq> lmm;
+    TerrainReq f("peak", "mt", 4);
+    lmm.push_back(f);
+  
+    PlanetMap *m = new PlanetMap(this->size, this->regions, lmm);
     this->pMap = m;
     return 0;
 }

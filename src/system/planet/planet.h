@@ -17,9 +17,10 @@ public:
 	void addBuilding();
   void generate_terrain_types();
   PlanetMap* pMap;
+  int size;
 
   private:
-    int size;
+    
     std::vector<TerrainType> regions;
     
 };

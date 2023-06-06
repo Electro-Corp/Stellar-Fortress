@@ -77,8 +77,8 @@ void Game::load(){
     }
   }
 
-  
-  // Perlin Noise Generation Settings and stuff
+  //InitThreads();
+    // Perlin Noise Generation Settings and stuff
   // std::string name = "test";
   // float s = 1;
   // int f = 10;
@@ -89,13 +89,22 @@ void Game::load(){
   l.log("GameCpp.load", "Done generating test planet");
   
   curMap = tPlanet.get_map();
-  
-  Window win(settings.get("Name").c_str(), configJson["width"].asInt(), configJson["height"].asInt(), 0, 0);
+
+
+
+
+  InitThreads();
+  win = Window(this->settings.get("Name").c_str(), 30, 30, 0, 0);
+  mainScreen.addWindow(&win);
   system("clear");
   // I will fix just need to change the other things
   // All you would have to do is add like a ->get()
   win.RenderMap(this->curMap->get());
-
+  l.log("GameCpp.load","Finished render map");
+  while(1){
+    // Generate UI
+    mainScreen.updateMouseInput();
+  }
   
 
   #ifdef VIEW_MAP
@@ -138,4 +147,37 @@ std::vector<std::vector<RGB>> Game::generate_colors() {
 double scaleValue(double value, double inputMin, double inputMax, double outputMin, double outputMax) {
     double scaledValue = (value - inputMin) / (inputMax - inputMin) * (outputMax - outputMin) + outputMin;
     return scaledValue;
+}
+
+
+
+
+
+void Game::InitThreads(){
+  // Create threads for game
+
+  // UI Thread
+  std::thread UIThread(&Game::UIUpdate, this);
+  threads.push_back(std::move(UIThread));
+  // Map Thread
+  std::thread MapThread(&Game::MapUpdate, this);
+  threads.push_back(std::move(MapThread));
+}
+
+void Game::GameLoop(){
+  
+}
+
+
+void Game::UIUpdate(){
+  while(1){
+    // Generate UI
+    mainScreen.updateMouseInput();
+  }
+
+  
+}
+
+void Game::MapUpdate(){
+  
 }

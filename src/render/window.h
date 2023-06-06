@@ -11,6 +11,8 @@
 class Window {
 private:
   int xViewPortMin, xViewPortMax, yViewPortMax, yViewPortMin;
+  bool map = false;
+  Logger* l;
 public:
   Planet* curPlanet;
   char* title;
@@ -18,6 +20,7 @@ public:
   std::vector<Building> buildings;
   std::vector<Human> Humans;
   Window(char* title, int width, int height, int x, int y);
+  Window();
   int getMousePos();
   // Object functions
   void addObject(Building b);
@@ -29,6 +32,9 @@ public:
   void RenderPanel(UI* ui);
   char* GetInput(char* prompt);
   char blank = '\0';
+
+  // general
+  void MouseEvent(int x, int y);
 };
 #include "window.cpp"
 #endif

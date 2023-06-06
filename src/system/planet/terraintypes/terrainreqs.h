@@ -5,7 +5,7 @@ typedef struct TerrainReq {
   std::string comp;
   int count;
 
-	constexpr TerrainReq(std::string n, std::string c, int co) noexcept
+	TerrainReq(std::string n, std::string c, int co) noexcept
 		: type{ n }, comp{ c }, count{ co } {}
 };
 #endif

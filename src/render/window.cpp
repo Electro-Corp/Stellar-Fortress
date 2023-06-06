@@ -4,7 +4,11 @@
 #include <termios.h>
 #include <random>
 
+#ifdef DEBUG
+#include "../other/log.h"
+#endif
 
+MEVENT event;
 
 Window::Window(char* title, int width, int height, int x, int y){
   this->title = title;
@@ -17,6 +21,10 @@ Window::Window(char* title, int width, int height, int x, int y){
   this->xViewPortMax = 100;
   this->yViewPortMin = 0;
   this->yViewPortMax = 50;
+  this-> l = &(Logger("goofball"));
+}
+Window::Window(){
+  
 }
 
 void Window::SetMapViewport(int xViewPortMin, int xViewPortMax, int yViewPortMin, int yViewPortMax){
@@ -24,6 +32,8 @@ void Window::SetMapViewport(int xViewPortMin, int xViewPortMax, int yViewPortMin
   this->xViewPortMax = xViewPortMax;
   this->yViewPortMin = yViewPortMin;
   this->yViewPortMax = yViewPortMax;
+  // we are now a map. i repeat, we are now a map
+  this->map = true;
 }
 
 void Window::RenderMap(std::vector<std::vector<Tile>> tiles){
@@ -69,7 +79,24 @@ void Window::RenderPanel(UI* ui){
     }
   }
   for(int i = 0; i < ui->texts.size(); i++){
-    printf("\033[%d;%dH",this->y + i + 1, this->x);
+    printf("\033[%d;%dH",ui->texts[i].y, ui->texts[i].x);
     printf("%s",ui->texts[i].text);
+  }
+}
+
+
+
+void Window::MouseEvent(int x, int y){
+  //system("clear");
+  //printf("[mouse event] x = %d, y = %d\n",x,y);
+  std::string val = "HIT";
+  l->log(title, val);
+  //getchar();
+
+  if(map){
+    // houston, we've hit a tile.
+    
+  }else{
+    // UI click, (we dont have buttons yet)
   }
 }
