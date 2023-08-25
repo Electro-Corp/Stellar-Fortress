@@ -56,11 +56,11 @@ void renderImage(char* fileName, int startX, int startY){
     out = strtok(NULL, " \n");
 }
   int y = 1, x = 0;
-  for (int i = 0, c = 0; i < g *2; i++) {
+  for (int i = 0, c = 0; i < g * 4; i++) {
     printf("\033[%d;%dH",startY + y, startX + x);
     x++;
     printf("\033[48;2;%d;%d;%dm.", Colors[c].r, Colors[c].g, Colors[c].b);
-    if (i % 2 == 0)
+    if (i % 4 == 0)
       c++;
     if (i % (width*2) == 0){
       x = 0;

@@ -1,0 +1,22 @@
+type this unit
+extends gameobject
+string name infantry
+int unlockat 0
+
+
+function unit update{
+  object gameobject nearenemy script::GetNearestEnemy
+  unit::Attack nearenemy 
+}
+
+function unit userMove{
+  generic::DefaultMove
+}
+
+function unit uiShow{
+  show name
+}
+
+function unit Attack{
+  generic::DefaultAttack
+}

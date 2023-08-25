@@ -8,6 +8,8 @@
 #include <limits>
 #include "other/log.h"
 
+//,#include "render/graphics.h"
+
 namespace fs = std::filesystem;
 
 
@@ -29,8 +31,14 @@ Game::Game(const std::string& data, const std::string& config, Settings& setting
 
 // Look at the loading section in the design notes
 void Game::load(){
+
+  Logger l("game");
+
+  l.log("GameCpp", "Loading");
   JsonReader iJ(data.c_str());
   JsonReader cJ(config.c_str());
+
+  l.log("GameCpp.load", "Reading config data");
   // read configuration data
   Json::Value configJson = cJ.read();
   // Gonna Move these to the passed in settings so that the player can decide -
@@ -44,6 +52,7 @@ void Game::load(){
   printf("\033[%d;%dH",0, 0);
   printf("STELLAR FORTRESS IS LOADING");
  // while(1)
+  l.log("GameCpp.load", "Loading teams");
   loadingMenu("Loading teams...",loadFPath);
 
   
@@ -57,6 +66,7 @@ void Game::load(){
   // teams have been loaded, start loading systems
 
 
+  l.log("GameCpp.load", "Loading systems");
   loadingMenu("Loading systems...", loadFPath);
   std::string systemFilePath = "game/" + infoJson["Systems_Dir"].asString();
   Json::Value systems = infoJson["Systems"];
@@ -83,15 +93,19 @@ void Game::load(){
   // float s = 1;
   // int f = 10;
 
-  Logger l("test1");
-  l.log("GameCpp.load", "Generating test planet");
-  Planet tPlanet("name", 30);
-  l.log("GameCpp.load", "Done generating test planet");
+  // l.log("GameCpp.load", "Generating test planet");
+  // Planet tPlanet("name", 30);
+  // l.log("GameCpp.load", "Done generating test planet");
   
-  curMap = tPlanet.get_map();
+  // curMap = tPlanet.get_map();
 
+  // l.log("GameCpp.load", "Loading basegame systems");
+  // for(auto i : systems) {
+    
+  // }
 
-
+  // throws error that dont make sense
+  curMap = this->systems[0].get_planet(0).get_map(); //hmm
 
   InitThreads();
   win = Window(this->settings.get("Name").c_str(), 30, 30, 0, 0);
@@ -101,14 +115,14 @@ void Game::load(){
   // All you would have to do is add like a ->get()
   win.RenderMap(this->curMap->get());
   l.log("GameCpp.load","Finished render map");
-  while(1){
-    // Generate UI
-    mainScreen.updateMouseInput();
-  }
+  // while(1){
+  //   // Generate UI
+  //   mainScreen.updateMouseInput();
+  // }
   
 
   #ifdef VIEW_MAP
-    getchar();
+    //getchar();
   #endif
 }
 
@@ -122,27 +136,9 @@ void Game::loadingMenu(std::string info, std::string loadFPath){
   printf("\033[%d;%dH",height, 0);
   printf("%s\n",info.c_str());
   #ifdef DEBUG
-  getchar();
+  //getchar();
   #endif
 }
-
-std::vector<std::vector<RGB>> Game::generate_colors() {
-  std::vector<std::vector<RGB>> colorMap;
-  for(int y = 0; y < this->height; ++y) {
-    std::vector<RGB> l; colorMap.push_back(l);
-    for(int x = 0; x < this->width; ++x) {
-      double cur_height = this->noiseM[y][x];
-      for(int i=0;i < regions.size(); ++i) {
-        if(cur_height <= regions[i].height) { // Im doing something right if it goes wrong
-          colorMap[y].push_back(regions[i].color); // why it blue (is it supposed to be (blu))
-          break;
-        }
-      }
-    }
-  }
-  return colorMap;
-}
-
 
 double scaleValue(double value, double inputMin, double inputMax, double outputMin, double outputMax) {
     double scaledValue = (value - inputMin) / (inputMax - inputMin) * (outputMax - outputMin) + outputMin;

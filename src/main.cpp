@@ -6,6 +6,9 @@
 #include <filesystem>
 #include "settings.h"
 #include "system/utils/rgb.h"
+
+#include "render/graphics.h"
+
 namespace fs = std::filesystem;
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
@@ -68,8 +71,14 @@ void setup_mods_menu();
 void init_c_settings();
 
 Settings c_settings;
+Renderer* mainMenuRender;
+int main() {  
 
-int main() {
+  // Create menu graphics window
+  mainMenuRender = new Renderer(320, 280);
+  
+
+  
   int n_choices = sizeof(choices) / sizeof(char*);
   int highlight = 1;
   int c;
@@ -98,6 +107,9 @@ int main() {
   refresh();
 
   while (1) {
+
+    mainMenuRender->display();
+    
     c = getch();
     switch(c) {
       case KEY_UP:

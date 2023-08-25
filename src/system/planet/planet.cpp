@@ -1,13 +1,35 @@
 #include "planet.h"
 #include "terraintypes/terrainreqs.h"
+// #include "../utils/readJson.h"
+// Planet::Planet(std::string name, int size) {
+//   this->size = size;
+//   
+//   l.log("PlanetCpp", "Const");
+//   init();
+// }
 
-Planet::Planet(std::string name, int size) {
-  this->size = size;
-  Logger l("test1");
-  l.log("PlanetCpp", "Const");
-  init();
+Planet::Planet(std::string dir) {
+  Logger l("planet");
+  
+  l.log("System.constructor", "reading json");
+  
+  JsonReader json(dir);
+  Json::Value p = json.read();
+
+  l.log("planet.constructor", "reading name");
+  this->name = p["Name"].asString();
+
+  l.log("planet.constructor", "reading map dimensions");
+  this->sizex = p["MapDimensions"][0].asInt();
+  this->sizey = p["MapDimensions"][1].asInt();
+
+  for (auto i : p["Regions"]) {
+    RGB color(i[2][0].asInt(), i[2][0].asInt(), i[2][0].asInt());
+    TerrainType r(i[0].asString(), i[1].asDouble(), color);
+    this->regions.push_back(r);
+  }
 }
-
+  
 int Planet::init() {
     generate_terrain_types();
     Logger l("test1");
@@ -17,7 +39,7 @@ int Planet::init() {
     TerrainReq f("peak", "mt", 4);
     lmm.push_back(f);
   
-    PlanetMap *m = new PlanetMap(this->size, this->regions, lmm);
+    PlanetMap m(this->sizex, this->sizey, this->regions, lmm);
     this->pMap = m;
     return 0;
 }
@@ -60,5 +82,5 @@ void Planet::generate_terrain_types() {
 }
 
 PlanetMap* Planet::get_map() {
-  return this->pMap;
+  return &(this->pMap);
 }

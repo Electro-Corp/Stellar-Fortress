@@ -89,14 +89,14 @@ void Window::RenderPanel(UI* ui){
 void Window::MouseEvent(int x, int y){
   //system("clear");
   //printf("[mouse event] x = %d, y = %d\n",x,y);
-  std::string val = "HIT";
-  l->log(title, val);
+  //std::string val = "HIT";
+  //l->log(title, val);
   //getchar();
 
   if(map){
     // houston, we've hit a tile.
     
   }else{
-    // UI click, (we dont have buttons yet)
+    // UI click or whitespace
   }
 }

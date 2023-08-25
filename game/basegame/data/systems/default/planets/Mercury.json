@@ -1,5 +1,16 @@
 {
-  "Name": "Mercury",
-  "Resources": ["iron"],
-  
+  "Name": "Name",
+  "Resources": ["resource"],
+  "MapDimensions": [50,50],
+  "_comment": "[name, max_height, [r, g, b]]     if decimal you still need a 0. cause otherwise big error",
+  "Regions": [
+    ["example", 0, [0, 0, 0]],
+    ["example1", 0, [0, 0, 0]],
+  ],
+  "_comment1": "[base, required around, min_surrounding_count]",
+  "Reqs": [
+    ["example", "example1", 0], 
+  ],
+  "_comment2": "[base, exc, max_surrounding_count] (not programmed in or used or anything so you can skip this)",
+  "Exc": []
 }

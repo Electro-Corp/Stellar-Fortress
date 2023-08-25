@@ -10,6 +10,9 @@ private:
 public:
 	System(std::string loadFromFile); 
   void SystemTick();
-};                                  
+  Planet get_planet(int);
+};
+
+
 #include "system.cpp"
 #endif

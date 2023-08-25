@@ -2,24 +2,24 @@
   "Name": "Earth",
   "Resources": ["water","ironOre","bauxite","silicon","oil"],
   "MapDimensions": [50,50],
-  "_comment": "[name, max_height, [r, g, b]]",
+  "_comment": "[name, max_height, [r, g, b]]     if decimal you still need a 0. cause otherwise big error",
   "Regions": [
-    ["deep_water", .1, [0, 100, 255]],
-    ["water", .3, [100, 155, 255]],
-    ["beach", .4, [220, 220, 60]],
-    ["plains", .75, [150, 220, 75]]
-    ["hills", .85, [130, 180, 80]],
-    ["bottom_mt", .9, [90, 70, 70]],
-    ["mt", .97, [70, 56, 56]],
+    ["deep_water", 0.1, [0, 100, 255]],
+    ["water", 0.3, [100, 155, 255]],
+    ["beach", 0.4, [220, 220, 60]],
+    ["plains", 0.75, [150, 220, 75]],
+    ["hills", 0.85, [130, 180, 80]],
+    ["bottom_mt", 0.9, [90, 70, 70]],
+    ["mt", 0.97, [70, 56, 56]],
     ["peak", 1, [225, 225, 225]]
   ],
-  "_comment1": "[base, req, min_surrounding_count]",
+  "_comment1": "[base, required around, min_surrounding_count]",
   "Reqs": [
     ["deep_water", "water", 4], 
     ["beach", "water", 1],
     ["peak", "mt", 4],
     ["mt", "bottom_mt", 2]
   ],
-  "_comment2": "[base, exc, max_surrounding_count]",
+  "_comment2": "[base, exc, max_surrounding_count] (not programmed in or used or anything so you can skip this)",
   "Exc": []
 }

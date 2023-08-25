@@ -16,7 +16,7 @@
   "Power-1" {
     "Name" : "Fusion Power",
     "Description" : "Power plants utilizing the heat from fusion reactions",
-    "Prerequisites" : ["Power0"],
+    "Prerequisites" : ["Power0"],   
     "Effects" : {
       "PowerGen" : 2,
       "PowerPlantMaint" : 2
