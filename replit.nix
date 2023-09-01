@@ -1,5 +1,6 @@
 { pkgs }: {
     deps = [
+        pkgs.imagemagick6_light
         pkgs.sl
         pkgs.gdb
         pkgs.jsoncpp

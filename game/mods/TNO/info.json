@@ -1,0 +1,11 @@
+{
+  "Name": "TNO",
+  "HasSystems": 0,
+  "Systems_Dir": "",
+  "Systems": [""],
+  "HasTeams": 0,
+  "Team_Dir": "TNO/data/teams",
+  "Teams": [""],
+  "HasLoadingImages": 0,
+  "LoadingImages": ""
+}

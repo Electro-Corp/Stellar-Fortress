@@ -6,12 +6,31 @@
 */
 #ifndef GRAPHICS_H
 #define GRAPHCIS_H
-#include <SFML/Graphics.hpp>
+#include <SDL2/SDL.h>
+/*
+  Rendering modes:
+    * Menu
+    * Loading Screen
+    * In-Game
+*/
+enum renderMode{
+  RM_Menu = 0,
+  RM_LoadScreen = 1,
+  RM_Game = 2
+};
 class Renderer{
 private:
-sf::RenderWindow* renderWindow;
+SDL_Window* window;
+SDL_Surface* surface;
+renderMode rm;
+
+// Menu
+
 public:
-  Renderer(int width, int height);
+  Renderer(int width, int height, renderMode rm);
+
+// Menu Rendering
+  
 
   void procEvents();
 

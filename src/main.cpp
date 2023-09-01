@@ -75,7 +75,7 @@ Renderer* mainMenuRender;
 int main() {  
 
   // Create menu graphics window
-  mainMenuRender = new Renderer(320, 280);
+  mainMenuRender = new Renderer(800, 600, RM_Menu);
   
 
   
