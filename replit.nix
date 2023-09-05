@@ -1,6 +1,5 @@
 { pkgs }: {
     deps = [
-        pkgs.imagemagick6_light
         pkgs.sl
         pkgs.gdb
         pkgs.jsoncpp
@@ -16,5 +15,7 @@
         pkgs.libudev0-shim
         pkgs.udev
         pkgs.eudev
+        pkgs.SDL_image
+        pkgs.imagemagick
     ];
 }

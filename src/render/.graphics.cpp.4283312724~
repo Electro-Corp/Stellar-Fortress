@@ -38,20 +38,16 @@ void Renderer::initMenu(std::string logoPath, std::string bgPath){
     SDL_BlitScaled(MENU_buttons[i].buttonSurface, NULL, surface, &stretchRect);
   }
   // Order the buttons
-  bubbleSortButton(&MENU_buttons);
+  
 }
 
-void bubbleSortButton(std::vector<Button>* MENU_buttons){
-  bool isBad = false;
-  for(int i = 0; i < MENU_buttons->size() - 1; i++){
-    if((MENU_buttons->operator[](i).x + MENU_buttons->operator[](i).y / 2) > (MENU_buttons->operator[](i+1).x + MENU_buttons->operator[](i+1).y / 2)){
-      Button tmp = MENU_buttons->operator[](i);
-      MENU_buttons->operator[](i) = MENU_buttons->operator[](i + 1);
-      MENU_buttons->operator[](i + 1) = tmp;
-      isBad = true;
-    }
+void bubbleSortButton(std::vector<Button>* bs){
+ for(int i = 0; i < MENU_buttons->size() - 1; i++){
+  if((MENU_buttons[i]->x + MENU_buttons[i]->y / 2) > (MENU_buttons[i + 1]->x + MENU_buttons[i + 1]->y / 2)){
+    Button tmp = MENU_buttons[i];
+    MENU_B
   }
-  if(isBad) bubbleSortButton(MENU_buttons);
+ }
 }
 
 void Renderer::addButton(Button b){
@@ -59,16 +55,12 @@ void Renderer::addButton(Button b){
 }
 void Renderer::procEvents(){
   SDL_Event e;
-  while(SDL_PollEvent(&e) != 0){
+  while( SDL_PollEvent( &e ) != 0 ){
     
   }
-  if(e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP){
+  if( e->type == SDL_MOUSEMOTION || e->type == SDL_MOUSEBUTTONDOWN || e->type == SDL_MOUSEBUTTONUP ){
     int x, y;
     SDL_GetMouseState(&x, &y);
-    switch(e.type){
-      case SDL_MOUSEBUTTONUP:
-      break;
-    }
   }
 }
 
