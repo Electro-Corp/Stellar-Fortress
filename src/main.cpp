@@ -73,18 +73,27 @@ void init_c_settings();
 
 Settings c_settings;
 Renderer* mainMenuRender;
+
+void goofy(){
+  system("clear");
+  printf("wow\n");
+  exit(-1);
+}
+
 int main() {  
 // Andrew you need to make the JSON file reading here
 // so we can load the width/height/images
   
   // Create menu graphics window
-  Button startGameButton("oops", 200, 200, NULL, "game/basegame/data/images/mainmenu/buttons/startbutton.bmp");
+  Button startGameButton("oops", 200, 200, goofy, "game/basegame/data/images/mainmenu/buttons/startbutton.bmp");
   mainMenuRender = new Renderer(800, 600, RM_Menu);
   mainMenuRender->addButton(startGameButton);
   mainMenuRender->initMenu("game/basegame/data/images/stellar.bmp", "game/basegame/data/images/stars.bmp");
   
   
-
+  while(1){
+    mainMenuRender->display();
+  }
   
   int n_choices = sizeof(choices) / sizeof(char*);
   int highlight = 1;

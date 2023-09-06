@@ -5,7 +5,7 @@ class Button{
 public:
   std::string text;
   void (*onClick)();
-  int x,y;
+  int x,y, width, height;
   SDL_Surface *buttonSurface;
   Button(std::string text, int x, int y, void (*onClick)(), std::string buttonImagePath){
     this->text;
