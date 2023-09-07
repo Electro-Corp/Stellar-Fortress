@@ -74,20 +74,29 @@ void init_c_settings();
 Settings c_settings;
 Renderer* mainMenuRender;
 
+
+// TEST stuff
 void goofy(){
   system("clear");
-  printf("wow\n");
-  exit(-1);
+  mainMenuRender->endWindow();
+  //printf("wow\n");
+  //exit(-1);
+  init_c_settings();
+  Game game("game/basegame/info.json","game/config.json", c_settings);
 }
-
+void quit(){
+  exit(0);
+}
 int main() {  
 // Andrew you need to make the JSON file reading here
 // so we can load the width/height/images
   
   // Create menu graphics window
-  Button startGameButton("oops", 200, 200, goofy, "game/basegame/data/images/mainmenu/buttons/startbutton.bmp");
+  Button startGameButton("New Game", 200, 185, goofy, "game/basegame/data/images/mainmenu/buttons/startbutton.bmp");
+  Button quitButton("Quit", 200, 250, quit, "game/basegame/data/images/mainmenu/buttons/quit.bmp");
   mainMenuRender = new Renderer(800, 600, RM_Menu);
   mainMenuRender->addButton(startGameButton);
+  mainMenuRender->addButton(quitButton);
   mainMenuRender->initMenu("game/basegame/data/images/stellar.bmp", "game/basegame/data/images/stars.bmp");
   
   
@@ -124,7 +133,7 @@ int main() {
 
   while (1) {
 
-    mainMenuRender->display();
+    //mainMenuRender->display();
     
     c = getch();
     switch(c) {
@@ -302,8 +311,8 @@ int mod_menu() {
 void init_c_settings() {
   // c_settings.set("Name", "default");
   // c_settings.set("seed", "24");
-  c_settings.set("height", "25");
-   c_settings.set("width", "30");
+  c_settings.set("height", "600");
+   c_settings.set("width", "800");
   
 }
 

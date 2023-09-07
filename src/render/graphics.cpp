@@ -1,5 +1,11 @@
+/*
+  GRAPHICS.CPP
+  Renders the game using SDL
+*/
+
 #define FADE_SPEED 0.0007f
 
+// COnstructiort
 Renderer::Renderer(int width, int height, renderMode rm){
   this->rm = rm;
   this->width = width;
@@ -13,6 +19,8 @@ Renderer::Renderer(int width, int height, renderMode rm){
   SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0xFF, 0xFF, 0xFF));
   display();
 }
+
+// Initilze the menu 
 void Renderer::initMenu(std::string logoPath, std::string bgPath){
   //logo = IMG_LoadTexture(logoPath);
   SDL_Rect stretchRect;
@@ -37,14 +45,16 @@ void Renderer::initMenu(std::string logoPath, std::string bgPath){
     stretchRect.y = MENU_buttons[i].y;
     stretchRect.w = width / 2;
     stretchRect.h = height / 4;
-    MENU_buttons[i].width = stretchRect.w;
-    MENU_buttons[i].height = stretchRect.h;
+    MENU_buttons[i].width = 200;
+    MENU_buttons[i].height = 30;
+    #ifdef DEBUG
+    printf("Button Debug:\nX = %d\nY = %d\nW = %d\nH = %d\n",stretchRect.x,stretchRect.y,stretchRect.w,stretchRect.h);
+    #endif
     SDL_BlitScaled(MENU_buttons[i].buttonSurface, NULL, surface, &stretchRect);
   }
   // Order the buttons
   bubbleSortButton(&MENU_buttons);
 }
-
 void bubbleSortButton(std::vector<Button>* MENU_buttons){
   bool isBad = false;
   for(int i = 0; i < MENU_buttons->size() - 1; i++){
@@ -77,11 +87,9 @@ int indexOfButton(float avg, std::vector<Button> buttons){
   }
   return -1;
 }
-
 void Renderer::addButton(Button b){
   this->MENU_buttons.push_back(b);
 }
-
 void Renderer::procEvents(){
   SDL_Event e;
   SDL_PollEvent(&e);
@@ -97,7 +105,7 @@ void Renderer::procEvents(){
         for(int i = 0; i < MENU_buttons.size(); i++){
           if(
             x > MENU_buttons[i].x && x < MENU_buttons[i].x + MENU_buttons[i].width &&
-            y > MENU_buttons[i].y && y < MENU_buttons[i].y + MENU_buttons[i].height
+            y > MENU_buttons[i].y && y < MENU_buttons[i].y + MENU_buttons[i].height + MENU_buttons[i].yoffset
             ) MENU_buttons[i].onClick();
         }
         break;
@@ -116,7 +124,17 @@ void Renderer::procEvents(){
 }
 float alpha = 0.0f;
 float alphaCalc = 0.0f;
-void Renderer::display(){
+
+void Renderer::initLoadScreen(std::string bgPath){
+  background = SDL_LoadBMP(bgPath.c_str());
+  SDL_BlitSurface(background, NULL, surface, NULL );
+  if(background == NULL){
+    printf("BG_LOADERROR\n");
+    exit(-1);
+  }
+}
+
+void Renderer::display(/*std::vector<std::vector<Tile>> tiles = NULL*/){
   if(rm == RM_Menu){
         SDL_Rect stretchRect;
         SDL_FillRect(surface, NULL, 0x000000);
@@ -133,16 +151,32 @@ void Renderer::display(){
         if (alpha >= SDL_ALPHA_OPAQUE) {
             alpha = SDL_ALPHA_OPAQUE;
             alphaCalc = (float)SDL_ALPHA_OPAQUE;
-      
+
+
+            // ill put this in a fucntion called "draw buttons" orsmthing later
             for(int i = 0; i < MENU_buttons.size(); i++){
               stretchRect.x = MENU_buttons[i].x;
               stretchRect.y = MENU_buttons[i].y;
               stretchRect.w = width / 2;
               stretchRect.h = height / 4;
               MENU_buttons[i].width = stretchRect.w;
-              MENU_buttons[i].height = stretchRect.h;
+              MENU_buttons[i].height = stretchRect.h / 4 + MENU_buttons[i].yoffset;
               SDL_BlitScaled(MENU_buttons[i].buttonSurface, NULL, surface, &stretchRect);
+
+              // DEBUG
+              #ifdef BUTTON_DEBUG
+              SDL_Rect srcrect;
+
+              srcrect.x = MENU_buttons[i].x;
+              srcrect.y = MENU_buttons[i].y + MENU_buttons[i].yoffset;
+              srcrect.w = MENU_buttons[i].width;
+              srcrect.h = MENU_buttons[i].height;
+              
+              SDL_BlitSurface(surface, &srcrect, NULL, &srcrect);
+              SDL_FillRect(surface, &srcrect, 0xFFFFFA + (i * 50));
+              #endif
             }
+
       }
     // TEMP =====
       
@@ -154,9 +188,30 @@ void Renderer::display(){
     // END TEMP
     }
   procEvents();
-  if(rm = RM_Menu){
-    
+  if(rm == RM_LoadScreen){
+    SDL_Rect stretchRect;
+    SDL_FillRect(surface, NULL, 0x000000);
+    stretchRect.x = 0;
+    stretchRect.y = 0;
+    stretchRect.w = width;
+    stretchRect.h = height;
+    //SDL_BlitSurface(background, NULL, surface, NULL );
+    SDL_BlitScaled(background, NULL, surface, &stretchRect);
+  }
+  if(rm = RM_Game){
+    /*if(tiles != NULL){
+      // Render the tile
+      for(int y = 0; y < tiles.size(); y++){
+        for(int x = 0; x < tiles[y].size(); x++){
+          // 
+          
+        }
+      }
+    }*/
   }
   
   SDL_UpdateWindowSurface(window);
+}
+void Renderer::endWindow(){
+  SDL_DestroyWindow(window);
 }

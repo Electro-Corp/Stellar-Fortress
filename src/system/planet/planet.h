@@ -3,6 +3,7 @@
 
 #include "../../map_generation/planetmap.h"
 #include "./terraintypes/terraintype.h"
+#include "../utils/readJson.h"
 
 class Planet{
 public:

@@ -11,8 +11,8 @@
       "CreateBuilding" : "B"
     }
   },
-  "GameWidth" : 100,
-  "GameHeight": 20,
+  "GameWidth" : 800,
+  "GameHeight": 600,
   "ModsLoadedByDefault": [],
   "LoadDefaultGame": true
 }

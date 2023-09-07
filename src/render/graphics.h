@@ -5,10 +5,11 @@
   Uses SDL2 (Very cool)
 */
 #ifndef GRAPHICS_H
-#define GRAPHCIS_H
+#define GRAPHICS_H
 #include <SDL2/SDL.h>
 //#include <SDL2_image/SDL_image.h>
 // /#include<SDL2/SDL_image.h>
+#include "../system/planet/tile.h"
 
 /*
   Rendering modes:
@@ -39,10 +40,15 @@ public:
 // Menu Rendering
   void initMenu(std::string logoPath, std::string bgPath);
   void addButton(Button b);
+// Loading
+  void initLoadScreen(std::string bgPath);
 
   void procEvents();
 
-  void display();
+  void display(/*std::vector<std::vector<Tile>> tiles = NULL*/);
+
+  // Kill renderer
+  void endWindow();
 };
 #include "graphics.cpp"
 #endif

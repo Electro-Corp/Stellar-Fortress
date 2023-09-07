@@ -1,5 +1,6 @@
 { pkgs }: {
     deps = [
+        pkgs.sudo
         pkgs.sl
         pkgs.gdb
         pkgs.jsoncpp

@@ -12,6 +12,7 @@
 
 namespace fs = std::filesystem;
 
+Renderer* loadingRender;
 
 // #define DEBUG 1
 #define VIEW_MAP 1
@@ -44,7 +45,7 @@ void Game::load(){
   // Gonna Move these to the passed in settings so that the player can decide -
   this->height = std::stoi(settings.get("height").c_str());
   this->width = std::stoi(settings.get("width").c_str());
-
+  loadingRender = new Renderer(width, height, RM_LoadScreen);
   
   Json::Value infoJson   = iJ.read();
   std::string loadFPath = "game/" + infoJson["LoadingImages"].asString();
@@ -104,6 +105,11 @@ void Game::load(){
     
   // }
 
+
+  // End loading screen
+  loadingRender->endWindow();
+
+      
   // throws error that dont make sense
   curMap = this->systems[0].get_planet(0).get_map(); //hmm
 
@@ -130,11 +136,13 @@ void Game::load(){
 void Game::loadingMenu(std::string info, std::string loadFPath){
   // add terminal image renderer? (by me)
   if(loadFPath != lastImagePath){
-    renderImage(loadFPath.c_str(),0,1);
+    //renderImage(loadFPath.c_str(),0,1);
+    loadingRender->initLoadScreen(loadFPath.c_str());
     lastImagePath = loadFPath;
   }
   printf("\033[%d;%dH",height, 0);
   printf("%s\n",info.c_str());
+  loadingRender->display();
   #ifdef DEBUG
   //getchar();
   #endif

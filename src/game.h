@@ -12,6 +12,9 @@
 #include "./map_generation/planetmap.h"
 #include <thread>
 
+#include "render/graphics.h"
+
+
 class Game {
   public:
     Game(const std::string& data, const std::string& config, Settings& settings);

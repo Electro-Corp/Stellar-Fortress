@@ -18,7 +18,7 @@ class Tile {
   std::string type;
 
   double height;
-  Tile::Tile(RGB color, int x, int y, bool isO, double h){
+ Tile(RGB color, int x, int y, bool isO, double h){
     this->rgb = color;
     this->x = x;
     this->y = y;
@@ -26,7 +26,7 @@ class Tile {
     this->height = h;
   }
 
-  Tile::Tile(RGB color, int x, int y, double h, std::string t){
+  Tile(RGB color, int x, int y, double h, std::string t){
     this->rgb = color;
     this->x = x;
     this->y = y;
@@ -35,7 +35,7 @@ class Tile {
     this->type = t;
   }
 
-  void Tile::set_r(TerrainType t) {
+  void set_r(TerrainType t) {
     this->rgb = t.color;
     this->type = t.name;
   }
