@@ -8,11 +8,13 @@
 #include <limits>
 #include "other/log.h"
 
+
 //,#include "render/graphics.h"
 
 namespace fs = std::filesystem;
 
 Renderer* loadingRender;
+Renderer* mapRender;
 
 // #define DEBUG 1
 #define VIEW_MAP 1
@@ -45,9 +47,10 @@ void Game::load(){
   // Gonna Move these to the passed in settings so that the player can decide -
   this->height = std::stoi(settings.get("height").c_str());
   this->width = std::stoi(settings.get("width").c_str());
-  loadingRender = new Renderer(width, height, RM_LoadScreen);
+  
   
   Json::Value infoJson   = iJ.read();
+  loadingRender = new Renderer(width, height, RM_LoadScreen, &std::string("game/" + infoJson["DefaultFont"].asString()));
   std::string loadFPath = "game/" + infoJson["LoadingImages"].asString();
   printf("\033[2J");
   printf("\033[%d;%dH",0, 0);
@@ -109,24 +112,30 @@ void Game::load(){
   // End loading screen
   loadingRender->endWindow();
 
+  mapRender = new Renderer(width, height, RM_Game);
       
   // throws error that dont make sense
   curMap = this->systems[0].get_planet(0).get_map(); //hmm
 
-  InitThreads();
-  win = Window(this->settings.get("Name").c_str(), 30, 30, 0, 0);
-  mainScreen.addWindow(&win);
-  system("clear");
+  //InitThreads();
+  //win = Window(this->settings.get("Name").c_str(), 30, 30, 0, 0);
+  //mainScreen.addWindow(&win);
+  //system("clear");
   // I will fix just need to change the other things
   // All you would have to do is add like a ->get()
-  win.RenderMap(this->curMap->get());
+  //win.RenderMap(this->curMap->get());
+
+  getchar();
+  
+  mapRender->display(&(this->curMap->get()));
   l.log("GameCpp.load","Finished render map");
   // while(1){
   //   // Generate UI
   //   mainScreen.updateMouseInput();
   // }
-  
 
+  // RENDER (NOW)
+  
   #ifdef VIEW_MAP
     //getchar();
   #endif
@@ -137,14 +146,15 @@ void Game::loadingMenu(std::string info, std::string loadFPath){
   // add terminal image renderer? (by me)
   if(loadFPath != lastImagePath){
     //renderImage(loadFPath.c_str(),0,1);
-    loadingRender->initLoadScreen(loadFPath.c_str());
+    
     lastImagePath = loadFPath;
   }
+  loadingRender->initLoadScreen(loadFPath.c_str(), info.c_str());
   printf("\033[%d;%dH",height, 0);
   printf("%s\n",info.c_str());
   loadingRender->display();
   #ifdef DEBUG
-  //getchar();
+  getchar();
   #endif
 }
 
@@ -176,7 +186,7 @@ void Game::GameLoop(){
 void Game::UIUpdate(){
   while(1){
     // Generate UI
-    mainScreen.updateMouseInput();
+    //mainScreen.updateMouseInput();
   }
 
   

@@ -4,9 +4,9 @@
 */
 
 #define FADE_SPEED 0.0007f
-
+//#define BUTTON_DEBUG
 // COnstructiort
-Renderer::Renderer(int width, int height, renderMode rm){
+Renderer::Renderer(int width, int height, renderMode rm, std::string *fontPath = nullptr){
   this->rm = rm;
   this->width = width;
   this->height = height;
@@ -16,8 +16,21 @@ Renderer::Renderer(int width, int height, renderMode rm){
   }
   window = SDL_CreateWindow("Stellar Fortress", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
   surface = SDL_GetWindowSurface(window);
+
+  
+  // Init fonts
+  TTF_Init();
+  if(fontPath){
+    gFont = TTF_OpenFont(fontPath->c_str(), 28);
+  }else{
+    gFont = TTF_OpenFont("game/basegame/data/fonts/lazy.ttf", 28);
+  }
+  if(!gFont){printf("FONT_ERROR: %s\n",TTF_GetError());}
   SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0xFF, 0xFF, 0xFF));
-  display();
+  if(rm != RM_LoadScreen)
+    display();
+
+  l.log("Renderer.Renderer", "Logging init. Renderer in mode " + std::to_string(rm));
 }
 
 // Initilze the menu 
@@ -125,16 +138,25 @@ void Renderer::procEvents(){
 float alpha = 0.0f;
 float alphaCalc = 0.0f;
 
-void Renderer::initLoadScreen(std::string bgPath){
+void Renderer::initLoadScreen(std::string bgPath, std::string loadText){
   background = SDL_LoadBMP(bgPath.c_str());
   SDL_BlitSurface(background, NULL, surface, NULL );
   if(background == NULL){
     printf("BG_LOADERROR\n");
     exit(-1);
   }
+  if(gFont != NULL){
+    SDL_Color blackTmp = {0,0,0};
+    loadTextSurface = TTF_RenderText_Blended(gFont, loadText.c_str(), blackTmp);
+    SDL_BlitSurface(loadTextSurface, NULL, surface, NULL);
+  }else{
+    printf("\nFONT NOT LOADED ERROR\nCHECK INTEGRITY OF GAME FILES\n");
+    exit(-1);
+  }
 }
 
-void Renderer::display(/*std::vector<std::vector<Tile>> tiles = NULL*/){
+void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr){
+  SDL_FillRect(surface, NULL, 0x000000);
   if(rm == RM_Menu){
         SDL_Rect stretchRect;
         SDL_FillRect(surface, NULL, 0x000000);
@@ -186,30 +208,45 @@ void Renderer::display(/*std::vector<std::vector<Tile>> tiles = NULL*/){
       stretchRect.h = height / 2;
       SDL_BlitScaled(logo, NULL, surface, &stretchRect);
     // END TEMP
-    }
-  procEvents();
+  }
   if(rm == RM_LoadScreen){
     SDL_Rect stretchRect;
-    SDL_FillRect(surface, NULL, 0x000000);
     stretchRect.x = 0;
     stretchRect.y = 0;
     stretchRect.w = width;
     stretchRect.h = height;
     //SDL_BlitSurface(background, NULL, surface, NULL );
-    SDL_BlitScaled(background, NULL, surface, &stretchRect);
+    if(background != NULL){
+      SDL_BlitScaled(background, NULL, surface, &stretchRect);
+    }
+    if(loadTextSurface){
+     SDL_BlitSurface(loadTextSurface, NULL, surface, NULL);
+    } else{
+      l.log("Renderer.display", "Text surface does not exist!");
+      printf("no text surface\n");
+      exit(-1);
+    }
   }
-  if(rm = RM_Game){
-    /*if(tiles != NULL){
+  if(rm == RM_Game){
+    if(tiles != NULL){
       // Render the tile
-      for(int y = 0; y < tiles.size(); y++){
+      for(int y = 0; y < tiles->size(); y++){
         for(int x = 0; x < tiles[y].size(); x++){
           // 
+          SDL_Rect srcrect;
+
+          srcrect.x = (*tiles)[y][x].x;
+          srcrect.y = (*tiles)[y][x].y;
+          srcrect.w = 10;
+          srcrect.h = 10;
           
+          SDL_BlitSurface(surface, &srcrect, NULL, &srcrect);
+          SDL_FillRect(surface, &srcrect, 0xFFFFFA + (x * 5 * y));
         }
       }
-    }*/
+    }
   }
-  
+  procEvents();
   SDL_UpdateWindowSurface(window);
 }
 void Renderer::endWindow(){

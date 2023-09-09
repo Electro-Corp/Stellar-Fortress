@@ -17,6 +17,8 @@ public:
     int height;
     std::vector<TerrainType> regions;
     PlanetMap(int sizex, int sizey, std::vector<TerrainType> r, std::vector<TerrainReq> reqs/*, int seed = 0*/);
+    PlanetMap();
+
     std::vector<std::vector<Tile>> get();
     void generate_map_and_colors();
     void bubble_verify();
@@ -28,6 +30,10 @@ private:
     // std::vector<TerrainReq> exc;
     std::vector<TerrainReq> req;
 };
+
+PlanetMap::PlanetMap(){
+  
+}
 
 PlanetMap::PlanetMap(int sizex, int sizey, std::vector<TerrainType> r, std::vector<TerrainReq> reqs/*, int seed = 0*/) {
     this->width = sizex;

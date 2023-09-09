@@ -7,10 +7,12 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 #include <SDL2/SDL.h>
+#include "SDL_ttf.h"
+
 //#include <SDL2_image/SDL_image.h>
 // /#include<SDL2/SDL_image.h>
 #include "../system/planet/tile.h"
-
+#include "../other/log.h"
 /*
   Rendering modes:
     * Menu
@@ -34,18 +36,22 @@ int width, height;
 SDL_Surface *logo;
 SDL_Surface *background;
 std::vector<Button> MENU_buttons;
+// Load screen
+TTF_Font* gFont = NULL; // Font
+SDL_Surface* loadTextSurface;
+Logger l;
 public:
-  Renderer(int width, int height, renderMode rm);
+  Renderer(int width, int height, renderMode rm, std::string* fontPath = nullptr);
 
 // Menu Rendering
   void initMenu(std::string logoPath, std::string bgPath);
   void addButton(Button b);
 // Loading
-  void initLoadScreen(std::string bgPath);
+  void initLoadScreen(std::string bgPath, std::string);
 
   void procEvents();
 
-  void display(/*std::vector<std::vector<Tile>> tiles = NULL*/);
+  void display(std::vector<std::vector<Tile>> *tiles = nullptr);
 
   // Kill renderer
   void endWindow();

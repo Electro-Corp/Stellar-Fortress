@@ -1,5 +1,7 @@
 { pkgs }: {
     deps = [
+        pkgs.busybox
+        pkgs.nano
         pkgs.sudo
         pkgs.sl
         pkgs.gdb
@@ -18,5 +20,8 @@
         pkgs.eudev
         pkgs.SDL_image
         pkgs.imagemagick
+        pkgs.SDL2_ttf
+        pkgs.SDL_ttf
+        pkgs.xterm
     ];
 }

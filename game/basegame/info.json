@@ -6,5 +6,6 @@
   "Team_Dir": "basegame/data/teams/",
   "Teams": ["China.json","EAF.json","Europe.json","RedditNation.json","Russia.json","USA.json"],
   "LoadingImages": "basegame/data/images/loading/load1.bmp",
-  "MenuImage": "basegame/data/images/st_logo.bmp"
+  "MenuImage": "basegame/data/images/st_logo.bmp",
+  "DefaultFont": "basegame/data/fonts/bot.ttf"
 }

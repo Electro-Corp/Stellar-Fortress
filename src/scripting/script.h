@@ -5,7 +5,7 @@
 #include "../system/planet/gameObject.h"
 #ifndef SCRIPT_H
 #define SCRIPT_H
-#define DEBUG
+//#define DEBUG
 
 //typedef vector<tuple<int, int, std::string>> doubleTuple;
 
