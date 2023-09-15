@@ -6,6 +6,7 @@
 */
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
+#include "ui/button.h"
 #include <SDL2/SDL.h>
 #include "SDL_ttf.h"
 
@@ -32,6 +33,9 @@ SDL_Surface* surface;
 SDL_Renderer *renderer;
 renderMode rm;
 int width, height;
+int mapXOff, mapYOff;
+int viewX, viewY;
+int SCALE;
 // Menu
 SDL_Surface *logo;
 SDL_Surface *background;
@@ -47,11 +51,11 @@ public:
   void initMenu(std::string logoPath, std::string bgPath);
   void addButton(Button b);
 // Loading
-  void initLoadScreen(std::string bgPath, std::string);
+  void initLoadScreen(std::string bgPath, std::string, bool noBg = false);
 
   void procEvents();
 
-  void display(std::vector<std::vector<Tile>> *tiles = nullptr);
+  void display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noLoadImage = false);
 
   // Kill renderer
   void endWindow();

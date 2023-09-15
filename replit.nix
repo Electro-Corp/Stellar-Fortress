@@ -23,5 +23,6 @@
         pkgs.SDL2_ttf
         pkgs.SDL_ttf
         pkgs.xterm
+        pkgs.SDL2_mixer
     ];
 }

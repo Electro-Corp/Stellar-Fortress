@@ -4,6 +4,7 @@
 // teams
 #include "system/team/team.h"
 #include "system/system.h"
+#include "scripting/ScriptManager.h"
 #include "settings.h"
 #include "system/planet/tile.h"
 #include "render/window.h"
@@ -23,10 +24,11 @@ class Game {
 
     std::vector<TerrainType> regions;
     std::vector<std::vector<RGB>> colorM;
+
   private:
     
     void load();
-    void loadingMenu(std::string info, std::string loadFPath);
+    static void loadingMenu(std::string info, std::string loadFPath);
     // std::vector<std::vector<double>> generateNoise();
     std::vector<std::vector<double>> noiseM;    
     void init_map();
@@ -34,6 +36,10 @@ class Game {
     void generate_terrain_types();
     std::vector<std::vector<Tile>> generate_map();
     int render_from_pmap(PlanetMap pm);
+
+    ScriptManager* unitScriptMan;
+    ScriptManager* uiScriptMan;
+    
     void GameLoop();
     void InitThreads();
 

@@ -14,9 +14,16 @@ Renderer::Renderer(int width, int height, renderMode rm, std::string *fontPath =
     printf("SDL INIT FAILURE ( %s )\n", SDL_GetError());
     exit(-1);
   }
-  window = SDL_CreateWindow("Stellar Fortress", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow("Sid Meier's Stellar Fortress", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
   surface = SDL_GetWindowSurface(window);
 
+  if(rm == RM_Game){
+    mapXOff = 0;
+    mapYOff = 0;
+    viewX = 0;
+    viewY = 0;
+    SCALE = 11;
+  }
   
   // Init fonts
   TTF_Init();
@@ -109,17 +116,67 @@ void Renderer::procEvents(){
   /*while( != 0){
     
   }*/
+  if(e.type == SDL_WINDOWEVENT){
+    switch (e.window.event) {
+      case SDL_WINDOWEVENT_CLOSE:   // exit game
+          exit(0);
+          break;
+
+      default:
+          break;
+    }
+  }
+  switch(e.type){
+    case SDL_KEYDOWN:
+        switch(e.key.keysym.sym){
+          case SDLK_UP:
+            if(rm == RM_Game){
+              mapYOff--;
+            }
+            break;
+          case SDLK_DOWN:
+            if(rm == RM_Game){
+              mapYOff++;
+            }
+            break;
+          case SDLK_LEFT:
+            if(rm == RM_Game){
+              mapXOff--;
+            }
+            break;
+          case SDLK_RIGHT:
+            if(rm == RM_Game){
+              mapXOff++;
+            }
+            break;
+          case SDLK_EQUALS:
+            if(rm == RM_Game){
+              SCALE++;
+            }
+            break;
+          case SDLK_MINUS:
+            if(rm == RM_Game){
+              SCALE--;
+            }
+            break;
+        }
+        break;
+  }
+  viewX = mapXOff; // T M
+  viewY = mapYOff; // E P
   if(e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP){
     int x, y;
     SDL_GetMouseState(&x, &y);
     switch(e.type){
       case SDL_MOUSEBUTTONDOWN:
         //MENU_buttons[indexOfButton((x + y)/2,MENU_buttons)].onClick();
-        for(int i = 0; i < MENU_buttons.size(); i++){
-          if(
-            x > MENU_buttons[i].x && x < MENU_buttons[i].x + MENU_buttons[i].width &&
-            y > MENU_buttons[i].y && y < MENU_buttons[i].y + MENU_buttons[i].height + MENU_buttons[i].yoffset
-            ) MENU_buttons[i].onClick();
+        if(rm == RM_Menu){
+          for(int i = 0; i < MENU_buttons.size(); i++){
+            if(
+              x > MENU_buttons[i].x && x < MENU_buttons[i].x + MENU_buttons[i].width &&
+              y > MENU_buttons[i].y && y < MENU_buttons[i].y + MENU_buttons[i].height + MENU_buttons[i].yoffset
+              ) MENU_buttons[i].onClick();
+          }
         }
         break;
       case SDL_MOUSEMOTION:
@@ -138,15 +195,18 @@ void Renderer::procEvents(){
 float alpha = 0.0f;
 float alphaCalc = 0.0f;
 
-void Renderer::initLoadScreen(std::string bgPath, std::string loadText){
-  background = SDL_LoadBMP(bgPath.c_str());
-  SDL_BlitSurface(background, NULL, surface, NULL );
-  if(background == NULL){
-    printf("BG_LOADERROR\n");
-    exit(-1);
+void Renderer::initLoadScreen(std::string bgPath, std::string loadText, bool noBg = false){
+  if(!noBg){
+    background = SDL_LoadBMP(bgPath.c_str());
+    SDL_BlitSurface(background, NULL, surface, NULL );
+    if(background == NULL){
+      printf("BG_LOADERROR\n");
+      exit(-1);
+    }
   }
   if(gFont != NULL){
-    SDL_Color blackTmp = {0,0,0};
+    SDL_Color blackTmp = {255,255,255};
+    if(noBg) blackTmp = {255, 255, 255};
     loadTextSurface = TTF_RenderText_Blended(gFont, loadText.c_str(), blackTmp);
     SDL_BlitSurface(loadTextSurface, NULL, surface, NULL);
   }else{
@@ -155,8 +215,12 @@ void Renderer::initLoadScreen(std::string bgPath, std::string loadText){
   }
 }
 
-void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr){
+void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noLoadImage = false){
+  procEvents();
   SDL_FillRect(surface, NULL, 0x000000);
+
+  // Switch this to a "switch" statment at
+  // some point, i think its better practice
   if(rm == RM_Menu){
         SDL_Rect stretchRect;
         SDL_FillRect(surface, NULL, 0x000000);
@@ -216,7 +280,7 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr){
     stretchRect.w = width;
     stretchRect.h = height;
     //SDL_BlitSurface(background, NULL, surface, NULL );
-    if(background != NULL){
+    if(background != NULL && noLoadImage == false){
       SDL_BlitScaled(background, NULL, surface, &stretchRect);
     }
     if(loadTextSurface){
@@ -228,25 +292,43 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr){
     }
   }
   if(rm == RM_Game){
-    if(tiles != NULL){
-      // Render the tile
-      for(int y = 0; y < tiles->size(); y++){
-        for(int x = 0; x < tiles[y].size(); x++){
-          // 
-          SDL_Rect srcrect;
+    // Render Tiles
+    if(tiles != nullptr){
 
-          srcrect.x = (*tiles)[y][x].x;
-          srcrect.y = (*tiles)[y][x].y;
-          srcrect.w = 10;
-          srcrect.h = 10;
+      // We need view box code so that I can make a good looking map because if the dimentions are as small as they are right now it will always be horrible
+      
+      
+      // Render the tile
+      //std::vector<std::vector<Tile>>& defRef = *tiles;
+      for(int y = 0; y < tiles->size(); y++){
+        for(int x = 0; x < (tiles)[0].size(); x++) {// No more render p2
+          // No more render (sadge)
+          if((*tiles)[y].size() < 500 && (*tiles)[y].size() > 0){
+          // it kinda works now  I dont think ti works now im gonna be honest
+          // pretty cool
+          // still segfaults at some areas though
+          //printf("currently at: %d, %d\n", x, y);
+          
+          SDL_Rect srcrect;
+          //Tile tmp = (*tiles)[y][x]; // sometimes it segfaults here 
+          srcrect.x = (((*tiles)[y][x].x * SCALE) + (mapXOff * SCALE));
+          srcrect.y = ((*tiles)[y][x].y * SCALE) + (mapYOff * SCALE);
+          srcrect.w = /*(width / 50 ) * */SCALE; // tiles on this row
+          // Did you not like me trying to render a full sized map
+          srcrect.h = /*(height / (*tiles).size()) * */ SCALE; // amount of y's
+// and| wha| d|death to the heratics|id you | |he menu does| render | no toucho |  nvm | it was some goof| replit |ssue
+          //printf("X = %d\nY = %d\nW = %d\n H= %d\n, TILESY = %d\n TILESX = %d\n", srcrect.x, srcrect.y, srcrect.w, srcrect.h, (*tiles)[0].size(), (*tiles).size());
+          //getchar();
+          //SDL_Color color = {defRef[y][x].rgb.r, defRef[y][x].rgb.g, defRef[y][x].rgb.b};
           
           SDL_BlitSurface(surface, &srcrect, NULL, &srcrect);
-          SDL_FillRect(surface, &srcrect, 0xFFFFFA + (x * 5 * y));
+          SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, (*tiles)[y][x].rgb.r, (*tiles)[y][x].rgb.g, (*tiles)[y][x].rgb.b));
+          }
         }
       }
     }
+    // Render UI Panels (these prob will be loaded from scripts)
   }
-  procEvents();
   SDL_UpdateWindowSurface(window);
 }
 void Renderer::endWindow(){

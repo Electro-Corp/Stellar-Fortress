@@ -52,9 +52,9 @@ void Game::load(){
   Json::Value infoJson   = iJ.read();
   loadingRender = new Renderer(width, height, RM_LoadScreen, &std::string("game/" + infoJson["DefaultFont"].asString()));
   std::string loadFPath = "game/" + infoJson["LoadingImages"].asString();
-  printf("\033[2J");
-  printf("\033[%d;%dH",0, 0);
-  printf("STELLAR FORTRESS IS LOADING");
+  //printf("\033[2J");
+  //printf("\033[%d;%dH",0, 0);
+  //printf("STELLAR FORTRESS IS LOADING");
  // while(1)
   l.log("GameCpp.load", "Loading teams");
   loadingMenu("Loading teams...",loadFPath);
@@ -83,13 +83,17 @@ void Game::load(){
         this->systems.push_back(System(g));
       
         #ifdef DEBUG
-          getchar();
+          //getchar();
         #endif
      // }
     } else{
       loadingMenu("Fatal ERROR, there was in fact, not a file at " + systemFilePath + "/" + systems[i].asString(),loadFPath);
     }
   }
+
+  // Load scripts
+  unitScriptMan = new ScriptManager(infoJson["Unit_Script_Dir"].asString(), ST_Unit);
+  uiScriptMan = new ScriptManager(infoJson["Ui_Script_Dir"].asString(), ST_UiPanel);
 
   //InitThreads();
     // Perlin Noise Generation Settings and stuff
@@ -111,7 +115,9 @@ void Game::load(){
 
   // End loading screen
   loadingRender->endWindow();
+  delete(loadingRender); // omg im so good at memory managment 
 
+  
   mapRender = new Renderer(width, height, RM_Game);
       
   // throws error that dont make sense
@@ -125,9 +131,11 @@ void Game::load(){
   // All you would have to do is add like a ->get()
   //win.RenderMap(this->curMap->get());
 
-  getchar();
-  
-  mapRender->display(&(this->curMap->get()));
+  //getchar();
+  while(1){
+    curMap = this->systems[0].get_planet(0).get_map(); //hmm
+    mapRender->display((this->curMap->get()));
+  }
   l.log("GameCpp.load","Finished render map");
   // while(1){
   //   // Generate UI
@@ -142,7 +150,7 @@ void Game::load(){
 }
 
 
-void Game::loadingMenu(std::string info, std::string loadFPath){
+static void Game::loadingMenu(std::string info, std::string loadFPath){
   // add terminal image renderer? (by me)
   if(loadFPath != lastImagePath){
     //renderImage(loadFPath.c_str(),0,1);
@@ -150,11 +158,11 @@ void Game::loadingMenu(std::string info, std::string loadFPath){
     lastImagePath = loadFPath;
   }
   loadingRender->initLoadScreen(loadFPath.c_str(), info.c_str());
-  printf("\033[%d;%dH",height, 0);
-  printf("%s\n",info.c_str());
+  //printf("\033[%d;%dH",height, 0);
+  //printf("%s\n",info.c_str());
   loadingRender->display();
   #ifdef DEBUG
-  getchar();
+  //getchar();
   #endif
 }
 

@@ -9,6 +9,7 @@
 
 #include "../utils/rgb.h"
 #include "./terraintypes/terraintype.h"
+#include <stdexcept>
 
 class Tile {
   public:
@@ -38,6 +39,10 @@ class Tile {
   void set_r(TerrainType t) {
     this->rgb = t.color;
     this->type = t.name;
+  }
+
+  int get_x() {
+    return this->x;
   }
 };
 #endif

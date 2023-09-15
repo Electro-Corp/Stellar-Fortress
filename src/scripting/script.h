@@ -1,14 +1,23 @@
 #include <string>
 #include <vector>
-#include <sstream>
-#include "variable.h"
+#include <sstream> 
+#include <algorithm> // make it generate less omg it takes 5  minutes to load
+#include "variable.h" // Its in the jsonsuyghjgjghjgjyuthjgtjhgj may god be with you :pray: inshallah we shall fix this bug     thanks omar
 #include "../system/planet/gameObject.h"
 #ifndef SCRIPT_H
 #define SCRIPT_H
-//#define DEBUG
+#define DEBUG
 
 //typedef vector<tuple<int, int, std::string>> doubleTuple;
 
+bool iequals(const std::string& a, const std::string& b)
+{
+    return std::equal(a.begin(), a.end(),
+                      b.begin(), b.end(),
+                      [](char a, char b) {
+                          return tolower(a) == tolower(b);
+                      });
+}
 
 //#define SCRIPT_VAR_DEBUG
 std::string dataTypes[] = {"type", "int", "string", "float"};
@@ -117,7 +126,16 @@ public:
       
       if(line[0].find("function") != std::string::npos){
         // wow function 
-        
+        // Find the namespace
+        std::string funcType = line[1];
+        std::string funcName = line[2];
+
+        // Unit?
+        if(iequals(funcType, "unit")){
+          // cool check if there is a override for it
+        }
+
+        std::cout << "Name: " << funcName << " of type " << funcType << "\n";
       }
       
     }

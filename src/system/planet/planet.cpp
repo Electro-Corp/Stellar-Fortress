@@ -24,7 +24,7 @@ Planet::Planet(std::string dir) {
   this->sizey = p["MapDimensions"][1].asInt();
 
   for (auto i : p["Regions"]) {
-    RGB color(i[2][0].asInt(), i[2][0].asInt(), i[2][0].asInt());
+    RGB color(i[2][0].asInt(), i[2][1].asInt(), i[2][2].asInt());
     TerrainType r(i[0].asString(), i[1].asDouble(), color);
     this->regions.push_back(r);
   }

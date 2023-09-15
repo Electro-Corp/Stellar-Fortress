@@ -1,22 +1,22 @@
 type this unit
-extends gameobject
+implements gameobject
 string name infantry
 int unlockat 0
 
 
-function unit update{
+function unit update {
   object gameobject nearenemy script::GetNearestEnemy
   unit::Attack nearenemy 
 }
 
-function unit userMove{
+function unit userMove {
   generic::DefaultMove
 }
 
-function unit uiShow{
+function unit uiShow {
   show name
 }
 
-function unit Attack{
+function unit Attack {
   generic::DefaultAttack
 }

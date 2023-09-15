@@ -1,7 +1,7 @@
 {
   "Name": "Earth",
   "Resources": ["water","ironOre","bauxite","silicon","oil"],
-  "MapDimensions": [50,50],
+  "MapDimensions": [100, 100],
   "_comment": "[name, max_height, [r, g, b]]     if decimal you still need a 0. cause otherwise big error",
   "Regions": [
     ["deep_water", 0.1, [0, 100, 255]],

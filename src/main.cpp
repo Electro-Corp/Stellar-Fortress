@@ -78,7 +78,13 @@ Renderer* mainMenuRender;
 // TEST stuff
 void goofy(){
   system("clear");
-  mainMenuRender->endWindow();
+
+  // Its possible the user used "-load"
+  // to skip the main menu, so check 
+  // if the main menu actually fucking 
+  // exists
+  if(mainMenuRender)
+    mainMenuRender->endWindow();
   //printf("wow\n");
   //exit(-1);
   init_c_settings();
@@ -87,9 +93,14 @@ void goofy(){
 void quit(){
   exit(0);
 }
-int main() {  
+int main(int args, char* argv[]) {  
 // Andrew you need to make the JSON file reading here
 // so we can load the width/height/images
+  if(args >= 2){
+    if(strcmp(argv[1], "-load") == 0){
+      goofy();
+    }
+  }
   
   // Create menu graphics window
   Button startGameButton("New Game", 200, 185, goofy, "game/basegame/data/images/mainmenu/buttons/startbutton.bmp");
