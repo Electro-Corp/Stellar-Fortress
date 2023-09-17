@@ -17,9 +17,7 @@ System::System(std::string loadFromFile){
     std::string dir = result + "planets/" +  planetDir[i].asString() + ".json";
     l.log("constructor", dir);
  
-    Planet p(dir);
-    p.init();
-    planets.push_back(p);
+    planets.push_back(Planet(dir));
   }
 }  
 

@@ -1,20 +1,52 @@
 {
   "Name": "Earth",
   "Resources": ["water","ironOre","bauxite","silicon","oil"],
-  "MapDimensions": [100, 100],
+  "MapDimensions": [150, 150],
   "_comment": "[name, max_height, [r, g, b]]     if decimal you still need a 0. cause otherwise big error",
   "Regions": [
-    ["deep_water", 0.1, [0, 100, 255]],
-    ["water", 0.3, [100, 155, 255]],
-    ["beach", 0.4, [220, 220, 60]],
-    ["plains", 0.75, [150, 220, 75]],
-    ["hills", 0.85, [130, 180, 80]],
-    ["bottom_mt", 0.9, [90, 70, 70]],
-    ["mt", 0.97, [70, 56, 56]],
-    ["peak", 1, [225, 225, 225]]
-  ],
-  "_comment1": "[base, required around, min_surrounding_count]",
+  {
+    "biome": "volcanic",
+    "requires": {
+      "height": 0.7,
+      "heat": 0.8,
+      "humidity": 0
+    },
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    }
+  },
+  {
+    "biome": "cold_land",
+    "requires": {
+      "height": 0.7,
+      "heat": 0,
+      "humidity": 0
+    },
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 0
+    }
+  },
+    {
+    "biome": "super_duper_test_biome (also a default case for testing purposes)",
+    "requires": {
+      "height": 1,
+      "heat": 1,
+      "humidity": 1
+    },
+    "color": {
+      "red": 125,
+      "green": 75,
+      "blue": 62
+    }
+  }
+],
+  "_comment1": "NOT USED ATM [base, required around, min_surrounding_count]",
   "Reqs": [
+    ["water", "plains", 4],
     ["deep_water", "water", 4], 
     ["beach", "water", 1],
     ["peak", "mt", 4],

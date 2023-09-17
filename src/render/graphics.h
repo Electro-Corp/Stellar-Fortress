@@ -53,6 +53,7 @@ public:
 // Loading
   void initLoadScreen(std::string bgPath, std::string, bool noBg = false);
 
+// General
   void procEvents();
 
   void display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noLoadImage = false);

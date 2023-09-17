@@ -92,8 +92,10 @@ void Game::load(){
   }
 
   // Load scripts
+  //loadingMenu("Loading unit scripts...", "");
   unitScriptMan = new ScriptManager(infoJson["Unit_Script_Dir"].asString(), ST_Unit);
-  uiScriptMan = new ScriptManager(infoJson["Ui_Script_Dir"].asString(), ST_UiPanel);
+  //loadingMenu("Loading UI scripts...", "");
+  uiScriptMan = new ScriptManager(infoJson["UI_Script_Dir"].asString(), ST_UiPanel);
 
   //InitThreads();
     // Perlin Noise Generation Settings and stuff
@@ -133,8 +135,8 @@ void Game::load(){
 
   //getchar();
   while(1){
-    curMap = this->systems[0].get_planet(0).get_map(); //hmm
-    mapRender->display((this->curMap->get()));
+    //curMap = this->systems[0].get_planet(0).get_map(); //hmm
+    mapRender->display(this->curMap->get());
   }
   l.log("GameCpp.load","Finished render map");
   // while(1){

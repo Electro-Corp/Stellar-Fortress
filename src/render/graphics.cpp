@@ -3,7 +3,7 @@
   Renders the game using SDL
 */
 
-#define FADE_SPEED 0.0007f
+#define FADE_SPEED 0.002f
 //#define BUTTON_DEBUG
 // COnstructiort
 Renderer::Renderer(int width, int height, renderMode rm, std::string *fontPath = nullptr){
@@ -14,9 +14,10 @@ Renderer::Renderer(int width, int height, renderMode rm, std::string *fontPath =
     printf("SDL INIT FAILURE ( %s )\n", SDL_GetError());
     exit(-1);
   }
-  window = SDL_CreateWindow("Sid Meier's Stellar Fortress", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow("Stellar Fortress", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
   surface = SDL_GetWindowSurface(window);
 
+  // Init Map stuff
   if(rm == RM_Game){
     mapXOff = 0;
     mapYOff = 0;
@@ -30,7 +31,7 @@ Renderer::Renderer(int width, int height, renderMode rm, std::string *fontPath =
   if(fontPath){
     gFont = TTF_OpenFont(fontPath->c_str(), 28);
   }else{
-    gFont = TTF_OpenFont("game/basegame/data/fonts/lazy.ttf", 28);
+    gFont = TTF_OpenFont("game/basegame/data/fonts/bot.ttf", 28);
   }
   if(!gFont){printf("FONT_ERROR: %s\n",TTF_GetError());}
   SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0xFF, 0xFF, 0xFF));
@@ -181,20 +182,19 @@ void Renderer::procEvents(){
         break;
       case SDL_MOUSEMOTION:
         if(rm == RM_Menu){
-          SDL_Rect stretchRect;
-          stretchRect.x = x / 9.0f;
-          stretchRect.y = y / 9.0f ;
-          stretchRect.w = 100000;
-          stretchRect.h = 100000;
-          SDL_BlitScaled(background, NULL, surface, &stretchRect);
+          
         }
         break;
     }
   }
 }
+
 float alpha = 0.0f;
 float alphaCalc = 0.0f;
-
+/*
+  Puts text on the load screen with a background
+  Call this before calling display during a loading screen
+*/
 void Renderer::initLoadScreen(std::string bgPath, std::string loadText, bool noBg = false){
   if(!noBg){
     background = SDL_LoadBMP(bgPath.c_str());
@@ -215,6 +215,10 @@ void Renderer::initLoadScreen(std::string bgPath, std::string loadText, bool noB
   }
 }
 
+/*
+  Displays the window based on the current
+  render mode
+*/
 void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noLoadImage = false){
   procEvents();
   SDL_FillRect(surface, NULL, 0x000000);
@@ -331,6 +335,10 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
   }
   SDL_UpdateWindowSurface(window);
 }
+
+/*
+  Kill the window
+*/
 void Renderer::endWindow(){
   SDL_DestroyWindow(window);
 }

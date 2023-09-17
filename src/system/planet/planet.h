@@ -4,26 +4,32 @@
 #include "../../map_generation/planetmap.h"
 #include "./terraintypes/terraintype.h"
 #include "../utils/readJson.h"
+#include "../utils/rgb.h"
+#include "../../map_generation/hhh.h"
 
 class Planet{
 public:
   //char* resources[];
   //char* colors[];
-  
+  //void reduceFood();
+
+
 	Planet(std::string dir);
   int init();
-	void reduceFood();
   PlanetMap* get_map();
 	// Buildings
 	void addBuilding();
-  void generate_terrain_types();
   PlanetMap pMap;
   int sizex;
   int sizey;
 
   private:
     std::string name;
-    std::vector<TerrainType> regions;
+
+    std::unordered_map<std::string, int> r_enum;
+    std::unordered_map<int, RGB> c_enum;
+    std::unordered_map<int, HHH> h_enum;
+    
     
 };
 

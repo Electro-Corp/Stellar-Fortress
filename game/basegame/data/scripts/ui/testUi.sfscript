@@ -3,7 +3,7 @@ implements uipanel
 string name test
 
 
-function unit update {
+function uipanel update {
   UIPutText name 0 0
 }
 

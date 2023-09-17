@@ -9,40 +9,17 @@
 
 #include "../utils/rgb.h"
 #include "./terraintypes/terraintype.h"
+#include "../../map_generation/biomedata.h"
 #include <stdexcept>
 
 class Tile {
   public:
-  int x,y;
+  int x,y, b_seed, biome;
+  int height, heat, humidity;
   RGB rgb;
   bool isOccupied = false;
-  std::string type;
-
-  double height;
- Tile(RGB color, int x, int y, bool isO, double h){
-    this->rgb = color;
-    this->x = x;
-    this->y = y;
-    this->isOccupied = isO;
-    this->height = h;
-  }
-
-  Tile(RGB color, int x, int y, double h, std::string t){
-    this->rgb = color;
-    this->x = x;
-    this->y = y;
-    this->isOccupied = false;
-    this-> height = h;
-    this->type = t;
-  }
-
-  void set_r(TerrainType t) {
-    this->rgb = t.color;
-    this->type = t.name;
-  }
-
-  int get_x() {
-    return this->x;
-  }
+  
+  Tile() { }
+  
 };
 #endif
