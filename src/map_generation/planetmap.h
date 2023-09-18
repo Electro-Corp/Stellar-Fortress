@@ -8,6 +8,7 @@
 
 #include "../other/log.h"
 #include "../system/planet/tile.h"
+#include "../render/graphics.h"
 #include "../system/planet/terraintypes/terrainreqs.h"
 #include "../system/utils/rgb.h"
 #include "noisemap.h"
@@ -74,6 +75,8 @@ public:
 */
 
 private:
+    Renderer* loadMapRender;
+
     std::vector<std::vector<Tile>> map;
 
     std::unordered_map<int, BiomeData> biomes_data;
@@ -118,14 +121,14 @@ PlanetMap::PlanetMap(int sizex, int sizey, std::unordered_map<std::string, int> 
 PlanetMap::PlanetMap(){ }
 
 std::vector<std::vector<Tile>>* PlanetMap::get(){
-  return &map;
+  return &(map);
 }
 
 void PlanetMap::gen_tile_map()  { 
   for (int y = 0; y < this->height; y++) {
     std::vector<Tile> tileRow;
     for (int x = 0; x < this->width; x++) {
-      tileRow.push_back(Tile());
+      tileRow.push_back(Tile(x,y));
     }
     this->map.push_back(tileRow);
   }
@@ -198,7 +201,7 @@ int PlanetMap::get_closest_biome_seed(int x, int y) {
 
 void PlanetMap::gen_tile_info() {
   for(auto &x : map) {
-      for(auto &y : x) {
+      for(auto &y : x) { // auto = Tile
         int current_biome_index = 0;
         for(int i = 0; i < h_enum.size(); ++i) {
           if(  y.height <= h_enum.at(i).height
@@ -206,8 +209,6 @@ void PlanetMap::gen_tile_info() {
             && y.humidity <= h_enum.at(i).humidity
           ) {
             current_biome_index = i;
-          } else if (i==0) {
-            //std::cout << "BIG ERROR In gen_tile_info" << std::endl;
           } 
         }
         y.biome = current_biome_index;
@@ -224,19 +225,38 @@ void PlanetMap::gen_tile_info() {
  authir: anduwu1 
 */
 void PlanetMap::biome_based_generate() {
+  loadMapRender = new Renderer(500,100, RM_LoadScreen);
+  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Generating Tile Map", true);
+  loadMapRender->display(NULL, true);
   this->gen_tile_map();
+  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Generating Noise", true);
+  loadMapRender->display(NULL, true);
   this->gen_noise();
+  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Generating Quads", true);
+  loadMapRender->display(NULL, true);
   this->gen_quads();
 
+  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Setting Noise Values", true);
+  loadMapRender->display(NULL, true);
   this->set_noise_values();
+  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Setting biome indices", true);
+  loadMapRender->display(NULL, true);
   this->set_biome_index();
 
+  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Computing averages", true);
+  loadMapRender->display(NULL, true);
   for (auto &[_, BiomeData] : biomes_data) {
     BiomeData.compute_averages();
   }
 
+  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Generating tile info", true);
+  loadMapRender->display(NULL, true);
   this->gen_tile_info();
 
+  loadMapRender->endWindow();
+  delete(loadMapRender);
+  
+  
   // In the future use wave collapse function to verify the terrain to make it better
 }
 #endif

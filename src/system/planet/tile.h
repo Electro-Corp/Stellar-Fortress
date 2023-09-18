@@ -20,6 +20,10 @@ class Tile {
   bool isOccupied = false;
   
   Tile() { }
+  Tile(int x, int y){
+    this->x = x;
+    this->y = y;
+  }
   
 };
 #endif
