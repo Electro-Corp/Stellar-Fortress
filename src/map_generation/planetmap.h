@@ -185,14 +185,13 @@ void PlanetMap::set_biome_index() {
 
 int PlanetMap::get_closest_biome_seed(int x, int y) {
   int closest_seed_index = 0;
-  int closest_seed_dist = INT32_MAX;
+  int closest_seed_dist = 2147483647;
 
   for ( int seed_index = 0; seed_index < seed_locs.size(); seed_index++ ) {
     auto seed = seed_locs[seed_index];
     double dist = std::pow(std::pow(seed_locs[closest_seed_index].x - seed.x,2) + std::pow(seed_locs[closest_seed_index].y - seed.y,2),0.5);
-    //std::cout << "seed_index is " << seed_index << std::endl;
-    if (dist < closest_seed_dist) {
-      // std::cout << "closest seed index set to: " << seed_index << std::endl;
+    // std::cout << "dist is " << dist << " < " << closest_seed_dist << std::endl;
+    if (dist < closest_seed_dist && dist != 0) {
       closest_seed_index = seed_index;
       closest_seed_dist = dist;
     }
@@ -200,8 +199,9 @@ int PlanetMap::get_closest_biome_seed(int x, int y) {
   // std::cout << "biome seed set to " << closest_seed_index << std::endl;
   return closest_seed_index;
 }
-
+// andrew fix everything it dont work it just blue (blue)
 void PlanetMap::gen_tile_info() {
+   Logger l("gen_tile_info");
   for(auto &x : map) {
       for(auto &y : x) { // auto = Tile
         int current_biome_index = 0;
@@ -210,6 +210,8 @@ void PlanetMap::gen_tile_info() {
             && y.heat <= h_enum.at(i).heat
             && y.humidity <= h_enum.at(i).humidity
           ) {
+            std::string lm = std::to_string(i) + " = biome index";
+            printf("%s\n",lm.c_str());
             current_biome_index = i;
           } 
         }

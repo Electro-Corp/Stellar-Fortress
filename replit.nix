@@ -1,5 +1,8 @@
 { pkgs }: {
     deps = [
+        pkgs.python27Full
+        pkgs.python39Full
+        pkgs.cmake
         pkgs.busybox
         pkgs.nano
         pkgs.sudo

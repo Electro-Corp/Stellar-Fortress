@@ -13,6 +13,7 @@ public:
     Logger(const std::string& filename);
     ~Logger();
     void log(const std::string& origin, const std::string& text);
+    void log(const std::string& text);
     void newl();
 
 private:
@@ -43,6 +44,13 @@ Logger::~Logger() {
 void Logger::log(const std::string& origin, const std::string& text) {
     if (file.is_open()) {
         file << "[" << origin << "]: " << text << std::endl;
+        file.flush();
+    }
+}
+
+void Logger::log(const std::string& text) {
+    if (file.is_open()) {
+        file << text << std::endl;
         file.flush();
     }
 }

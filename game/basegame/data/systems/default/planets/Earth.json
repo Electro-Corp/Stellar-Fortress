@@ -1,19 +1,57 @@
 {
   "Name": "Earth",
   "Resources": ["water","ironOre","bauxite","silicon","oil"],
-  "MapDimensions": [150, 150],
+  "MapDimensions": [100, 100],
   "Regions": [
   {
     "biome": "volcanic",
     "requires": {
       "height": 0.7,
-      "heat": 0.8,
+      "heat": 0.9,
       "humidity": 0
     },
     "color": {
-      "red": 255,
-      "green": 0,
+      "red": 219,
+      "green": 51,
       "blue": 0
+    },
+    "stuff": {
+      "fertility": 0,
+      "danger": 1
+    }
+  },
+    {
+    "biome": "Grassland",
+    "requires": {
+      "height": 0.2,
+      "heat": 0.5,
+      "humidity": 0.5
+    },
+    "color": {
+      "red": 91,
+      "green": 196,
+      "blue": 29
+    },
+    "stuff": {
+      "fertility": 0.8,
+      "danger": 0
+    }
+  },
+  {
+    "biome": "Jungle",
+    "requires": {
+      "height": 0.2,
+      "heat": 0.7,
+      "humidity": 0.7,
+    },
+    "color": {
+      "red": 70,
+      "green": 184,
+      "blue": 22
+    },
+    "stuff": {
+      "fertility": 0.4,
+      "danger": 0.8
     }
   },
   {
@@ -38,8 +76,8 @@
     },
     "color": {
       "red": 125,
-      "green": 75,
-      "blue": 62
+      "green": 215,
+      "blue": 200
     }
   }
 ],

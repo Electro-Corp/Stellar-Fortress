@@ -305,36 +305,29 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
     if(tiles != nullptr){
 
       // We need view box code so that I can make a good looking map because if the dimentions are as small as they are right now it will always be horrible
-      
-      
-      // Render the tile
-      //std::vector<std::vector<Tile>>& defRef = *tiles;
+      // Ok ill work on that
+      int red = 0;
       for(int y = 0; y < tiles->size(); y++){
-        for(int x = 0; x < (tiles)[0].size(); x++) {// No more render p2
-          // No more render (sadge)
+        for(int x = 0; x < (tiles)[0].size(); x++) {
           if((*tiles)[y].size() < 500 && (*tiles)[y].size() > 0){
-          // it kinda works now  I dont think ti works now im gonna be honest
-          // pretty cool
-          // still segfaults at some areas though
-          //printf("currently at: %d, %d\n", x, y);
-          
-          SDL_Rect srcrect;
-          //Tile tmp = (*tiles)[y][x]; // sometimes it segfaults here 
-          srcrect.x = (((*tiles)[y][x].x * SCALE) + (mapXOff * SCALE));
-          srcrect.y = ((*tiles)[y][x].y * SCALE) + (mapYOff * SCALE);
-          srcrect.w = /*(width / 50 ) * */SCALE; // tiles on this row
-          // Did you not like me trying to render a full sized map
-          srcrect.h = /*(height / (*tiles).size()) * */ SCALE; // amount of y's
-// and| wha| d|death to the heratics|id you | |he menu does| render | no toucho |  nvm | it was some goof| replit |ssue
-          //printf("X = %d\nY = %d\nW = %d\n H= %d\n, TILESY = %d\n TILESX = %d\n", srcrect.x, srcrect.y, srcrect.w, srcrect.h, (*tiles)[0].size(), (*tiles).size());
-          //getchar();
-          //SDL_Color color = {defRef[y][x].rgb.r, defRef[y][x].rgb.g, defRef[y][x].rgb.b};
-          
-          SDL_BlitSurface(surface, &srcrect, NULL, &srcrect);
-          SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, (*tiles)[y][x].rgb.r, (*tiles)[y][x].rgb.g, (*tiles)[y][x].rgb.b));
+            int tmpX = (((*tiles)[y][x].x * SCALE));
+            int tmpY = ((*tiles)[y][x].y * SCALE);
+            /*if(tmpX > mapXOff && tmpX < (mapXOff + SCALE * width) &&
+               tmpY > mapYOff && tmpY < (mapYOff + SCALE * height)
+              ){*/
+                SDL_Rect srcrect;
+                srcrect.x = (((*tiles)[y][x].x * SCALE) + (mapXOff * SCALE));
+                srcrect.y = ((*tiles)[y][x].y * SCALE) + (mapYOff * SCALE);
+                srcrect.w = /*(width / 50 ) * */SCALE; // tiles on this row
+                srcrect.h = /*(height / (*tiles).size()) * */ SCALE; // amount of y's          
+                SDL_BlitSurface(surface, &srcrect, NULL, &srcrect);
+                SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, (*tiles)[y][x].rgb.r, (*tiles)[y][x].rgb.g, (*tiles)[y][x].rgb.b));
+                red++;
+            //}
           }
         }
       }
+      printf("Rendered: %d\r", red);
     }
     // Render UI Panels (these prob will be loaded from scripts)
   }

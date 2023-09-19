@@ -97,7 +97,7 @@ int main(int args, char* argv[]) {
 // Andrew you need to make the JSON file reading here
 // so we can load the width/height/images
   if(args >= 2){
-    if(strcmp(argv[1], "-load") == 0){
+    if(strcmp(argv[1], "-skipmenu") == 0){
       goofy();
     }
   }

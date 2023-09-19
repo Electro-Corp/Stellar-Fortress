@@ -10,4 +10,4 @@ g++ src/main.cpp -o stellar -w  -ljsoncpp -lmenu -lncurses -lrt -fpermissive -g 
 
 export LD_LIBRARY_PATH=SFML-2.6.0/lib:.
 
-./stellar -load
+./stellar -skipmenu

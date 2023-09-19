@@ -5,7 +5,9 @@
 <br>
 BOTH ARE CRITICAL!
 
+[Funny Hexagon Stuff](https://www.redblobgames.com/grids/hexagons/)
 
+[Funny GMScript stuff](http://www.gmscript.com/gamemonkey/downloads/GameMonkeyFAQ.pdf)
 
 
 
