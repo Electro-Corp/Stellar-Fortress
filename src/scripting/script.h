@@ -3,6 +3,7 @@
 #include <sstream> 
 #include <algorithm> // make it generate less omg it takes 5  minutes to load
 #include "variable.h" // Its in the jsonsuyghjgjghjgjyuthjgtjhgj may god be with you :pray: inshallah we shall fix this bug     thanks omar
+#include "function.h"
 #include "../system/planet/gameObject.h"
 #ifndef SCRIPT_H
 #define SCRIPT_H
@@ -24,8 +25,11 @@ std::string dataTypes[] = {"type", "int", "string", "float"};
 class Script{
 private:
 std::vector<Variable> vars;
+std::vector<Function> functions; 
   //doubleTuple functionWhere; 
 public:
+
+
   Script(std::stringstream* data){
     // split
     std::string segment;
@@ -129,13 +133,24 @@ public:
         // Find the namespace
         std::string funcType = line[1];
         std::string funcName = line[2];
-
+        std::vector<std::string> code;
         // Unit?
         if(iequals(funcType, "unit")){
           // cool check if there is a override for it
+          
+          for(int c = i; c < seglist.size(); c++){
+            if(seglist[c].find("}") != std::string::npos) break;
+            code.push_back(seglist[c]);
+          }
+          Function tmp = Function(funcName, code);
+          functions.push_back(tmp);
         }
 
-        std::cout << "Name: " << funcName << " of type " << funcType << "\n";
+        std::cout << "> FUNCTION < Name: " << funcName << " of type " << funcType << "\n";
+        for(int j = 0; j < code.size(); j++){
+          std::cout << code[j] << "\n";
+        }
+        
       }
       
     }
@@ -147,6 +162,11 @@ public:
     for(int i = 0; i < vars.size(); i++){
       std::cout << vars[i].name << " = " << vars[i].value << "\n";
     }
+  }
+
+
+  void executeFunction(int index){
+    // Start 
   }
 
 

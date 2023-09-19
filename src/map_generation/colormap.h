@@ -22,6 +22,7 @@ class ColorMap {
 //   }
 
 //   // i dont think this can be inside the "ColorMap" class since its from the Game class but i might just be retarded
+//  // mf when namespace?
   
 
 //   std::vector<std::vector<RGB>> ColorMap::get_map() {

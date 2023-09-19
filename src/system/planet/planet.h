@@ -16,7 +16,7 @@ public:
 
 	Planet(std::string dir);
   int init();
-  PlanetMap* get_map();
+  PlanetMap get_map();
 	// Buildings
 	void addBuilding();
   PlanetMap pMap;

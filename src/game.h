@@ -47,7 +47,7 @@ class Game {
     void UIUpdate();
     void MapUpdate();
   protected:
-    PlanetMap* curMap;
+    PlanetMap curMap;
     std::string data;
     std::string config;
     Settings settings;

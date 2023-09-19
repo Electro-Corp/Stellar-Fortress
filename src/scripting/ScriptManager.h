@@ -36,5 +36,11 @@ public:
     }
     // r.endWindow();
   }
+
+  void runUpdateFuncs(){
+    for(Script &script : scripts){
+      
+    }
+  }
 };
 #endif

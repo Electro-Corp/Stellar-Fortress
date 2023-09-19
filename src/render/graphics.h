@@ -10,6 +10,8 @@
 #include <SDL2/SDL.h>
 #include "SDL_ttf.h"
 
+#include <thread>
+
 //#include <SDL2_image/SDL_image.h>
 // /#include<SDL2/SDL_image.h>
 #include "../system/planet/tile.h"
@@ -43,6 +45,8 @@ std::vector<Button> MENU_buttons;
 // Load screen
 TTF_Font* gFont = NULL; // Font
 SDL_Surface* loadTextSurface;
+// Threads
+// Debug
 Logger l;
 public:
   Renderer(int width, int height, renderMode rm, std::string* fontPath = nullptr);
@@ -54,6 +58,7 @@ public:
   void initLoadScreen(std::string bgPath, std::string, bool noBg = false);
 
 // General
+
   void procEvents();
 
   void display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noLoadImage = false);

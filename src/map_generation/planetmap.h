@@ -189,13 +189,15 @@ int PlanetMap::get_closest_biome_seed(int x, int y) {
 
   for ( int seed_index = 0; seed_index < seed_locs.size(); seed_index++ ) {
     auto seed = seed_locs[seed_index];
-    double dist = std::pow(std::pow(seed_locs[closest_seed_index].x - seed_locs[seed_index].x,2) + std::pow(seed_locs[closest_seed_index].y - seed_locs[seed_index].y,2),0.5);
-
+    double dist = std::pow(std::pow(seed_locs[closest_seed_index].x - seed.x,2) + std::pow(seed_locs[closest_seed_index].y - seed.y,2),0.5);
+    //std::cout << "seed_index is " << seed_index << std::endl;
     if (dist < closest_seed_dist) {
+      // std::cout << "closest seed index set to: " << seed_index << std::endl;
       closest_seed_index = seed_index;
       closest_seed_dist = dist;
     }
   }
+  // std::cout << "biome seed set to " << closest_seed_index << std::endl;
   return closest_seed_index;
 }
 
@@ -225,6 +227,7 @@ void PlanetMap::gen_tile_info() {
  authir: anduwu1 
 */
 void PlanetMap::biome_based_generate() {
+  // Lots of loading screens
   loadMapRender = new Renderer(500,100, RM_LoadScreen);
   loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Generating Tile Map", true);
   loadMapRender->display(NULL, true);
@@ -234,7 +237,7 @@ void PlanetMap::biome_based_generate() {
   this->gen_noise();
   loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Generating Quads", true);
   loadMapRender->display(NULL, true);
-  this->gen_quads();
+  this->gen_quads(); 
 
   loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Setting Noise Values", true);
   loadMapRender->display(NULL, true);
@@ -253,6 +256,7 @@ void PlanetMap::biome_based_generate() {
   loadMapRender->display(NULL, true);
   this->gen_tile_info();
 
+  // Delete the window after we're done
   loadMapRender->endWindow();
   delete(loadMapRender);
   

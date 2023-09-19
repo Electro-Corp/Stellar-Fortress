@@ -1,0 +1,1826 @@
+[Renderer.Renderer]: Logging init. Renderer in mode 1
+[Normalizer]: noise value: 1.334766
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.660525
+
+[Normalizer]: noise value: 1.468086
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.765924
+
+[Normalizer]: noise value: 0.911461
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.325872
+
+[Normalizer]: noise value: 1.070736
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.451790
+
+[Normalizer]: noise value: 1.318915
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.647993
+
+[Normalizer]: noise value: 0.716939
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.172088
+
+[Normalizer]: noise value: 0.996171
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.392841
+
+[Normalizer]: noise value: 1.419479
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.727496
+
+[Normalizer]: noise value: 0.963462
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.366982
+
+[Normalizer]: noise value: 1.194125
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.549338
+
+[Normalizer]: noise value: 1.185262
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.542331
+
+[Normalizer]: noise value: 0.873772
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.296075
+
+[Normalizer]: noise value: 0.915724
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.329241
+
+[Normalizer]: noise value: 1.516065
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.803854
+
+[Normalizer]: noise value: 0.938960
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.347611
+
+[Normalizer]: noise value: 1.248295
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.592163
+
+[Normalizer]: noise value: 1.145985
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.511279
+
+[Normalizer]: noise value: 1.354188
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.675880
+
+[Normalizer]: noise value: 1.086625
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.464352
+
+[Normalizer]: noise value: 1.310026
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.640966
+
+[Normalizer]: noise value: 0.865234
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.289326
+
+[Normalizer]: noise value: 1.286851
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.622645
+
+[Normalizer]: noise value: 1.144853
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.510385
+
+[Normalizer]: noise value: 0.913235
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.327274
+
+[Normalizer]: noise value: 1.014716
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.407502
+
+[Normalizer]: noise value: 1.189703
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.545842
+
+[Normalizer]: noise value: 0.992689
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.390088
+
+[Normalizer]: noise value: 1.194354
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.549519
+
+[Normalizer]: noise value: 0.943609
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.351287
+
+[Normalizer]: noise value: 0.820183
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.253710
+
+[Normalizer]: noise value: 1.111719
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.484190
+
+[Normalizer]: noise value: 0.971196
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.373096
+
+[Normalizer]: noise value: 1.204081
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.557209
+
+[Normalizer]: noise value: 1.059368
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.442803
+
+[Normalizer]: noise value: 1.459944
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.759486
+
+[Normalizer]: noise value: 1.237786
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.583855
+
+[Normalizer]: noise value: 1.214221
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.565225
+
+[Normalizer]: noise value: 1.207269
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.559729
+
+[Normalizer]: noise value: 1.214608
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.565531
+
+[Normalizer]: noise value: 0.979577
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.379722
+
+[Normalizer]: noise value: 1.143642
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.509427
+
+[Normalizer]: noise value: 0.827999
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.259889
+
+[Normalizer]: noise value: 1.231588
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.578955
+
+[Normalizer]: noise value: 1.042600
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.429546
+
+[Normalizer]: noise value: 0.924285
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.336010
+
+[Normalizer]: noise value: 1.029689
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.419339
+
+[Normalizer]: noise value: 1.417678
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.726073
+
+[Normalizer]: noise value: 1.143503
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.509318
+
+[Normalizer]: noise value: 1.044350
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.430929
+
+[Normalizer]: noise value: 1.090324
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.467275
+
+[Normalizer]: noise value: 1.036966
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.425092
+
+[Normalizer]: noise value: 1.034884
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.423446
+
+[Normalizer]: noise value: 1.068778
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.450242
+
+[Normalizer]: noise value: 1.037625
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.425613
+
+[Normalizer]: noise value: 1.462105
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.761195
+
+[Normalizer]: noise value: 1.264455
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.604939
+
+[Normalizer]: noise value: 1.100741
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.475511
+
+[Normalizer]: noise value: 0.852648
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.279376
+
+[Normalizer]: noise value: 0.806632
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.242997
+
+[Normalizer]: noise value: 1.139305
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.505998
+
+[Normalizer]: noise value: 1.014738
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.407520
+
+[Normalizer]: noise value: 1.227885
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.576027
+
+[Normalizer]: noise value: 1.303449
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.635766
+
+[Normalizer]: noise value: 1.202419
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.555894
+
+[Normalizer]: noise value: 1.132879
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.500918
+
+[Normalizer]: noise value: 1.073331
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.453841
+
+[Normalizer]: noise value: 1.240176
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.585745
+
+[Normalizer]: noise value: 1.126900
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.496191
+
+[Normalizer]: noise value: 1.265591
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.605837
+
+[Normalizer]: noise value: 0.797806
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.236019
+
+[Normalizer]: noise value: 1.056358
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.440423
+
+[Normalizer]: noise value: 1.128368
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.497352
+
+[Normalizer]: noise value: 1.170591
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.530733
+
+[Normalizer]: noise value: 1.166305
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.527344
+
+[Normalizer]: noise value: 0.975263
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.376312
+
+[Normalizer]: noise value: 0.716939
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.172088
+
+[Normalizer]: noise value: 1.488890
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.782371
+
+[Normalizer]: noise value: 1.204344
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.557416
+
+[Normalizer]: noise value: 0.910191
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.324868
+
+[Normalizer]: noise value: 1.128267
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.497272
+
+[Normalizer]: noise value: 1.218394
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.568524
+
+[Normalizer]: noise value: 1.187137
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.543813
+
+[Normalizer]: noise value: 1.218952
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.568966
+
+[Normalizer]: noise value: 1.405945
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.716797
+
+[Normalizer]: noise value: 1.041380
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.428582
+
+[Normalizer]: noise value: 1.148083
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.512939
+
+[Normalizer]: noise value: 1.297038
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.630698
+
+[Normalizer]: noise value: 1.277277
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.615075
+
+[Normalizer]: noise value: 1.039472
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.427073
+
+[Normalizer]: noise value: 1.258996
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.600623
+
+[Normalizer]: noise value: 0.716939
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.172088
+
+[Normalizer]: noise value: 1.407987
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.718411
+
+[Normalizer]: noise value: 1.206066
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.558778
+
+[Normalizer]: noise value: 0.893980
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.312051
+
+[Normalizer]: noise value: 0.825200
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.257676
+
+[Normalizer]: noise value: 1.216372
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.566925
+
+[Normalizer]: noise value: 0.998907
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.395004
+
+[Normalizer]: noise value: 1.117157
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.488489
+
+[Normalizer]: noise value: 1.292352
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.626993
+
+[Normalizer]: noise value: 1.274473
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.612859
+
+[Normalizer]: noise value: 1.073331
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.453841
+
+[Normalizer]: noise value: 1.161331
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.523412
+
+[Normalizer]: noise value: 1.453210
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.754163
+
+[Normalizer]: noise value: 1.149847
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.514333
+
+[Normalizer]: noise value: 1.364778
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.684251
+
+[Normalizer]: noise value: 1.095559
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.471414
+
+[Normalizer]: noise value: 1.123834
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.493768
+
+[Normalizer]: noise value: 1.331562
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.657992
+
+[Normalizer]: noise value: 1.088579
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.465896
+
+[Normalizer]: noise value: 0.942737
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.350597
+
+[Normalizer]: noise value: 1.393359
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.706846
+
+[Normalizer]: noise value: 1.182196
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.539907
+
+[Normalizer]: noise value: 0.999551
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.395513
+
+[Normalizer]: noise value: 0.872640
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.295180
+
+[Normalizer]: noise value: 0.927061
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.338205
+
+[Normalizer]: noise value: 0.731889
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.183907
+
+[Normalizer]: noise value: 0.959987
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.364235
+
+[Normalizer]: noise value: 0.882111
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.302668
+
+[Normalizer]: noise value: 1.010007
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.403779
+
+[Normalizer]: noise value: 1.447029
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.749277
+
+[Normalizer]: noise value: 1.349716
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.672344
+
+[Normalizer]: noise value: 0.894067
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.312120
+
+[Normalizer]: noise value: 0.844691
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.273085
+
+[Normalizer]: noise value: 1.056994
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.440926
+
+[Normalizer]: noise value: 1.034740
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.423332
+
+[Normalizer]: noise value: 1.291124
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.626022
+
+[Normalizer]: noise value: 0.754082
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.201452
+
+[Normalizer]: noise value: 0.956299
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.361319
+
+[Normalizer]: noise value: 1.335456
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.661070
+
+[Normalizer]: noise value: 1.362648
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.682568
+
+[Normalizer]: noise value: 1.264455
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.604939
+
+[Normalizer]: noise value: 1.217122
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.567519
+
+[Normalizer]: noise value: 1.036628
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.424825
+
+[Normalizer]: noise value: 1.146844
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.511959
+
+[Normalizer]: noise value: 1.104185
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.478234
+
+[Normalizer]: noise value: 1.143642
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.509427
+
+[Normalizer]: noise value: 1.015612
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.408210
+
+[Normalizer]: noise value: 0.856766
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.282631
+
+[Normalizer]: noise value: 0.961018
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.365050
+
+[Normalizer]: noise value: 0.834013
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.264643
+
+[Normalizer]: noise value: 1.323048
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.651260
+
+[Normalizer]: noise value: 1.445512
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.748077
+
+[Normalizer]: noise value: 0.808653
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.244595
+
+[Normalizer]: noise value: 1.132921
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.500951
+
+[Normalizer]: noise value: 1.584277
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.857781
+
+[Normalizer]: noise value: 1.245063
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.589608
+
+[Normalizer]: noise value: 1.119880
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.490642
+
+[Normalizer]: noise value: 1.285854
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.621856
+
+[Normalizer]: noise value: 1.135296
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.502829
+
+[Normalizer]: noise value: 1.103373
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.477592
+
+[Normalizer]: noise value: 0.714895
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.170472
+
+[Normalizer]: noise value: 0.882466
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.302949
+
+[Normalizer]: noise value: 1.065279
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.447476
+
+[Normalizer]: noise value: 0.964193
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.367560
+
+[Normalizer]: noise value: 1.127141
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.496382
+
+[Normalizer]: noise value: 1.052946
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.437725
+
+[Normalizer]: noise value: 0.927246
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.338351
+
+[Normalizer]: noise value: 1.146907
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.512009
+
+[Normalizer]: noise value: 1.406993
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.717626
+
+[Normalizer]: noise value: 1.091444
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.468161
+
+[Normalizer]: noise value: 0.912738
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.326881
+
+[Normalizer]: noise value: 1.230325
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.577956
+
+[Normalizer]: noise value: 1.166913
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.527825
+
+[Normalizer]: noise value: 1.423376
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.730577
+
+[Normalizer]: noise value: 1.018719
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.410667
+
+[Normalizer]: noise value: 1.243557
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.588417
+
+[Normalizer]: noise value: 1.375602
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.692808
+
+[Normalizer]: noise value: 1.081331
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.460166
+
+[Normalizer]: noise value: 0.690314
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.151039
+
+[Normalizer]: noise value: 0.928494
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.339337
+
+[Normalizer]: noise value: 1.120983
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.491514
+
+[Normalizer]: noise value: 0.972101
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.373812
+
+[Normalizer]: noise value: 1.142554
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.508567
+
+[Normalizer]: noise value: 1.035338
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.423805
+
+[Normalizer]: noise value: 1.003804
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.398875
+
+[Normalizer]: noise value: 0.758592
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.205018
+
+[Normalizer]: noise value: 1.048736
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.434397
+
+[Normalizer]: noise value: 1.306274
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.638000
+
+[Normalizer]: noise value: 1.334892
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.660624
+
+[Normalizer]: noise value: 1.147574
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.512536
+
+[Normalizer]: noise value: 1.166183
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.527248
+
+[Normalizer]: noise value: 0.567254
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.053751
+
+[Normalizer]: noise value: 1.185357
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.542406
+
+[Normalizer]: noise value: 1.105859
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.479557
+
+[Normalizer]: noise value: 1.225467
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.574116
+
+[Normalizer]: noise value: 1.192357
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.547940
+
+[Normalizer]: noise value: 1.027788
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.417837
+
+[Normalizer]: noise value: 1.371265
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.689380
+
+[Normalizer]: noise value: 0.906357
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.321837
+
+[Normalizer]: noise value: 1.349060
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.671825
+
+[Normalizer]: noise value: 1.172941
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.532590
+
+[Normalizer]: noise value: 0.946513
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.353582
+
+[Normalizer]: noise value: 0.719901
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.174430
+
+[Normalizer]: noise value: 0.877623
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.299120
+
+[Normalizer]: noise value: 1.201262
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.554980
+
+[Normalizer]: noise value: 1.279981
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.617213
+
+[Normalizer]: noise value: 1.428442
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.734582
+
+[Normalizer]: noise value: 1.346214
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.669575
+
+[Normalizer]: noise value: 1.191303
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.547107
+
+[Normalizer]: noise value: 1.027389
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.417521
+
+[Normalizer]: noise value: 1.196405
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.551140
+
+[Normalizer]: noise value: 1.275709
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.613836
+
+[Normalizer]: noise value: 1.250553
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.593948
+
+[Normalizer]: noise value: 0.906281
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.321776
+
+[Normalizer]: noise value: 1.056474
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.440514
+
+[Normalizer]: noise value: 0.882267
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.302792
+
+[Normalizer]: noise value: 0.650749
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.119760
+
+[Normalizer]: noise value: 1.556925
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.836157
+
+[Normalizer]: noise value: 0.921714
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.333978
+
+[Normalizer]: noise value: 1.198524
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.552816
+
+[Normalizer]: noise value: 1.076304
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.456192
+
+[Normalizer]: noise value: 1.208809
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.560946
+
+[Normalizer]: noise value: 0.662431
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.128995
+
+[Normalizer]: noise value: 0.930690
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.341073
+
+[Normalizer]: noise value: 0.993186
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.390481
+
+[Normalizer]: noise value: 0.854868
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.281130
+
+[Normalizer]: noise value: 0.916629
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.329957
+
+[Normalizer]: noise value: 1.099257
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.474338
+
+[Normalizer]: noise value: 1.273507
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.612095
+
+[Normalizer]: noise value: 1.200132
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.554087
+
+[Normalizer]: noise value: 0.647407
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.117118
+
+[Normalizer]: noise value: 1.557068
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.836270
+
+[Normalizer]: noise value: 1.133336
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.501279
+
+[Normalizer]: noise value: 1.275016
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.613288
+
+[Normalizer]: noise value: 1.333614
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.659614
+
+[Normalizer]: noise value: 0.729960
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.182382
+
+[Normalizer]: noise value: 1.134737
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.502388
+
+[Normalizer]: noise value: 0.858315
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.283856
+
+[Normalizer]: noise value: 0.973506
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.374923
+
+[Normalizer]: noise value: 1.115355
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.487065
+
+[Normalizer]: noise value: 1.308838
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.640027
+
+[Normalizer]: noise value: 1.066563
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.448491
+
+[Normalizer]: noise value: 0.924394
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.336096
+
+[Normalizer]: noise value: 0.860748
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.285779
+
+[Normalizer]: noise value: 1.292150
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.626834
+
+[Normalizer]: noise value: 1.153479
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.517204
+
+[Normalizer]: noise value: 1.101381
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.476017
+
+[Normalizer]: noise value: 1.058402
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.442039
+
+[Normalizer]: noise value: 1.519158
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.806300
+
+[Normalizer]: noise value: 1.019246
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.411083
+
+[Normalizer]: noise value: 0.699707
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.158465
+
+[Normalizer]: noise value: 1.048711
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.434378
+
+[Normalizer]: noise value: 1.285641
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.621688
+
+[Normalizer]: noise value: 1.371190
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.689321
+
+[Normalizer]: noise value: 0.663246
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.129639
+
+[Normalizer]: noise value: 0.861799
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.286610
+
+[Normalizer]: noise value: 1.084116
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.462367
+
+[Normalizer]: noise value: 1.000409
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.396191
+
+[Normalizer]: noise value: 1.231464
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.578857
+
+[Normalizer]: noise value: 0.754766
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.201993
+
+[Normalizer]: noise value: 0.725053
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.178502
+
+[Normalizer]: noise value: 1.658687
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.916608
+
+[Normalizer]: noise value: 1.021465
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.412838
+
+[Normalizer]: noise value: 1.053870
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.438456
+
+[Normalizer]: noise value: 1.407929
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.718366
+
+[Normalizer]: noise value: 1.012863
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.406037
+
+[Normalizer]: noise value: 1.077008
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.456748
+
+[Normalizer]: noise value: 1.133931
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.501750
+
+[Normalizer]: noise value: 0.861228
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.286159
+
+[Normalizer]: noise value: 1.169583
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.529936
+
+[Normalizer]: noise value: 1.131113
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.499522
+
+[Normalizer]: noise value: 1.515883
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.803711
+
+[Normalizer]: noise value: 1.732250
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.974765
+
+[Normalizer]: noise value: 1.102430
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.476846
+
+[Normalizer]: noise value: 1.342966
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.667007
+
+[Normalizer]: noise value: 0.883156
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.303495
+
+[Normalizer]: noise value: 1.406434
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.717183
+
+[Normalizer]: noise value: 0.946913
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.353899
+
+[Normalizer]: noise value: 0.844970
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.273306
+
+[Normalizer]: noise value: 0.958150
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.362783
+
+[Normalizer]: noise value: 0.757082
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.203824
+
+[Normalizer]: noise value: 1.240758
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.586205
+
+[Normalizer]: noise value: 0.944664
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.352121
+
+[Normalizer]: noise value: 0.764886
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.209993
+
+[Normalizer]: noise value: 1.273296
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.611928
+
+[Normalizer]: noise value: 1.341319
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.665706
+
+[Normalizer]: noise value: 0.601848
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.081100
+
+[Normalizer]: noise value: 1.025195
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.415786
+
+[Normalizer]: noise value: 0.943616
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.351292
+
+[Normalizer]: noise value: 1.152180
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.516177
+
+[Normalizer]: noise value: 1.146847
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.511961
+
+[Normalizer]: noise value: 1.387598
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.702292
+
+[Normalizer]: noise value: 0.816214
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.250572
+
+[Normalizer]: noise value: 0.910304
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.324957
+
+[Normalizer]: noise value: 0.827120
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.259194
+
+[Normalizer]: noise value: 0.887958
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.307291
+
+[Normalizer]: noise value: 1.235914
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.582375
+
+[Normalizer]: noise value: 0.962331
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.366088
+
+[Normalizer]: noise value: 0.895575
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.313312
+
+[Normalizer]: noise value: 0.874951
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.297008
+
+[Normalizer]: noise value: 1.213911
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.564980
+
+[Normalizer]: noise value: 1.032812
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.421809
+
+[Normalizer]: noise value: 0.876692
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.298384
+
+[Normalizer]: noise value: 1.160298
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.522595
+
+[Normalizer]: noise value: 0.996863
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.393388
+
+[Normalizer]: noise value: 0.968446
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.370923
+
+[Normalizer]: noise value: 0.704183
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.162003
+
+[Normalizer]: noise value: 1.205587
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.558399
+
+[Normalizer]: noise value: 1.176508
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.535410
+
+[Normalizer]: noise value: 1.057028
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.440952
+
+[Normalizer]: noise value: 1.005501
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.400217
+
+[Normalizer]: noise value: 1.030151
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.419704
+
+[Normalizer]: noise value: 1.090633
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.467520
+
+[Normalizer]: noise value: 1.199469
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.553563
+
+[Normalizer]: noise value: 1.309829
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.640810
+
+[Normalizer]: noise value: 1.279267
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.616648
+
+[Normalizer]: noise value: 1.162052
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.523982
+
+[Normalizer]: noise value: 0.991099
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.388831
+
+[Normalizer]: noise value: 0.709181
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.165955
+
+[Normalizer]: noise value: 1.149752
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.514258
+
+[Normalizer]: noise value: 1.429855
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.735699
+
+[Normalizer]: noise value: 1.174885
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.534127
+
+[Normalizer]: noise value: 1.380134
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.696392
+
+[Normalizer]: noise value: 1.085103
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.463148
+
+[Normalizer]: noise value: 1.176237
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.535196
+
+[Normalizer]: noise value: 1.196886
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.551521
+
+[Normalizer]: noise value: 1.074112
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.454459
+
+[Normalizer]: noise value: 0.725218
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.178633
+
+[Normalizer]: noise value: 1.211945
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.563425
+
+[Normalizer]: noise value: 1.111753
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.484217
+
+[Normalizer]: noise value: 1.136013
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.503396
+
+[Normalizer]: noise value: 0.773324
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.216664
+
+[Normalizer]: noise value: 1.481034
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.776160
+
+[Normalizer]: noise value: 0.809700
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.245422
+
+[Normalizer]: noise value: 1.204435
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.557489
+
+[Normalizer]: noise value: 0.811345
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.246722
+
+[Normalizer]: noise value: 1.459530
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.759160
+
+[Normalizer]: noise value: 1.225657
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.574266
+
+[Normalizer]: noise value: 1.342647
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.666755
+
+[Normalizer]: noise value: 1.021548
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.412903
+
+[Normalizer]: noise value: 1.665460
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.921962
+
+[Normalizer]: noise value: 0.973637
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.375026
+
+[Normalizer]: noise value: 1.118854
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.489830
+
+[Normalizer]: noise value: 1.590059
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.862352
+
+[Normalizer]: noise value: 0.910148
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.324834
+
+[Normalizer]: noise value: 1.109415
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.482369
+
+[Normalizer]: noise value: 1.270460
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.609686
+
+[Normalizer]: noise value: 1.279893
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.617144
+
+[Normalizer]: noise value: 1.188235
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.544681
+
+[Normalizer]: noise value: 0.556793
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.045481
+
+[Normalizer]: noise value: 1.240824
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.586257
+
+[Normalizer]: noise value: 1.107423
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.480793
+
+[Normalizer]: noise value: 1.024228
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.415022
+
+[Normalizer]: noise value: 1.416677
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.725281
+
+[Normalizer]: noise value: 1.037184
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.425265
+
+[Normalizer]: noise value: 0.818898
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.252694
+
+[Normalizer]: noise value: 1.304657
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.636722
+
+[Normalizer]: noise value: 0.913805
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.327725
+
+[Normalizer]: noise value: 1.242148
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.587303
+
+[Normalizer]: noise value: 1.042262
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.429279
+
+[Normalizer]: noise value: 1.149576
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.514119
+
+[Normalizer]: noise value: 1.042828
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.429727
+
+[Normalizer]: noise value: 1.094919
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.470908
+
+[Normalizer]: noise value: 1.167441
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.528242
+
+[Normalizer]: noise value: 1.022552
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.413697
+
+[Normalizer]: noise value: 0.695878
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.155438
+
+[Normalizer]: noise value: 0.840147
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.269493
+
+[Normalizer]: noise value: 1.243217
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.588148
+
+[Normalizer]: noise value: 1.264837
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.605241
+
+[Normalizer]: noise value: 0.861826
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.286631
+
+[Normalizer]: noise value: 1.077353
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.457021
+
+[Normalizer]: noise value: 1.252807
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.595730
+
+[Normalizer]: noise value: 1.030435
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.419929
+
+[Normalizer]: noise value: 1.076559
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.456393
+
+[Normalizer]: noise value: 0.586440
+[Normalizer]: min value: 0.499264
+[Normalizer]: max value: 1.764171
+[Normalizer]: normalized value: 0.068919
+

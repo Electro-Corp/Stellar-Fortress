@@ -7,7 +7,7 @@
   "Unit_Script_Dir": "basegame/data/scripts/units",
   "UI_Script_Dir" : "basegame/data/scripts/ui",
   "Teams": ["China.json","EAF.json","Europe.json","RedditNation.json","Russia.json","USA.json"],
-  "LoadingImages": "basegame/data/images/loading/loadHD2.bmp",
+  "LoadingImages": "basegame/data/images/loading/loadV.bmp",
   "MenuImage": "basegame/data/images/st_logo.bmp",
   "DefaultFont": "basegame/data/fonts/bot.ttf"
 }

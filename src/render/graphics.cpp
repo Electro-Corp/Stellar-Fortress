@@ -26,6 +26,7 @@ Renderer::Renderer(int width, int height, renderMode rm, std::string *fontPath =
     SCALE = 11;
   }
   
+  
   // Init fonts
   TTF_Init();
   if(fontPath){
@@ -189,6 +190,10 @@ void Renderer::procEvents(){
   }
 }
 
+
+
+
+              
 float alpha = 0.0f;
 float alphaCalc = 0.0f;
 /*

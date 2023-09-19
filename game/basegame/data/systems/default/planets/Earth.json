@@ -2,7 +2,6 @@
   "Name": "Earth",
   "Resources": ["water","ironOre","bauxite","silicon","oil"],
   "MapDimensions": [150, 150],
-  "_comment": "[name, max_height, [r, g, b]]     if decimal you still need a 0. cause otherwise big error",
   "Regions": [
   {
     "biome": "volcanic",

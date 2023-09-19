@@ -136,7 +136,7 @@ void Game::load(){
   //getchar();
   while(1){
     //curMap = this->systems[0].get_planet(0).get_map(); //hmm
-    mapRender->display(this->curMap->get());
+    mapRender->display(this->curMap.get());
   }
   l.log("GameCpp.load","Finished render map");
   // while(1){

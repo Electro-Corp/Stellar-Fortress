@@ -13,7 +13,7 @@ Planet::Planet(std::string dir) {
   int enum_val = 0;
   for (auto i : p["Regions"]) {
     r_enum[i["biome"].asString()] = enum_val;
-    c_enum[enum_val] = RGB(i["color"]["red"].asInt(), i["color"]["blue"].asInt(), i["color"]["green"].asInt());
+    c_enum[enum_val] = RGB(i["color"]["red"].asInt(), i["color"]["green"].asInt(), i["color"]["blue"].asInt());
     h_enum[enum_val] = HHH(i["requires"]["height"].asInt(), i["requires"]["heat"].asInt(), i["requires"]["humidity"].asInt());
     ++enum_val;
   }
@@ -22,6 +22,6 @@ Planet::Planet(std::string dir) {
   this->pMap = PlanetMap(this->sizex, this->sizey, r_enum, c_enum, h_enum, 4);
 }
 
-PlanetMap* Planet::get_map() {
-  return &(this->pMap);
+PlanetMap Planet::get_map() {
+  return (this->pMap);
 }
