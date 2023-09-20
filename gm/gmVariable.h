@@ -30,7 +30,7 @@ class gmUserObject;
 /// \enum gmType
 /// \brief gmType is an enum of the possible scripting types.
 typedef int gmType;
-
+typedef int gmint;
 enum
 {
   GM_INVALID_TYPE = -1, // Represent invalid typeIds returned by a query, not stored or used otherwise.   

@@ -18,10 +18,7 @@
 typedef int gmint;
 
 //#include "../all_headers.h"
-#include "../gm/gmMachine.h"
-#include "../gm/gmCall.h" // Header contains helper class
 
-extern gmMachine machine; // Virtual Machine instance
 
 
 class Game {

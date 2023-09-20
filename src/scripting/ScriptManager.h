@@ -9,13 +9,41 @@
 namespace fs = std::filesystem;
 //
 #include "script.h"
+#include "../../gm/gmMachine.h"
+#include "../../gm/gmCall.h" // Header contains helper class
+
+extern gmMachine machine; // Virtual Machine instance
 enum ScriptTypes{
   ST_Unit = 0,
   ST_UiPanel = 1,
   ST_Helper = 2
 };
 
+
 class ScriptManager{
+private:
+  std::vector<gmCall> scripts;
+  ScriptTypes sT;
+public:
+  ScriptManager(std::string scriptPath, ScriptTypes sT){
+    this->sT = sT;
+    for (const auto & entry : fs::directory_iterator("game/" + scriptPath)){
+        std::ifstream file(entry.path().u8string());
+        std::string fileString = std::string(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
+        machine.ExecuteString(fileString.c_str());
+        file.close();
+        // Load update function
+        gmCall call;
+        call.BeginGlobalFunction(&machine, "update");
+    }
+  } 
+  void runUpdates(){
+    for(gmCall &call : scripts){
+      call.End();
+    }
+  }
+};
+/*class ScriptManager{
 private:
   std::vector<Script> scripts;
 
@@ -42,5 +70,5 @@ public:
       
     }
   }
-};
+};*/
 #endif

@@ -27,5 +27,6 @@
         pkgs.SDL_ttf
         pkgs.xterm
         pkgs.SDL2_mixer
+        pkgs.luabridge
     ];
 }

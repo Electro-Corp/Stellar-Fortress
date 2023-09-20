@@ -93,10 +93,13 @@ void Game::load(){
 
   // Load scripts
   //loadingMenu("Loading unit scripts...", "");
-  unitScriptMan = new ScriptManager(infoJson["Unit_Script_Dir"].asString(), ST_Unit);
+  //unitScriptMan = new ScriptManager(infoJson["Unit_Script_Dir"].asString(), ST_Unit);
   //loadingMenu("Loading UI scripts...", "");
   uiScriptMan = new ScriptManager(infoJson["UI_Script_Dir"].asString(), ST_UiPanel);
+  uiScriptMan->runUpdates();
 
+  
+  
   //InitThreads();
     // Perlin Noise Generation Settings and stuff
   // std::string name = "test";

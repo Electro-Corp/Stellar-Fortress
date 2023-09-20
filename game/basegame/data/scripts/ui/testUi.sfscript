@@ -1,9 +1,0 @@
-type this uipanel
-implements uipanel
-string name test
-
-
-function uipanel update {
-  UIPutText name 0 0
-}
-

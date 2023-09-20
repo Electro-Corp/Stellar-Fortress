@@ -1,6 +1,6 @@
 {
   "Name": "Earth",
-  "Resources": ["water","ironOre","bauxite","silicon","oil"],
+  "Resources": ["water","ironOre","bauxite","silicon","oil","copper"],
   "MapDimensions": [100, 100],
   "Regions": [
   {
