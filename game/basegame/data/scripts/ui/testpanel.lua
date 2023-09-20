@@ -3,6 +3,10 @@
 
 local wack = 0
 
+function init()
+  
+end
+
 -- Update function
 -- Called whenever a script update is triggered
 function update()

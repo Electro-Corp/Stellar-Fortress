@@ -46,7 +46,7 @@ public:
   void runUpdates(){
     for(luabridge::LuaRef &ref : updates){
       // Execute the update function
-      ref();
+      ref(); // pass in args based on the script type (later)
     }
   }
 };
