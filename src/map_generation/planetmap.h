@@ -210,8 +210,9 @@ void PlanetMap::gen_tile_info() {
             && y.heat <= h_enum.at(i).heat
             && y.humidity <= h_enum.at(i).humidity
           ) {
-            std::string lm = std::to_string(i) + " = biome index";
-            printf("%s\n",lm.c_str());
+            //std::string lm = std::to_string(y.height)  + "<=" + std::to_string(h_enum.at(i).height) + std::endl + std::to_string(i) + " = biome index";
+            //printf("%s\n",lm.c_str());
+            
             current_biome_index = i;
           } 
         }
@@ -219,7 +220,6 @@ void PlanetMap::gen_tile_info() {
         y.rgb = colors_enum.at(y.biome);
       }
     }
-  
 }
 
 

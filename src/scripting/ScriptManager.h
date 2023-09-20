@@ -6,13 +6,18 @@
 #define SCRIPTMAN_H
 #include <vector>
 #include <filesystem>
+#include <fstream>
 namespace fs = std::filesystem;
-//
-#include "script.h"
-#include "../../gm/gmMachine.h"
-#include "../../gm/gmCall.h" // Header contains helper class
 
-extern gmMachine machine; // Virtual Machine instance
+extern "C"
+{
+    #include <lua.h>
+    #include <lauxlib.h>
+    #include <lualib.h>
+}
+
+#include <LuaBridge/LuaBridge.h>
+
 enum ScriptTypes{
   ST_Unit = 0,
   ST_UiPanel = 1,
@@ -22,24 +27,26 @@ enum ScriptTypes{
 
 class ScriptManager{
 private:
-  std::vector<gmCall> scripts;
+  lua_State* luaState;
+  std::vector<luabridge::LuaRef> updates;
   ScriptTypes sT;
 public:
   ScriptManager(std::string scriptPath, ScriptTypes sT){
     this->sT = sT;
+    luaState = luaL_newstate();
+    luaL_openlibs(luaState);
     for (const auto & entry : fs::directory_iterator("game/" + scriptPath)){
         std::ifstream file(entry.path().u8string());
-        std::string fileString = std::string(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
-        machine.ExecuteString(fileString.c_str());
-        file.close();
-        // Load update function
-        gmCall call;
-        call.BeginGlobalFunction(&machine, "update");
+        int scriptLoadStatus = luaL_dofile(luaState, entry.path().u8string().c_str());
+        updates.push_back(luabridge::getGlobal(luaState, "update"));
+        //std::string fileString = std::string(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
+       
     }
   } 
   void runUpdates(){
-    for(gmCall &call : scripts){
-      call.End();
+    for(luabridge::LuaRef &ref : updates){
+      // Execute the update function
+      ref();
     }
   }
 };
