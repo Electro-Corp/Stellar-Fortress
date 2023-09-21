@@ -262,6 +262,7 @@ void PlanetMap::gen_tile_info() {
   }
 }
 
+// TODO: Something here is causing segfault
 void PlanetMap::add_biome_nodes() {
   for(auto &row : map) {
     for(auto &tile : row) {

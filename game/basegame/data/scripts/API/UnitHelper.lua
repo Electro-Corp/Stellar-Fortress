@@ -1,0 +1,3 @@
+-- UnitHelper.lua
+-- Purpose:
+--   Helper class for Units

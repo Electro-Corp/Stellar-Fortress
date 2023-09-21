@@ -1,16 +1,18 @@
 -- Test panel code
 -- Use as an example for modders and devs.
+-- Creates a UI panel and updates it with some basic things
+-- Questions for right now:
+--    > Should most functions that modders use be included from other
+--      Lua files (which we make) that link to C++
+--    > Or should they just directly work with C+
+
 
 -- The init function should return a panel
 function init(index)
-  panel = UI("Wack", 2) -- Create a new UIPanel
+  panel = UI("Test Panel", index) -- Create a new UIPanel with the name and index
   print("TestPanel UI init function called")
-  -- Set tile of our panel
-  panel.title = "Test Panel"
-  -- Set index
-  panel.index = index
   -- Lets add a small peice of text
-  text = Text("Hello World", 0, 0) 
+  text = Text("Hello World", 0, 0) -- create Text Text::Text(text, x, y)
   panel.addText(panel, text)
   return panel -- Return panel
 end
@@ -19,5 +21,6 @@ end
 -- Called whenever a script update is triggered
 function update()
   print("This update call was called from Lua. sfscript sucked ass")
+  return 0
 end
 -- What it returns depends on the script type

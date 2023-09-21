@@ -1,0 +1,3 @@
+-- UIHelper.lua
+-- Purpose:
+--   Helper class for UI Panels
