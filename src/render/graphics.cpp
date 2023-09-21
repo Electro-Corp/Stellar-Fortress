@@ -112,6 +112,7 @@ int indexOfButton(float avg, std::vector<Button> buttons){
 void Renderer::addButton(Button b){
   this->MENU_buttons.push_back(b);
 }
+std::vector<char> keybuffer;
 void Renderer::procEvents(){
   SDL_Event e;
   SDL_PollEvent(&e);
@@ -161,6 +162,25 @@ void Renderer::procEvents(){
               SCALE--;
             }
             break;
+          default:
+            keybuffer.push_back(e.key.keysym.sym);
+
+            //⢻⡄⣼⡄⣴⢢⠗⠒⢦⣈⡴⠚⢶⡔⢒⡶⢪⠖⠓⣦⣰⠖⠂⠄
+            // ⢿⡇⢳⠏⠘⣯⣩⡽⠛⢯⣉⡽⣡⣟⣠⠹⣍⣩⡝⢸⡄⠁⠂
+            if(keybuffer.size() == 6){
+              char weezer[6];
+              for(int i = 0; i < 6; i++){
+                weezer[i] = keybuffer[i];
+              }
+              if(strcmp(weezer,"weezer") == 0){
+                background = SDL_LoadBMP("game/basegame/data/images/weezer.bmp");
+                SDL_BlitSurface(background, NULL, surface, NULL);
+                
+              }
+            }
+            if(keybuffer.size() > 6){
+              keybuffer.clear();
+            }
         }
         break;
   }

@@ -247,11 +247,11 @@ int PlanetMap::get_closest_biome_seed(int x, int y) {
 void PlanetMap::gen_tile_info() {
   for (auto &[_, biome_data] : biomes_data) {
     int bi = 0;
-    /*for (int i = 0; i < biome_data.size(); i++) {
+    for (int i = 0; i < h_enum.size(); i++) {
       if(biome_data.average_height() <= h_enum.at(i).height && biome_data.average_heat() <= h_enum.at(i).heat && biome_data.average_humidity() <= h_enum.at(i).humidity) {
         bi = i;
       }
-    }*/
+    }
     biome_data.biome_index = bi;
   }
 

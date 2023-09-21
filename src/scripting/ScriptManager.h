@@ -66,21 +66,28 @@ public:
   }
   void runInits(){
     if(sT == ST_UiPanel){
+      // Expose text 
+      luabridge::getGlobalNamespace(luaState)
+        .beginClass<Text>("Text")
+        .addConstructor<void(*) (std::string, int, int)>()
+        .addProperty("text", &Text::getText, &Text::setText)
+        .addProperty("x", &Text::getX, &Text::setX)
+        .addProperty("y", &Text::getY, &Text::setY)
+        .endClass();
+
+      // Expose UI
       luabridge::getGlobalNamespace(luaState)
         .beginClass<UI>("UI")
-        .addConstructor<void(*) (char*, int)>()
+        .addConstructor<void(*) (std::string, int)>()
         .addProperty("title", &UI::getTitle, &UI::setTitle)
         .addProperty("index", &UI::getIndex, &UI::setIndex)
-        //.addFunction("addText", &UI::addText)
+        .addFunction("addText", &UI::addText)
         .endClass();
         int c = 0;
         for(luabridge::LuaRef &ref : inits){
           // Execute the init function
-          UI tmp("NULL", c++);
-          UI res1 = ref(tmp);
-          //tmp = res1;
-          //printf("Panel title: %s\n",res1.getTitle());
-          std::cout << "Panel Title: "<<res1.getTitle()<< "\n";
+          UI res1 = ref(c++);
+          // Add the panel
           uiMan.addUIPanel(res1);
         }
     }

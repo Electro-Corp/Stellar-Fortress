@@ -1,29 +1,18 @@
 -- Test panel code
 -- Use as an example for modders and devs.
 
-local wack = 0
-
-
-function debugText(panel)
-  --for i = 1 do print(i) end -- change "print(i)" to panel.addText
-end
-
--- The init function is given an empty panel with
--- slots for:
---   * Text
---   * Buttons
-function init(panel)
+-- The init function should return a panel
+function init(index)
+  panel = UI("Wack", 2) -- Create a new UIPanel
   print("TestPanel UI init function called")
-  print(panel.index)
-  print(panel.title)
   -- Set tile of our panel
   panel.title = "Test Panel"
+  -- Set index
+  panel.index = index
   -- Lets add a small peice of text
-  -- How you do this is really up to you, i just made a 
-  -- seperate helper function since the contents of the text doesnt matter
-  -- debugText(panel)
-  -- TODO: Expose Text class to Lua
-  return panel
+  text = Text("Hello World", 0, 0) 
+  panel.addText(panel, text)
+  return panel -- Return panel
 end
 
 -- Update function
