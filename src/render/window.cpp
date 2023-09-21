@@ -78,10 +78,10 @@ void Window::RenderPanel(UI* ui){
       printf("\033[48;2;%d;%d;%dm %c  \033[48;2;0;0;0m",100,100,100,' ');
     }
   }
-  for(int i = 0; i < ui->texts.size(); i++){
-    printf("\033[%d;%dH",ui->texts[i].y, ui->texts[i].x);
-    printf("%s",ui->texts[i].text);
-  }
+  //for(int i = 0; i < ui->texts.size(); i++){
+    //printf("\033[%d;%dH",ui->texts[i].y, ui->texts[i].x);
+    //printf("%s",ui->texts[i].text);
+  //}
 }
 
 

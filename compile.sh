@@ -1,6 +1,6 @@
 rm stellar
  
-# sh clearlogs.sh
+sh clearlogs.sh
 
 g++ src/main.cpp -o stellar -w  -ljsoncpp -lmenu -lncurses -lrt -fpermissive -g -lSDL2 -lSDL_image -lSDL2_ttf -lSDL2_mixer -llua -O0
 

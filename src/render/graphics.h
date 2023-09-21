@@ -47,7 +47,7 @@ TTF_Font* gFont = NULL; // Font
 SDL_Surface* loadTextSurface;
 // Threads
 // Debug
-Logger l;
+// Logger l;
 public:
   Renderer(int width, int height, renderMode rm, std::string* fontPath = nullptr);
 

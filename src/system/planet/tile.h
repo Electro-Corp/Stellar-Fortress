@@ -15,7 +15,7 @@
 class Tile {
   public:
   int x,y, b_seed, biome;
-  int height, heat, humidity;
+  double height, heat, humidity;
   RGB rgb;
   bool isOccupied = false;
   

@@ -39,7 +39,7 @@ Renderer::Renderer(int width, int height, renderMode rm, std::string *fontPath =
   if(rm != RM_LoadScreen)
     display();
 
-  l.log("Renderer.Renderer", "Logging init. Renderer in mode " + std::to_string(rm));
+  // l.log("Renderer.Renderer", "Logging init. Renderer in mode " + std::to_string(rm));
 }
 
 // Initilze the menu 
@@ -295,7 +295,7 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
     if(loadTextSurface){
      SDL_BlitSurface(loadTextSurface, NULL, surface, NULL);
     } else{
-      l.log("Renderer.display", "Text surface does not exist!");
+      // l.log("Renderer.display", "Text surface does not exist!");
       printf("no text surface\n");
       exit(-1);
     }

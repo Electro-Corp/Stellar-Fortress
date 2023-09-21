@@ -7,6 +7,7 @@ private:
     std::vector<float> heat_nodes;
     std::vector<float> humidity_nodes;
 
+
     float avg_height;
     float avg_heat;
     float avg_humidity;
@@ -39,5 +40,7 @@ private:
     float average_height() const { return avg_height; }
     float average_heat() const { return avg_heat; }
     float average_humidity() const { return avg_humidity; }
+
+    int biome_index;
 };
 #endif

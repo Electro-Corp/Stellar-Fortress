@@ -56,6 +56,18 @@ void Game::load(){
   //printf("\033[%d;%dH",0, 0);
   //printf("STELLAR FORTRESS IS LOADING");
  // while(1)
+  
+  // Load scripts
+  // Load scripts
+  //loadingMenu("Loading unit scripts...", "");
+  l.log("GameCpp.load", "Loading scripts");
+  loadingMenu("Loading scipts...",loadFPath);
+  unitScriptMan = new ScriptManager(infoJson["Unit_Script_Dir"].asString(), ST_Unit);
+  unitScriptMan->runUpdates();
+  //loadingMenu("Loading UI scripts...", "");
+  uiScriptMan = new ScriptManager(infoJson["UI_Script_Dir"].asString(), ST_UiPanel);
+  uiScriptMan->runUpdates();
+
   l.log("GameCpp.load", "Loading teams");
   loadingMenu("Loading teams...",loadFPath);
 
@@ -91,13 +103,7 @@ void Game::load(){
     }
   }
 
-  // Load scripts
-  //loadingMenu("Loading unit scripts...", "");
-  unitScriptMan = new ScriptManager(infoJson["Unit_Script_Dir"].asString(), ST_Unit);
-  unitScriptMan->runUpdates();
-  //loadingMenu("Loading UI scripts...", "");
-  uiScriptMan = new ScriptManager(infoJson["UI_Script_Dir"].asString(), ST_UiPanel);
-  uiScriptMan->runUpdates();
+  
 
   
   

@@ -94,6 +94,8 @@ private:
     void set_noise_values();
     void set_colors();
 
+    void add_biome_nodes();
+
     int PlanetMap::get_closest_biome_seed(int x, int y);
 
     NoiseMap* heightMap;
@@ -141,12 +143,18 @@ void PlanetMap::gen_noise() {
 } 
 
 void PlanetMap::set_noise_values() {
+  Logger l("Set_Noise_Values");
   for (int y = 0; y < this->height; y++) {
     for (int x = 0; x < this->width; x++) {
       this->map[x][y].height = heightMap->get_map()[x][y];
       this->map[x][y].heat = heatMap->get_map()[x][y];
       this->map[x][y].humidity = humidityMap->get_map()[x][y];
 
+      /* std::ostringstream msg;
+      msg << "[" << x << ", " << y << "] - height: " <<  this->map[x][y].height << std::endl;
+      msg << "[" << x << ", " << y << "] - heat: " <<  this->map[x][y].heat << std::endl;
+      msg << "[" << x << ", " << y << "] - humidity: " <<  this->map[x][y].humidity << std::endl;
+      l.log(msg.str());*/
       auto tile_biome = this->map[x][y].b_seed;
       auto &b_data = biomes_data[tile_biome];
       b_data.add_node(this->map[x][y].height, this->map[x][y].heat, this->map[x][y].humidity);
@@ -200,18 +208,79 @@ int PlanetMap::get_closest_biome_seed(int x, int y) {
   return closest_seed_index;
 }
 // andrew fix everything it dont work it just blue (blue)
+// blue? like weezer blue albu,???
+/*
+⠀⠄⠠⠀⠄⠠⢀⠠⠀⠄⡀⠄⠠⢀⠠⠀⠄⡀⠄⠠⢀⠠⠀⠄⡀⠄⠠⢀⠠⠀⠄⡀⠄⠠⢀⠠⠀⠄⡀⠄⠠⢀⠠⠀⠄⡀⠄⠠⢀⠠⠀⠄⡀⠄⠠⢀⠠⠀⠄⡀⠄⠠⢀⠠⠀
+⠀⠌⡀⢁⠂⢁⠠⠐⠈⡀⠄⠂⢁⠠⠐⠈⡀⠄⠂⢁⠠⠐⠈⡀⠄⠂⢁⠠⠐⠈⡀⠄⠂⢁⠠⠐⠈⡀⠄⠂⢁⢻⡄⣼⡄⣴⢢⠗⠒⢦⣈⡴⠚⢶⡔⢒⡶⢪⠖⠓⣦⣰⠖⠂⠄
+⠀⠂⠄⠂⡀⠂⠄⠂⢁⠠⠐⠈⡀⠄⠂⢁⠠⠐⠈⡀⠄⠂⢁⠠⠐⠈⡀⠄⠂⢁⠠⠐⠈⡀⠄⠂⢁⠠⠐⠈⡀⠈⢿⡇⢳⠏⠘⣯⣩⡽⠛⢯⣉⡽⣡⣟⣠⠹⣍⣩⡝⢸⡄⠁⠂
+⠀⡁⠂⡐⠀⠡⠐⠈⡀⠐⠠⠁⡀⠂⠁⠄⠂⡈⠐⠀⠄⡁⠂⠠⢈⠐⠀⠄⡁⠂⠠⢈⠐⠀⠄⡁⠂⠠⢈⠐⠀⠡⠀⠄⡈⠄⠂⡀⠄⠠⠐⠀⠄⡐⠀⠠⢀⠐⠠⠀⠄⠂⠠⠈⠄
+⠀⠄⡁⠠⢈⠐⠠⠁⠠⠁⠂⢁⠠⠈⡐⠈⠠⢀⠡⠈⡀⠐⠈⠄⡀⠂⠡⢀⠐⠈⠄⡀⠂⠡⢀⠐⠈⠄⡀⠂⢁⠂⠁⠄⡀⢂⠐⠠⢀⠡⢀⠁⢂⠠⠈⠐⡀⠂⢁⠐⠈⠠⠁⠂⠄
+⠀⢂⠀⠡⠀⠂⠄⢁⠂⠁⠌⠀⠄⡁⠠⢈⠐⠀⠄⢂⠠⠁⡈⠄⠐⢈⠠⠀⠌⠐⠠⢀⠁⠂⠄⡈⠐⠠⢀⠁⠂⠠⠁⢂⠠⠀⢂⠐⠠⠀⢂⠈⡀⠄⡈⠐⠀⠌⢀⠂⢁⠂⠁⠌⠀
+⠀⢂⠈⠄⠁⠌⢀⠂⠠⠁⠂⡁⠄⠠⠁⡀⠂⠡⠐⠀⠄⠂⠄⠠⠁⠂⠠⢈⠠⠈⠄⠂⢈⠐⠠⢀⠁⠂⠄⡈⠄⠁⠂⠄⠠⢁⠀⠂⠄⠡⠀⢂⠠⠐⠀⠡⢈⠀⠂⠄⠂⠠⠁⠂⠁
+⠀⠂⠄⡈⠐⢈⠀⠄⠁⠂⡁⠠⢀⠡⠐⠀⠡⠐⠈⠠⢈⠐⠈⡀⠂⢁⠂⠄⡐⠀⢂⠡⠀⢂⠐⡀⠌⠐⡀⠄⠂⠁⠌⠐⡀⠂⢈⠐⠈⠠⢈⠀⠄⠂⢁⠂⠄⡈⠐⠠⠁⠂⠁⠌⡀
+⠀⡁⢂⠠⠁⠂⢈⠠⠁⢂⠀⠡⠀⠄⠂⢁⠂⠌⢀⠡⠀⠂⡁⠠⠁⠂⡀⠂⠄⡈⠠⠀⠌⠀⠄⡀⢂⠐⢀⠐⠈⡐⠈⠠⠐⠈⡀⠄⢁⠂⠄⡈⠠⢈⠀⠄⠂⡀⢁⠂⠌⢀⠁⢂⠀
+⠀⡐⠀⠄⠂⠡⠀⢂⠐⠠⠈⠐⢈⠠⠈⡀⠄⠂⠄⠂⡈⠐⢀⠁⠄⡁⠐⡀⢂⠀⠡⠐⠈⡐⠠⠐⢀⠈⡀⠂⢁⠠⠈⡐⠠⠁⠠⢈⠀⠄⠂⡀⠡⢀⠈⠄⠂⠐⠠⢀⠂⠄⡈⠠⠀
+⠀⡐⠈⠠⠈⠄⢁⣤⠶⢦⣅⠈⠠⠐⢀⠐⠠⢈⠀⠂⠄⠁⢂⠈⡀⠐⠠⠐⢀⠈⡐⠠⠁⠠⠐⢀⠂⠐⡀⣡⣴⣦⣥⡀⠐⡈⠄⠠⢈⠀⠂⠄⢁⠀⠂⠄⠡⠈⠄⡀⠂⡐⠀⡁⠄
+⠀⠄⢁⠂⢁⠐⣼⣧⡀⣀⣸⡆⠁⡐⠠⠈⠠⠀⠌⠐⠈⡐⠠⠐⠀⣁⡂⠌⢀⠐⢀⠐⠈⡐⠈⡀⠄⠁⣼⡏⠉⠉⠉⣿⠀⠠⢀⠡⠀⠌⠐⠈⡀⢌⣾⡿⢿⣷⡄⠠⠁⡀⠂⠄⡀
+⠀⠌⡀⠐⡀⠂⢿⡄⣇⣌⢱⡟⠀⠄⠂⠁⠄⡁⠂⠌⠐⢀⠐⣼⣿⣿⣿⣷⡄⢈⠀⠂⡁⢀⠂⠄⡈⠐⢺⡟⢳⠘⠋⣿⠀⡐⠠⠀⠌⠠⢈⠐⠀⢾⣿⡧⠴⠿⣿⠀⠂⠄⢁⠐⠀
+⠀⢂⠠⠁⡀⢂⢈⡷⡬⠴⠺⢄⠐⠠⠁⡈⠄⠐⠠⠈⡐⠀⠌⡿⡿⡍⣿⢿⡇⠀⠌⠐⠀⠄⠂⡐⠀⠡⠈⣧⡸⠇⣰⠋⠀⠄⠠⠁⠂⢁⠀⠂⡁⠘⣧⠼⡥⢀⠟⠀⠡⠐⡀⠈⠄
+⠀⢂⠀⢂⡴⠒⡉⣹⢦⠔⢅⠀⠙⢢⢔⠀⠄⡁⠂⢁⠠⠈⡀⢻⡰⠟⠀⡾⠁⢂⠈⠄⠁⢂⠐⠀⣌⠴⣞⡣⡉⠉⢸⡧⡈⠠⠁⠄⡁⠂⢈⠐⠀⡁⣼⠻⠚⠁⣇⠈⠄⠂⡀⠡⠀
+⠀⠂⡸⢁⠀⢠⠎⠀⡌⠀⠀⡓⠀⢄⠈⠱⡄⠐⠈⡀⠐⢠⣐⣴⠙⠖⠊⢧⡀⠂⠠⢈⠐⡀⣼⢉⢄⠉⠉⢻⡄⢀⠞⠹⠆⠁⢪⡀⠐⢈⠠⣠⣵⣾⣿⣧⡀⢠⣿⣷⣶⣅⠀⢂⠁
+⠀⢁⠇⠀⠀⠈⠀⠀⠁⠸⠸⠇⢀⠀⠀⠀⢇⠀⠁⣰⣿⣿⣿⣿⣿⣶⣾⣿⣿⣷⣆⡀⠆⢸⠹⡉⣿⡀⠁⠀⠿⣸⠆⠀⠀⡀⢀⢹⡀⠆⣾⡿⣷⢏⣷⢾⣹⣿⢹⣏⡷⢿⣇⠀⠆
+⠀⣸⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⢸⠀⣹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⣾⡴⠑⡇⡇⠀⠀⠀⡁⡅⠀⢁⠇⢘⠀⢇⢀⣿⡿⣧⡟⣾⣣⢿⣻⢿⣾⣽⣯⣿⡄⠂
+⠀⡌⠇⠀⡘⠀⠀⠠⠀⠀⠀⠄⠀⡂⠄⠃⢸⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣹⡇⡇⣷⠁⡄⠀⠀⠂⡀⠀⠊⠠⡘⣰⡏⢸⣿⡿⣞⣽⡳⣏⣿⣿⢫⣞⢿⣽⣯⣷⡀
+⠀⡇⠈⢀⠃⠠⠀⠀⠀⠀⠀⠀⠇⢰⡘⠀⢸⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡃⢸⢻⢹⣿⠈⡄⠀⠀⠂⠁⠀⢂⠁⡗⠱⡇⠙⣷⣿⣛⡾⣽⣛⢾⣷⢯⡻⣟⣾⣿⠋⠀
+⠠⠀⠀⢸⠀⠄⠀⠀⠀⠀⠀⠀⠘⣰⠁⠀⢨⠀⢸⡍⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⣿⠋⢁⠸⣽⠇⠙⡦⠀⡀⠀⠂⠀⠀⢸⡸⠘⢠⡇⠀⡇⢻⣽⢳⣟⢾⣻⣯⡷⣻⡵⣿⢸⠀⠄
+⠠⠀⠀⠘⢸⠀⠠⠀⠀⠀⠀⠀⡀⢹⠀⠀⢸⠀⠌⣗⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠋⠀⠄⠂⢹⣶⠠⡑⡇⡇⡀⡄⠁⡀⣸⡗⠁⡸⠁⠐⣇⢸⣯⣟⡾⣏⣿⢿⣱⢷⣻⡏⢸⠀⠂
+⢰⠀⠀⡇⢈⡄⠐⠠⠀⠀⠀⠀⢁⢈⠗⠀⣸⠀⠄⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡷⠈⠠⢈⢀⣿⣦⡂⠙⠇⡳⠎⠄⢵⠋⢁⢼⠁⠠⠁⢿⣸⡿⣾⣽⣟⡿⢯⣛⣾⣳⣇⡟⠀⡁
+⠀⡇⠀⢃⠀⠀⠀⢸⠀⠀⠀⠈⠈⣈⡀⢀⠇⢀⠈⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠡⢀⠘⣧⣇⡙⠾⣥⣸⢿⠿⣁⡼⣹⡏⠠⠁⢂⢸⣿⣽⣷⣻⣾⣽⣯⣿⣶⣻⣿⠇⠀⠄
+⠀⢹⣏⣎⣶⣤⡀⠘⠀⠀⢀⣠⣴⡷⣘⡿⠀⡀⠂⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠈⠄⠂⡀⣿⣿⣿⣷⣿⣿⣿⣿⣷⣿⣿⡇⠠⠁⠠⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠈⠄
+⠀⡉⠳⢷⣿⣿⣿⣶⣶⣶⣿⣿⣿⣷⣿⠁⠐⡀⠡⠀⣿⠛⢉⠛⣛⣻⣛⠿⠉⣙⡇⠐⠠⠁⡀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⡁⠂⠁⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⡈⠄
+⠀⡐⠠⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⢀⠂⠐⡀⠁⣧⠂⠂⠉⣰⣿⡥⠂⢀⢸⠅⠂⢁⠐⠀⢹⣿⣿⣿⣿⡟⣿⣿⣿⣿⡿⠀⡐⠀⠡⠈⣿⣿⣿⣿⣿⢹⣿⣿⣿⣿⡇⠐⠀⠄
+⠀⡐⠀⠂⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢀⠂⢁⠠⠁⡷⢈⣰⠞⣽⢸⡧⠱⢈⢸⠠⢈⠀⠂⠡⢸⣿⣿⣿⣿⡇⣿⣿⣿⣿⡇⢀⠐⢈⠀⡁⣿⣿⣿⣿⡏⢸⣿⣿⣿⣿⠇⠈⡐⠀
+⠀⠄⢁⠂⢹⣿⣿⣿⣿⠸⣿⣿⣿⣿⠇⡀⠂⠄⡐⠀⡷⣄⠊⣾⢹⢸⡾⢀⠂⣽⠀⠄⡈⠄⢁⠀⣿⣿⣿⣿⠇⣿⣿⣿⣿⠃⠀⠌⢀⠐⢀⣻⣿⣿⣿⠁⢸⣿⣿⣿⣿⠀⢂⠠⠁
+⠀⠌⡀⠐⣸⣿⣿⣿⡟⠀⣿⣿⣿⣿⠀⡐⠈⡀⠄⢢⡿⢀⢡⠎⢸⠘⣷⠠⣤⡟⠀⠄⡀⠂⠄⡈⣿⣿⣿⣿⠀⣸⣿⣿⣿⡄⠈⠄⠂⢈⠀⣿⣿⣿⡏⠐⢠⣿⣿⣿⣿⠀⠂⡀⠂
+⠀⢂⠠⠁⣸⣿⣿⣿⣧⠀⣹⣿⣿⣿⡇⢀⠐⠠⠐⢸⡓⣧⠎⠈⡇⣼⣯⢃⣆⡇⠈⠄⠐⢈⠀⠄⣿⣿⣿⣿⠀⣿⣿⣿⣿⠇⢈⠠⠈⡀⠂⣿⣿⣿⡇⠐⢸⣿⣿⣿⠇⢀⠁⡐⠀
+⠀⢂⠀⠂⣼⣿⣿⣿⣿⠀⣿⣿⣿⣿⡇⢀⠂⢁⠐⢸⠝⠁⢰⢡⢃⡿⢽⠯⢷⠁⡈⠐⢈⠀⡐⠀⣿⣿⣿⣿⠀⢿⣿⣿⣿⡆⠠⢀⠁⠄⠂⢸⣿⣿⣇⠈⢸⣿⣿⣿⠀⠂⠠⠐⠀
+⢀⠂⡈⠄⣿⣿⣿⣿⡿⠀⣿⣿⣿⣿⠇⢀⠂⠄⣈⠿⣥⢆⢏⡞⢀⣷⣤⣷⢿⠆⢀⠁⠂⠠⢀⠁⣿⣿⣿⣿⠀⢸⣿⣿⣿⡇⠀⢂⠈⠠⢈⢸⣿⣿⣿⠀⢹⣿⣿⣿⠀⢁⠂⠁⠂
+*/
+void PlanetMap::gen_tile_info() {
+  for (auto &[_, biome_data] : biomes_data) {
+    int bi = 0;
+    /*for (int i = 0; i < biome_data.size(); i++) {
+      if(biome_data.average_height() <= h_enum.at(i).height && biome_data.average_heat() <= h_enum.at(i).heat && biome_data.average_humidity() <= h_enum.at(i).humidity) {
+        bi = i;
+      }
+    }*/
+    biome_data.biome_index = bi;
+  }
+
+  for(auto &row : map) {
+    for(auto &tile : row) {
+      tile.biome = biomes_data.at(tile.b_seed).biome_index;
+    }
+  }
+}
+
+void PlanetMap::add_biome_nodes() {
+  for(auto &row : map) {
+    for(auto &tile : row) {
+      biomes_data.at(tile.b_seed).add_node(tile.height, tile.heat, tile.humidity);
+    }
+  }
+}
+/*
 void PlanetMap::gen_tile_info() {
    Logger l("gen_tile_info");
   for(auto &x : map) {
       for(auto &y : x) { // auto = Tile
         int current_biome_index = 0;
         for(int i = 0; i < h_enum.size(); ++i) {
-          if(  y.height <= h_enum.at(i).height
+          if(  y.height <= h_enum.at(i).height 
             && y.heat <= h_enum.at(i).heat
             && y.humidity <= h_enum.at(i).humidity
           ) {
-            // std::string lm = std::to_string(y.height)  + "<=" + std::to_string(h_enum.at(i).height) + std::endl + std::to_string(i) + " = biome index";
-            // printf("%s\n",lm.c_str());
+            
             std::ostringstream oss;
             oss << "height: " <<  y.height << " <= " <<  h_enum.at(i).height << std::endl << "heat: "<< y.heat << " <= " << h_enum.at(i).heat << std::endl << "humidity: " <<  y.humidity << " <= " << h_enum.at(i).humidity << std::endl << std::endl;
             l.log(oss.str());
@@ -223,7 +292,7 @@ void PlanetMap::gen_tile_info() {
       }
     }
 }
-
+*/
 
 /*
  * PLANETMAP::BIOME_BASED(FUNNY)_GENERAT
@@ -231,39 +300,21 @@ void PlanetMap::gen_tile_info() {
  authir: anduwu1 
 */
 void PlanetMap::biome_based_generate() {
-  // Lots of loading screens
-  loadMapRender = new Renderer(500,100, RM_LoadScreen);
-  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Generating Tile Map", true);
-  loadMapRender->display(NULL, true);
+  // Lots of loading screens // No more
   this->gen_tile_map();
-  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Generating Noise", true);
-  loadMapRender->display(NULL, true);
   this->gen_noise();
-  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Generating Quads", true);
-  loadMapRender->display(NULL, true);
   this->gen_quads(); 
 
-  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Setting Noise Values", true);
-  loadMapRender->display(NULL, true);
   this->set_noise_values();
-  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Setting biome indices", true);
-  loadMapRender->display(NULL, true);
   this->set_biome_index();
 
-  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Computing averages", true);
-  loadMapRender->display(NULL, true);
-  for (auto &[_, BiomeData] : biomes_data) {
-    BiomeData.compute_averages();
+  this->add_biome_nodes();
+
+  for (auto &[_, biome_data] : biomes_data) {
+    biome_data.compute_averages();
   }
-
-  loadMapRender->initLoadScreen("game/basegame/images/loading/load1.bmp", "Generating tile info", true);
-  loadMapRender->display(NULL, true);
-  this->gen_tile_info();
-
-  // Delete the window after we're done
-  loadMapRender->endWindow();
-  delete(loadMapRender);
   
+  this->gen_tile_info();
   
   // In the future use wave collapse function to verify the terrain to make it better
 }
