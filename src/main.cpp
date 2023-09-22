@@ -103,7 +103,7 @@ int main(int args, char* argv[]) {
   }
   
   // Create menu graphics window
-  Button startGameButton("New Game", 200, 185, goofy, "game/basegame/data/images/mainmenu/buttons/startbutton.bmp");
+  Button startGameButton("New Game", 200, 185, goofy, "game/basegame/data/images/mainmenu/buttons/startbutton.bmp"); 
   Button quitButton("Quit", 200, 250, quit, "game/basegame/data/images/mainmenu/buttons/quit.bmp");
   mainMenuRender = new Renderer(800, 600, RM_Menu);
   mainMenuRender->addButton(startGameButton);

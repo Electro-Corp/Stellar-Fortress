@@ -44,6 +44,7 @@ class Game {
 
     ScriptManager* unitScriptMan;
     ScriptManager* uiScriptMan;
+    ScriptManager* apiScriptMan;
     
     void GameLoop();
     void InitThreads();

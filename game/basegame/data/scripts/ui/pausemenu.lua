@@ -18,5 +18,6 @@ function update()
 end
 
 function resume()
-  -- Call some API function to resume the game
+  -- Call Game.lua function
+  resumeGame()
 end

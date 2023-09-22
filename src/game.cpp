@@ -66,7 +66,8 @@ void Game::load(){
   unitScriptMan->runUpdates();
   uiScriptMan = new ScriptManager(infoJson["UI_Script_Dir"].asString(), ST_UiPanel);
   uiScriptMan->runUpdates();
-
+  apiScriptMan = new ScriptManager(infoJson["API_Script_Dir"].asString(), ST_Helper);
+  
   l.log("GameCpp.load", "Loading teams");
   loadingMenu("Loading teams...",loadFPath);
 

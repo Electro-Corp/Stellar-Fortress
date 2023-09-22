@@ -47,7 +47,8 @@ public:
     for (const auto & entry : fs::directory_iterator("game/" + scriptPath)){
         std::ifstream file(entry.path().u8string());
         int scriptLoadStatus = luaL_dofile(luaState, entry.path().u8string().c_str());
-        updates.push_back(luabridge::getGlobal(luaState, "update"));
+        if(sT != ST_Helper)
+          updates.push_back(luabridge::getGlobal(luaState, "update"));
         if(sT == ST_UiPanel){
           // Read init function
           inits.push_back(luabridge::getGlobal(luaState, "init"));
@@ -109,6 +110,10 @@ public:
           // Add the panel
           uiMan.addUIPanel(res1);
         }
+    }
+    if(sT == ST_Helper){
+      // Expose all C++ lua functions to 
+      // the scripts (including classes)
     }
   }
 };
