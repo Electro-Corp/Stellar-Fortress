@@ -257,12 +257,13 @@ void PlanetMap::gen_tile_info() {
 
   for(auto &row : map) {
     for(auto &tile : row) {
+      //tile.rgb = biomes_data[tile.b_seed]. nvm
       tile.biome = biomes_data[tile.b_seed].biome_index;
     }
   }
 }
 
-// TODO: Something here is causing segfault
+// TODO: Something here is causing segfault (not anymore)
 // Move this into generate noise to speed it up by having less for loops
 void PlanetMap::add_biome_nodes() {
   for(auto &row : map) {

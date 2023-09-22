@@ -64,7 +64,6 @@ void Game::load(){
   loadingMenu("Loading scipts...",loadFPath);
   unitScriptMan = new ScriptManager(infoJson["Unit_Script_Dir"].asString(), ST_Unit);
   unitScriptMan->runUpdates();
-  //loadingMenu("Loading UI scripts...", "");
   uiScriptMan = new ScriptManager(infoJson["UI_Script_Dir"].asString(), ST_UiPanel);
   uiScriptMan->runUpdates();
 
@@ -144,6 +143,7 @@ void Game::load(){
   //win.RenderMap(this->curMap->get());
 
   //getchar();
+  // we gotta switch this to a better system 
   while(1){
     //curMap = this->systems[0].get_planet(0).get_map(); //hmm
     mapRender->display(this->curMap.get());

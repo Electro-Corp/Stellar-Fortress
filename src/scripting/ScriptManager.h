@@ -69,7 +69,8 @@ public:
     script types that require them
   */
   void runInits(){
-    // UI panel init functions 
+    // UI panel init functions (each script mode is seperated so scripts only know the 
+    // information they need to know) (wow)
     if(sT == ST_UiPanel){
       // Expose text 
       luabridge::getGlobalNamespace(luaState)

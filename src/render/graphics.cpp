@@ -176,10 +176,11 @@ void Renderer::procEvents(){
               }
               if(strcmp(weezer,"weezer") == 0){
                 background = SDL_LoadBMP("game/basegame/data/images/weezer.bmp");
-                SDL_BlitSurface(background, NULL, surface, NULL);
-                
+                //SDL_BlitSurface(background, NULL, surface, NULL);
               }
             }
+            // Clear keyboard buffer if it goes
+            // longer than the length of "weezer"
             if(keybuffer.size() > 6){
               keybuffer.clear();
             }

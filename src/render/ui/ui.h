@@ -26,7 +26,6 @@ public:
   std::string getTitle() const {
     return title;
   }
-
   int getHeight() const {return height;}
   int getWidth() const{return width;}
   void setIndex(int index){this->index = index;}
