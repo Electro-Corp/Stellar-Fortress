@@ -248,7 +248,7 @@ void PlanetMap::gen_tile_info() {
   for (auto &[_, biome_data] : biomes_data) {
     int bi = 0;
     for (int i = 0; i < h_enum.size(); i++) {
-      if(biome_data.average_height() <= h_enum.at(i).height && biome_data.average_heat() <= h_enum.at(i).heat && biome_data.average_humidity() <= h_enum.at(i).humidity) {
+      if(biome_data.average_height() >= h_enum.at(i).height && biome_data.average_heat() >= h_enum.at(i).heat && biome_data.average_humidity() >= h_enum.at(i).humidity) {
         bi = i;
       }
     }
@@ -257,16 +257,17 @@ void PlanetMap::gen_tile_info() {
 
   for(auto &row : map) {
     for(auto &tile : row) {
-      tile.biome = biomes_data.at(tile.b_seed).biome_index;
+      tile.biome = biomes_data[tile.b_seed].biome_index;
     }
   }
 }
 
 // TODO: Something here is causing segfault
+// Move this into generate noise to speed it up by having less for loops
 void PlanetMap::add_biome_nodes() {
   for(auto &row : map) {
     for(auto &tile : row) {
-      biomes_data.at(tile.b_seed).add_node(tile.height, tile.heat, tile.humidity);
+      biomes_data[tile.b_seed].add_node(tile.height, tile.heat, tile.humidity);
     }
   }
 }

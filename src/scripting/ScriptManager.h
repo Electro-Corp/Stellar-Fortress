@@ -40,7 +40,7 @@ private:
   UIManager uiMan;
   ScriptTypes sT;
 public:
-  ScriptManager(std::string scriptPath, ScriptTypes sT){
+  ScriptManager(std::string scriptPath, ScriptTypes sT) {
     this->sT = sT;
     luaState = luaL_newstate();
     luaL_openlibs(luaState);
@@ -64,7 +64,12 @@ public:
       ref(); // pass in args based on the script type (later)
     }
   }
+  /*
+    Runs the init functions for
+    script types that require them
+  */
   void runInits(){
+    // UI panel init functions 
     if(sT == ST_UiPanel){
       // Expose text 
       luabridge::getGlobalNamespace(luaState)
@@ -75,13 +80,26 @@ public:
         .addProperty("y", &Text::getY, &Text::setY)
         .endClass();
 
+      // Expose button
+      luabridge::getGlobalNamespace(luaState)
+        .beginClass<Lua_Button>("Button")
+        .addConstructor<void(*) (std::string, int, int, std::string)>()
+        .addProperty("text", &Lua_Button::getText, &Lua_Button::setText)
+        .addProperty("x", &Lua_Button::getX, &Lua_Button::setX)
+        .addProperty("y", &Lua_Button::getY, &Lua_Button::setY)
+        .addProperty("luaOnClick", &Lua_Button::getluaOnClick, &Lua_Button::setluaOnClick)
+        .endClass();
+
       // Expose UI
       luabridge::getGlobalNamespace(luaState)
         .beginClass<UI>("UI")
-        .addConstructor<void(*) (std::string, int)>()
+        .addConstructor<void(*) (std::string, int, int, int)>()
         .addProperty("title", &UI::getTitle, &UI::setTitle)
         .addProperty("index", &UI::getIndex, &UI::setIndex)
+        .addProperty("width", &UI::getWidth, &UI::setWidth)
+        .addProperty("height", &UI::getHeight, &UI::setHeight)
         .addFunction("addText", &UI::addText)
+        .addFunction("addButton", &UI::addButton)
         .endClass();
         int c = 0;
         for(luabridge::LuaRef &ref : inits){
@@ -92,5 +110,26 @@ public:
         }
     }
   }
+};
+
+/*
+  Class for holding a single script
+*/
+template <typename T, typename ... Ts>
+class SingleScriptManager{
+private:
+luabridge::LuaRef* function;
+lua_State* luaState;
+public:
+  SingleScriptManager(std::string path, std::string functionName){
+    int scriptLoadStatus = luaL_dofile(luaState, path.c_str());
+    function = luabridge::getGlobal(luaState, functionName.c_str());
+  } 
+
+  // Exceute a function 
+  T execFunction(Ts... args){
+    return function(args...);
+  }
+  
 };
 #endif

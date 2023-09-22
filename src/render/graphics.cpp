@@ -167,6 +167,8 @@ void Renderer::procEvents(){
 
             //⢻⡄⣼⡄⣴⢢⠗⠒⢦⣈⡴⠚⢶⡔⢒⡶⢪⠖⠓⣦⣰⠖⠂⠄
             // ⢿⡇⢳⠏⠘⣯⣩⡽⠛⢯⣉⡽⣡⣟⣠⠹⣍⣩⡝⢸⡄⠁⠂
+            // im not even a fan of weezer
+            // why did i put this here
             if(keybuffer.size() == 6){
               char weezer[6];
               for(int i = 0; i < 6; i++){
