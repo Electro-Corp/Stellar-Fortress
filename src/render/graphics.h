@@ -60,6 +60,7 @@ public:
 // General
 
   void procEvents();
+  Uint32 getTime();
 
   void display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noLoadImage = false);
 

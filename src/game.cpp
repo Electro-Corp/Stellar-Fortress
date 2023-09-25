@@ -106,23 +106,6 @@ void Game::load(){
   
 
   
-  
-  //InitThreads();
-    // Perlin Noise Generation Settings and stuff
-  // std::string name = "test";
-  // float s = 1;
-  // int f = 10;
-
-  // l.log("GameCpp.load", "Generating test planet");
-  // Planet tPlanet("name", 30);
-  // l.log("GameCpp.load", "Done generating test planet");
-  
-  // curMap = tPlanet.get_map();
-
-  // l.log("GameCpp.load", "Loading basegame systems");
-  // for(auto i : systems) {
-    
-  // }
 
 
   // End loading screen
@@ -135,19 +118,25 @@ void Game::load(){
   // throws error that dont make sense
   curMap = this->systems[0].get_planet(0).get_map(); //hmm
 
-  //InitThreads();
-  //win = Window(this->settings.get("Name").c_str(), 30, 30, 0, 0);
-  //mainScreen.addWindow(&win);
-  //system("clear");
-  // I will fix just need to change the other things
-  // All you would have to do is add like a ->get()
-  //win.RenderMap(this->curMap->get());
 
-  //getchar();
-  // we gotta switch this to a better system 
+  // we gotta switch this to a better system  
+  // i kinda did ()
   while(1){
-    //curMap = this->systems[0].get_planet(0).get_map(); //hmm
-    mapRender->display(this->curMap.get());
+    float time = mapRender->getTime();
+    //printf("Time: %d\r", (int)(time));
+    if((int)(time) % 2 == 0){
+      // Update screen
+      mapRender->display(this->curMap.get());
+    }
+    if((int)time % 3 == 0){
+      // Update map
+      curMap = this->systems[0].get_planet(0).get_map(); //hmm
+    }
+    if((int)(time) % 5 == 0){
+      // Update scripts
+      uiScriptMan->runUpdates();
+      unitScriptMan->runUpdates();
+    }
   }
   l.log("GameCpp.load","Finished render map");
   // while(1){
@@ -171,8 +160,6 @@ static void Game::loadingMenu(std::string info, std::string loadFPath){
     lastImagePath = loadFPath;
   }
   loadingRender->initLoadScreen(loadFPath.c_str(), info.c_str());
-  //printf("\033[%d;%dH",height, 0);
-  //printf("%s\n",info.c_str());
   loadingRender->display();
   #ifdef DEBUG
   //getchar();

@@ -9,10 +9,10 @@ end
 
 -- Resume game
 function resumeGame()
-
+  
 end
 
 -- Get time from SDL
 function getTime()
-
+  
 end

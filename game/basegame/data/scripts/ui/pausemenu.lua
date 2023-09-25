@@ -15,6 +15,7 @@ function init(index)
 end
 
 function update()
+  
 end
 
 function resume()

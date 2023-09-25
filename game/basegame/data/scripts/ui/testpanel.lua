@@ -35,7 +35,7 @@ function update()
   -- Temp, i would highly recommmend not to print anything during 
   -- update functions due to how often they will probabbly be called
   -- (frame) % (some number)
-  print("This update call was called from Lua. sfscript sucked ass") 
+  -- print("This update call was called from Lua. sfscript sucked ass") 
   return 0
 end
 -- What it returns depends on the script type ig  

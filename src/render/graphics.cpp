@@ -163,26 +163,35 @@ void Renderer::procEvents(){
             }
             break;
           default:
+            // Push the latest key into the buffer
             keybuffer.push_back(e.key.keysym.sym);
 
-            //⢻⡄⣼⡄⣴⢢⠗⠒⢦⣈⡴⠚⢶⡔⢒⡶⢪⠖⠓⣦⣰⠖⠂⠄
-            // ⢿⡇⢳⠏⠘⣯⣩⡽⠛⢯⣉⡽⣡⣟⣠⠹⣍⣩⡝⢸⡄⠁⠂
-            // im not even a fan of weezer
-            // why did i put this here
-            if(keybuffer.size() == 6){
-              char weezer[6];
-              for(int i = 0; i < 6; i++){
-                weezer[i] = keybuffer[i];
+            if(rm == RM_Menu){
+              //⢻⡄⣼⡄⣴⢢⠗⠒⢦⣈⡴⠚⢶⡔⢒⡶⢪⠖⠓⣦⣰⠖⠂⠄
+              // ⢿⡇⢳⠏⠘⣯⣩⡽⠛⢯⣉⡽⣡⣟⣠⠹⣍⣩⡝⢸⡄⠁⠂
+              // im not even a fan of weezer
+              // why did i put this here
+              if(keybuffer.size() == 6){ // Wait until the buffer is the size of "weezer"
+                char weezer[6]; // Storage
+                for(int i = 0; i < 6; i++){
+                  weezer[i] = keybuffer[i]; // copy weezer over
+                }
+                if(strcmp(weezer,"weezer") == 0){ // is weezer == to "weezer"?
+                  background = SDL_LoadBMP("game/basegame/data/images/weezer.bmp"); // load weezer.bmp into the main menu
+                }
               }
-              if(strcmp(weezer,"weezer") == 0){
-                background = SDL_LoadBMP("game/basegame/data/images/weezer.bmp");
-                //SDL_BlitSurface(background, NULL, surface, NULL);
+              // Clear keyboard buffer if it goes
+              // longer than the length of "weezer"
+              // This basiclly makes it so you have to 
+              // type weezer immediatly without mistakes
+              if(keybuffer.size() > 6){
+                keybuffer.clear();
               }
-            }
-            // Clear keyboard buffer if it goes
-            // longer than the length of "weezer"
-            if(keybuffer.size() > 6){
-              keybuffer.clear();
+              // Could i make this better? Yes
+              // But I don't like weezer enough
+              // to add more to this stupid easter egg
+              // (its not even that hidden, anyone can
+              // read the source code lamfo)
             }
         }
         break;
@@ -241,6 +250,10 @@ void Renderer::initLoadScreen(std::string bgPath, std::string loadText, bool noB
     printf("\nFONT NOT LOADED ERROR\nCHECK INTEGRITY OF GAME FILES\n");
     exit(-1);
   }
+}
+
+Uint32 Renderer::getTime(){
+  return SDL_GetTicks();
 }
 
 /*
@@ -350,7 +363,7 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
           }
         }
       }
-      printf("Rendered: %d\r", red);
+     // printf("Rendered: %d\r", red);
     }
     // Render UI Panels (these prob will be loaded from scripts)
   }

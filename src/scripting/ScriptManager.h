@@ -130,6 +130,10 @@ public:
   SingleScriptManager(std::string path, std::string functionName){
     int scriptLoadStatus = luaL_dofile(luaState, path.c_str());
     function = luabridge::getGlobal(luaState, functionName.c_str());
+    if(!function){
+      printf("[SingleScriptManager] Function %s does not exist in %s\n", functionName.c_str(), path.c_str());
+      exit(-1);
+    }
   } 
 
   // Exceute a function 

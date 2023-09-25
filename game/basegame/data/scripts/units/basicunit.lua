@@ -15,7 +15,7 @@ local health = 50
 
 function update()
   -- Do something (cough cough logan cough cough)
-  print("This is a basic unit.") -- debug
+  -- print("This is a basic unit.") -- debug
 end
 
 function takeDamage()
