@@ -259,6 +259,7 @@ void PlanetMap::gen_tile_info() {
     for(auto &tile : row) {
       //tile.rgb = biomes_data[tile.b_seed]. nvm
       tile.biome = biomes_data[tile.b_seed].biome_index;
+      tile.rgb = colors_enum[tile.biome];
     }
   }
 }

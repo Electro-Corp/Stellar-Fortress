@@ -12,10 +12,10 @@
 
 -- The init function should return a panel
 function init(index)
-  panel = UI("Test Panel", index, 100, 200) -- Create a new UIPanel with the name, index, height, and width
+  panel = UI("Test Panel", index, 100, 200, 0, 0) -- Create a new UIPanel with the name, index, height, and width
   print("TestPanel UI init function called")
   -- Lets add a small peice of text
-  text = Text("Hello World", 0, 0) -- create Text 
+  text = Text("Hello World!", 0, 0) -- create Text 
   panel.addText(panel, text)
   -- Lets add a button
   --           Button Title | X | Y | OnClick function name

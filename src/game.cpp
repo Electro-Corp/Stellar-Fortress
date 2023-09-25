@@ -64,7 +64,7 @@ void Game::load(){
   loadingMenu("Loading scipts...",loadFPath);
   unitScriptMan = new ScriptManager(infoJson["Unit_Script_Dir"].asString(), ST_Unit);
   unitScriptMan->runUpdates();
-  uiScriptMan = new ScriptManager(infoJson["UI_Script_Dir"].asString(), ST_UiPanel);
+  uiScriptMan = new ScriptManager(infoJson["UI_Script_Dir"].asString(), ST_UiPanel, &uiMan);
   uiScriptMan->runUpdates();
   apiScriptMan = new ScriptManager(infoJson["API_Script_Dir"].asString(), ST_Helper);
   
@@ -114,8 +114,8 @@ void Game::load(){
 
   
   mapRender = new Renderer(width, height, RM_Game);
-      
-  // throws error that dont make sense
+  mapRender->initUI(&uiMan);
+  // throws error that dont make sense (no it dont!)
   curMap = this->systems[0].get_planet(0).get_map(); //hmm
 
 

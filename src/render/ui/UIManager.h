@@ -16,5 +16,9 @@ public:
   void addUIPanel(UI ui){
     this->uis.push_back(ui);
   }
+
+  std::vector<UI> getUIs(){
+    return uis;
+  }
 };
 #endif

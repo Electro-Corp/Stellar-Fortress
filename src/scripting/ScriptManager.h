@@ -37,10 +37,9 @@ private:
 // Vectors to hold all the functions
   std::vector<luabridge::LuaRef> updates;
   std::vector<luabridge::LuaRef> inits;
-  UIManager uiMan;
   ScriptTypes sT;
 public:
-  ScriptManager(std::string scriptPath, ScriptTypes sT) {
+  ScriptManager(std::string scriptPath, ScriptTypes sT, UIManager* uiMan = nullptr ) {
     this->sT = sT;
     luaState = luaL_newstate();
     luaL_openlibs(luaState);
@@ -56,7 +55,7 @@ public:
        
     }
     if(sT == ST_UiPanel){
-      runInits();
+      runInits(uiMan);
     }
   } 
   void runUpdates(){
@@ -69,7 +68,7 @@ public:
     Runs the init functions for
     script types that require them
   */
-  void runInits(){
+  void runInits(UIManager* uiMan = nullptr){
     // UI panel init functions (each script mode is seperated so scripts only know the 
     // information they need to know) (wow)
     if(sT == ST_UiPanel){
@@ -95,11 +94,13 @@ public:
       // Expose UI
       luabridge::getGlobalNamespace(luaState)
         .beginClass<UI>("UI")
-        .addConstructor<void(*) (std::string, int, int, int)>()
+        .addConstructor<void(*) (std::string, int, int, int, int, int)>()
         .addProperty("title", &UI::getTitle, &UI::setTitle)
         .addProperty("index", &UI::getIndex, &UI::setIndex)
         .addProperty("width", &UI::getWidth, &UI::setWidth)
         .addProperty("height", &UI::getHeight, &UI::setHeight)
+        .addProperty("x", &UI::getX, &UI::setX)
+        .addProperty("y", &UI::getY, &UI::setY)
         .addFunction("addText", &UI::addText)
         .addFunction("addButton", &UI::addButton)
         .endClass();
@@ -108,7 +109,7 @@ public:
           // Execute the init function
           UI res1 = ref(c++);
           // Add the panel
-          uiMan.addUIPanel(res1);
+          uiMan->addUIPanel(res1);
         }
     }
     if(sT == ST_Helper){

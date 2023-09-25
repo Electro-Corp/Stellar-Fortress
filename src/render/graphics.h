@@ -16,6 +16,7 @@
 // /#include<SDL2/SDL_image.h>
 #include "../system/planet/tile.h"
 #include "../other/log.h"
+#include "ui/UIManager.h"
 /*
   Rendering modes:
     * Menu
@@ -45,6 +46,8 @@ std::vector<Button> MENU_buttons;
 // Load screen
 TTF_Font* gFont = NULL; // Font
 SDL_Surface* loadTextSurface;
+UIManager* uiMan;
+
 // Threads
 // Debug
 // Logger l;
@@ -56,6 +59,9 @@ public:
   void addButton(Button b);
 // Loading
   void initLoadScreen(std::string bgPath, std::string, bool noBg = false);
+
+// INit ui
+  void initUI(UIManager* ui);
 
 // General
 

@@ -36,7 +36,7 @@ Renderer::Renderer(int width, int height, renderMode rm, std::string *fontPath =
   }
   if(!gFont){printf("FONT_ERROR: %s\n",TTF_GetError());}
   SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0xFF, 0xFF, 0xFF));
-  if(rm != RM_LoadScreen)
+  if(rm != RM_LoadScreen && rm != RM_Game)
     display();
 
   // l.log("Renderer.Renderer", "Logging init. Renderer in mode " + std::to_string(rm));
@@ -223,7 +223,9 @@ void Renderer::procEvents(){
 }
 
 
-
+void Renderer::initUI(UIManager* ui){
+  this->uiMan = ui;
+}
 
               
 float alpha = 0.0f;
@@ -342,6 +344,7 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
 
       // We need view box code so that I can make a good looking map because if the dimentions are as small as they are right now it will always be horrible
       // Ok ill work on that
+      // nvm (i wont)  
       int red = 0;
       for(int y = 0; y < tiles->size(); y++){
         for(int x = 0; x < (tiles)[0].size(); x++) {
@@ -366,6 +369,30 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
      // printf("Rendered: %d\r", red);
     }
     // Render UI Panels (these prob will be loaded from scripts)
+    if(uiMan){
+      std::vector<UI> uis = uiMan->getUIs();
+      for(int i = 0; i < uis.size(); i++){
+        // Render
+        SDL_Rect srcrect;
+        srcrect.x = uis[i].getX();
+        srcrect.y = uis[i].getY();
+        srcrect.w = uis[i].getWidth();
+        srcrect.h = uis[i].getHeight();
+        SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, 255, 0, 0));
+        // Render text
+        std::vector<Text> txts = uis[i].getTexts();
+        SDL_Rect stretchRect;
+        SDL_Color blackTmp = {255,255,255};
+        for(int j = 0; j < txts.size(); j++){
+          SDL_Surface* txt = TTF_RenderText_Blended(gFont, (txts[j].getText()).c_str(), blackTmp);
+          stretchRect.x = txts[j].getX();
+          stretchRect.y = txts[j].getY();
+          stretchRect.w = uis[i].getWidth();
+          stretchRect.h = 10;
+          SDL_BlitScaled(txt, NULL, surface, &stretchRect);
+        }
+      }
+    }
   }
   SDL_UpdateWindowSurface(window);
 }

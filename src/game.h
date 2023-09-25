@@ -14,6 +14,7 @@
 #include <thread>
 
 #include "render/graphics.h"
+#include "render/ui/UIManager.h"
 
 typedef int gmint;
 
@@ -67,7 +68,7 @@ class Game {
 
     Screen mainScreen;
     Window win;
-
+    UIManager uiMan;
 
     //(char* title, int width, int height, int x, int y)
     // char* t_name = "Tech-Tree";
