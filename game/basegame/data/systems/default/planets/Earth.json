@@ -54,19 +54,7 @@
       "danger": 0.8
     }
   },
-  {
-    "biome": "cold_land",
-    "requires": {
-      "height": 0.7,
-      "heat": 0,
-      "humidity": 0
-    },
-    "color": {
-      "red": 255,
-      "green": 255,
-      "blue": 255
-    }
-  },
+ 
     {
     "biome": "super_duper_test_biome (also a default case for testing purposes)",
     "requires": {

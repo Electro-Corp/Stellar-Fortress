@@ -12,6 +12,9 @@ public:
   UIManager(){
     
   }
+  UIManager(int nothing){
+    
+  }
 
   void addUIPanel(UI ui){
     this->uis.push_back(ui);
@@ -19,6 +22,13 @@ public:
 
   std::vector<UI> getUIs(){
     return uis;
+  }
+
+  UI getPanel(int index){
+    return uis[index];
+  }
+  void setPanel(UI ui, int index){
+    uis[index] = ui;
   }
 };
 #endif

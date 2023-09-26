@@ -38,9 +38,12 @@ private:
   std::vector<luabridge::LuaRef> updates;
   std::vector<luabridge::LuaRef> inits;
   ScriptTypes sT;
+  UIManager* uiMan;
+  std::unique_ptr<UIManager> uiManGlob;
 public:
   ScriptManager(std::string scriptPath, ScriptTypes sT, UIManager* uiMan = nullptr ) {
     this->sT = sT;
+    
     luaState = luaL_newstate();
     luaL_openlibs(luaState);
     for (const auto & entry : fs::directory_iterator("game/" + scriptPath)){
@@ -55,7 +58,10 @@ public:
        
     }
     if(sT == ST_UiPanel){
-      runInits(uiMan);
+      this->uiMan = uiMan;
+      // wow so cool (swag)
+      uiManGlob = std::unique_ptr<UIManager>(uiMan);
+      runInits();
     }
   } 
   void runUpdates(){
@@ -64,14 +70,7 @@ public:
       ref(); // pass in args based on the script type (later)
     }
   }
-  /*
-    Runs the init functions for
-    script types that require them
-  */
-  void runInits(UIManager* uiMan = nullptr){
-    // UI panel init functions (each script mode is seperated so scripts only know the 
-    // information they need to know) (wow)
-    if(sT == ST_UiPanel){
+  void exposeUI(){
       // Expose text 
       luabridge::getGlobalNamespace(luaState)
         .beginClass<Text>("Text")
@@ -104,17 +103,50 @@ public:
         .addFunction("addText", &UI::addText)
         .addFunction("addButton", &UI::addButton)
         .endClass();
+  }
+
+  // Expose UI Utility functions
+  void exposeGameUIBackend(){
+    luabridge::getGlobalNamespace(luaState)
+        .beginClass<UIManager>("UIManager")
+        .addConstructor<void(*) (int)>()
+        .addFunction("getPanel", &UIManager::getPanel)
+        .addFunction("setPanel", &UIManager::setPanel)
+        .endClass();
+
+    
+    luabridge::setGlobal(luaState, uiManGlob.get(), "UIManager");
+
+  }
+  /*
+    Runs the init functions for
+    script types that require them
+  */
+  void runInits(){
+    // UI panel init functions (each script mode is seperated so scripts only know the 
+    // information they need to know) (wow)
+    if(sT == ST_UiPanel){
+
+        exposeUI();
+        exposeGameUIBackend();
+      
         int c = 0;
         for(luabridge::LuaRef &ref : inits){
           // Execute the init function
-          UI res1 = ref(c++);
+          UI res1 = ref(c);
           // Add the panel
           uiMan->addUIPanel(res1);
+          c++;
         }
     }
+    // unnesseary, i we now just expose all helper
+    // funcs to lUA 
     if(sT == ST_Helper){
       // Expose all C++ lua functions to 
       // the scripts (including classes)
+
+      exposeUI();
+      exposeGameUIBackend();
     }
   }
 };

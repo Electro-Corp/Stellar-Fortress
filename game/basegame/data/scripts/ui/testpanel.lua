@@ -6,17 +6,21 @@
 --      Lua files (which we make) that link to C++
 --    > Or should they just directly work with C++
 
--- require("API.UIHelper")
 -- UIHelper provides functions that could be useful such as 
 -- getting variable values
 
+myindex = 0
+count = 0
 -- The init function should return a panel
 function init(index)
+  myindex = index
   panel = UI("Test Panel", index, 100, 200, 0, 0) -- Create a new UIPanel with the name, index, height, and width
   print("TestPanel UI init function called")
   -- Lets add a small peice of text
-  text = Text("Hello World!", 0, 0) -- create Text 
+  text = Text("Hello World.", 0, 0) -- create Text 
+  text2 = Text("X Y POS", 0, 30) -- create Text (2)
   panel.addText(panel, text)
+  panel.addText(panel, text2)
   -- Lets add a button
   --           Button Title | X | Y | OnClick function name
   button = Button("Click me", 50, 0, "clickMeOnClick")
@@ -32,10 +36,17 @@ end
 -- Update function
 -- Called whenever a script update is triggered
 function update()
-  -- Temp, i would highly recommmend not to print anything during 
+  -- i would highly recommmend not to print anything during 
   -- update functions due to how often they will probabbly be called
   -- (frame) % (some number)
-  -- print("This update call was called from Lua. sfscript sucked ass") 
+
+  -- Get the panel from the game
+  tmp = UIManager:getPanel(myindex)
+  -- Modify the text (why not?)
+  tmp.title = count
+  UIManager:setPanel(tmp, myindex)
+  count = count + 1
+  
   return 0
 end
 -- What it returns depends on the script type ig  

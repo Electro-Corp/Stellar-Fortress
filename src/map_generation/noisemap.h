@@ -91,8 +91,8 @@ public:
          /* Attempt to Normalize, Fails*/
           // Logger l;
           l.log("noise value: " + std::to_string(noiseMap[y][x]));
-          // l.log("Normalizer", "min value: " + std::to_string(minValue));
-          // l.log("Normalizer", "max value: " + std::to_string(maxValue));
+          l.log("Normalizer", "min value: " + std::to_string(minValue));
+          l.log("Normalizer", "max value: " + std::to_string(maxValue));
           noiseMap[y][x] = inverseLerp(minValue, maxValue, noiseMap[y][x]);
           l.log("normalized value: " + std::to_string(noiseMap[y][x]));
           // l.newl();
