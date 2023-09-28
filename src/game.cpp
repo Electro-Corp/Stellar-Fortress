@@ -126,6 +126,7 @@ void Game::load(){
     //printf("Time: %d\r", (int)(time));
     if((int)(time) % 2 == 0){
       // Update screen
+      uiScriptMan->runUpdates();
       mapRender->display(this->curMap.get());
     }
     if((int)time % 3 == 0){
@@ -134,7 +135,7 @@ void Game::load(){
     }
     if((int)(time) % 5 == 0){
       // Update scripts
-      uiScriptMan->runUpdates();
+      
       unitScriptMan->runUpdates();
     }
   }

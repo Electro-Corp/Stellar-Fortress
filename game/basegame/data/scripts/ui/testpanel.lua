@@ -14,7 +14,7 @@ count = 0
 -- The init function should return a panel
 function init(index)
   myindex = index
-  panel = UI("Test Panel", index, 100, 200, 0, 0) -- Create a new UIPanel with the name, index, height, and width
+  panel = UI("Test Panel", index, 200, 300, 0, 0) -- Create a new UIPanel with the name, index, height, and width
   print("TestPanel UI init function called")
   -- Lets add a small peice of text
   text = Text("Hello World.", 0, 0) -- create Text 
@@ -39,11 +39,16 @@ function update()
   -- i would highly recommmend not to print anything during 
   -- update functions due to how often they will probabbly be called
   -- (frame) % (some number)
-
+  
   -- Get the panel from the game
   tmp = UIManager:getPanel(myindex)
+  
+  -- Make it oscillate 
+  tmp.x = (math.sin(math.rad(count)) * 100) + 400
+  tmp.y = (math.cos(math.rad(count)) * 100) + 200
   -- Modify the text (why not?)
-  tmp.title = count
+  tmp.title = math.sqrt(math.pow(tmp.x, 2) + math.pow(tmp.y, 2))
+  
   UIManager:setPanel(tmp, myindex)
   count = count + 1
   

@@ -374,20 +374,23 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
       for(int i = 0; i < uis.size(); i++){
         // Render
         SDL_Rect srcrect;
+        // Background
         srcrect.x = uis[i].getX();
         srcrect.y = uis[i].getY();
         srcrect.w = uis[i].getWidth();
         srcrect.h = uis[i].getHeight();
         // Replace color with smthing else
         SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, 255, 0, 0));
+       
         // Render text
         std::vector<Text> txts = uis[i].getTexts();
         SDL_Rect stretchRect;
         SDL_Color blackTmp = {255,255,255};
         // Render Texts
+        SDL_Surface* txt;
         for(int j = 0; j < txts.size(); j++){
           // Load text
-          SDL_Surface* txt = TTF_RenderText_Blended(gFont, (txts[j].getText()).c_str(), blackTmp);
+          txt = TTF_RenderText_Blended(gFont, (txts[j].getText()).c_str(), blackTmp);
           // Load position/dimenzions
           stretchRect.x = txts[j].getX() + uis[i].getX();
           stretchRect.y = txts[j].getY() + uis[i].getY() + 20;
@@ -402,10 +405,10 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
         srcrect.w = uis[i].getWidth();
         srcrect.h = 20;
         SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, 0, 0, 255));
-        SDL_Surface* txt = TTF_RenderText_Blended(gFont, uis[i].getTitle().c_str(), blackTmp);
+        txt = TTF_RenderText_Blended(gFont, uis[i].getTitle().c_str(), blackTmp);
         // Load position/dimenzions
-        stretchRect.x = 0;
-        stretchRect.y = 0;
+        stretchRect.x = uis[i].getX();
+        stretchRect.y = uis[i].getY();
         stretchRect.w = uis[i].getWidth();
         stretchRect.h = 10;
         // Draw
