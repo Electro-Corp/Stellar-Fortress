@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <numeric>
 #include <iostream>
+#include <map>
 
 #include "../other/log.h"
 #include "../system/planet/tile.h"
@@ -97,6 +98,9 @@ private:
 
     int seed;
   
+    // Renderer 
+    Renderer *r;
+
     // std::vector<TerrainReq> exc;
     // std::vector<TerrainReq> req;
 };
@@ -114,6 +118,8 @@ PlanetMap::PlanetMap(int sizex, int sizey, std::unordered_map<std::string, int> 
   } else {
     this->seed = _seed;
   }
+  // Init the renderer
+  r = new Renderer(500, 200, RM_LoadScreen);
    
   biome_based_generate();
 }
@@ -125,24 +131,32 @@ std::vector<std::vector<Tile>>* PlanetMap::get(){
 }
 
 void PlanetMap::gen_tile_map()  { 
+  r->initLoadScreen("bruh", "Generating Tile Map", true);
   for (int y = 0; y < this->height; y++) {
     std::vector<Tile> tileRow;
     for (int x = 0; x < this->width; x++) {
       tileRow.push_back(Tile(x,y));
     }
+    r->initLoadScreen("bruh", std::string{"Generating Tile Map Row: " + std::to_string(y)}, true);
+    r->display();
     this->map.push_back(tileRow);
   }
 }
 
 void PlanetMap::gen_noise() {
+    r->initLoadScreen("null", "Generating Noise", true);
+    r->display();
     this->heatMap = new NoiseMap(this->width, this->height, seed);
     this->heightMap = new NoiseMap(this->width, this->height, seed/2);
     this->humidityMap = new NoiseMap(this->width, this->height, (seed+5)/2); 
 } 
 
 void PlanetMap::set_noise_values() {
+  
   // Logger l("Set_Noise_Values");
   for (int y = 0; y < this->height; y++) {
+    r->initLoadScreen("trash", std::string{"Set noise at : " + std::to_string(y)}, true);
+    r->display();
     for (int x = 0; x < this->width; x++) {
       this->map[x][y].height = heightMap->get_map()[x][y];
       this->map[x][y].heat = heatMap->get_map()[x][y];
@@ -156,6 +170,8 @@ void PlanetMap::set_noise_values() {
 }
 
 void PlanetMap::gen_quads() {
+  r->initLoadScreen("trash","Generating Quads", true);
+  r->display();
   // Idk the scaling and stuff for this can be changed later
   int quadrant_x_divisor = (this->width >= 60 ? 12 : 6);
   int quadrant_y_divisor = (this->height >= 60 ? 12 : 6);
@@ -168,6 +184,8 @@ void PlanetMap::gen_quads() {
   std::uniform_int_distribution<> rd_y(0, quadrant_height);
 
   for (int x = 0; x < quadrant_x_divisor; x++) {
+    r->initLoadScreen("trash", std::string{"Gen quad X: " + std::to_string(x)}, true);
+    r->display();
     for (int y = 0; y < quadrant_y_divisor; y++) {
       this->seed_locs.push_back(Point(rd_x(gen_rd) + x * quadrant_width, rd_y(gen_rd) + y * quadrant_height));
     }
@@ -177,6 +195,8 @@ void PlanetMap::gen_quads() {
 void PlanetMap::set_biome_index() {
   // Logger l("set_biome_index");
   for (int row = 0; row < this->height; row++) {
+    r->initLoadScreen("trash", std::string{"Set biome index: " + std::to_string(row)}, true);
+    r->display();
     for (int col = 0; col < this->width; col++) {
       int tile_biome = get_closest_biome_seed(row, col);
       // std::stringstream lm;
@@ -251,12 +271,16 @@ void PlanetMap::biome_based_generate() {
   this->set_noise_values();
   this->set_biome_index();
 
+  r->initLoadScreen("trash", "Adding biome nodes...", true);
+  r->display();
   this->add_biome_nodes();
 
   for (auto &[_, biome_data] : biomes_data) {
     biome_data.compute_averages();
   }
   
+  r->initLoadScreen("trash", std::string{"Gen Tile Info"}, true);
+  r->display();
   this->gen_tile_info();
 
   /* for (auto &[_, biome_data] : biomes_data) {
