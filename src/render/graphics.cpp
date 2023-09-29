@@ -10,6 +10,7 @@ Renderer::Renderer(int width, int height, renderMode rm, std::string *fontPath =
   this->rm = rm;
   this->width = width;
   this->height = height;
+  this->mouseDown = false;
   if(SDL_Init(SDL_INIT_VIDEO) < 0){
     printf("SDL INIT FAILURE ( %s )\n", SDL_GetError());
     exit(-1);
@@ -211,6 +212,7 @@ void Renderer::procEvents(){
     this->mouseY = y;
     switch(e.type){
       case SDL_MOUSEBUTTONDOWN:
+      this->mouseDown = true;
         //MENU_buttons[indexOfButton((x + y)/2,MENU_buttons)].onClick();
         if(rm == RM_Menu){
           for(int i = 0; i < MENU_buttons.size(); i++){
@@ -221,6 +223,9 @@ void Renderer::procEvents(){
           }
         }
         break;
+      case SDL_MOUSEBUTTONUP:
+      this->mouseDown = false;
+      break;
       case SDL_MOUSEMOTION:
         if(rm == RM_Menu){
           
@@ -431,6 +436,9 @@ int Renderer::getMouseX(){
 }
 int Renderer::getMouseY(){
   return mouseY;
+}
+bool Renderer::isMouseDown(){
+  return mouseDown;
 }
 
 /*

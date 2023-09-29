@@ -40,6 +40,7 @@ int mapXOff, mapYOff;
 int viewX, viewY;
 int SCALE;
 int mouseX, mouseY;
+bool mouseDown;
 // Menu
 SDL_Surface *logo;
 SDL_Surface *background;
@@ -75,6 +76,7 @@ public:
 
   int getMouseX();
   int getMouseY();
+  bool isMouseDown();
 
   // Kill renderer
   void endWindow();

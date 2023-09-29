@@ -60,15 +60,17 @@ public:
         }
        
     }
+    if(renderMan){
+      printf("RenderMAN Found\n");
+      renderManGlob = std::unique_ptr<Renderer>(renderMan);
+    }
     if(sT == ST_UiPanel){
       this->uiMan = uiMan;
       // wow so cool (swag)
       uiManGlob = std::unique_ptr<UIManager>(uiMan);
       runInits();
     }
-    if(renderMan){
-      renderManGlob = std::unique_ptr<Renderer>(renderMan);
-    }
+    
   } 
   void runUpdates(){
     for(luabridge::LuaRef &ref : updates){
@@ -128,15 +130,17 @@ public:
   }
 
   // Expose Graphics Utility functions
-  void exposegameGraphicsBackend(){
+  void exposeGameGraphicsBackend(){
+    printf("[ScriptManager] Expose Graphics backend\n");
     luabridge::getGlobalNamespace(luaState)
         .beginClass<Renderer>("Graphics")
         .addConstructor<void(*) (int)>()
         .addFunction("getMouseX", &Renderer::getMouseX)
         .addFunction("getMouseY", &Renderer::getMouseY)
+        .addFunction("isMouseDown", &Renderer::isMouseDown)
         .endClass();
 
-    
+  
     luabridge::setGlobal(luaState, renderManGlob.get(), "Graphics");
   }
 
@@ -151,6 +155,7 @@ public:
 
         exposeUI();
         exposeGameUIBackend();
+        exposeGameGraphicsBackend();
       
         int c = 0;
         for(luabridge::LuaRef &ref : inits){

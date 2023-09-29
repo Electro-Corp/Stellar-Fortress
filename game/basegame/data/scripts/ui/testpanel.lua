@@ -11,6 +11,8 @@
 
 myindex = 0
 count = 0
+isDown = false
+drag = false
 -- The init function should return a panel
 function init(index)
   myindex = index
@@ -44,8 +46,30 @@ function update()
   tmp = UIManager:getPanel(myindex)
   
   -- Make it oscillate 
-  tmp.x = (math.sin(math.rad(count)) * 100) + Graphics:getMouseX()
-  tmp.y = (math.cos(math.rad(count)) * 100) + Graphics:getMouseY()
+  -- tmp.x = (math.sin(math.rad(count)) * 100) + Graphics:getMouseX()
+  -- tmp.y = (math.cos(math.rad(count)) * 100) + Graphics:getMouseY()
+  
+  -- Make draggable
+
+  if not Graphics:isMouseDown() == isDown then
+    if Graphics:getMouseX() > tmp.x and Graphics:getMouseX() < tmp.x + tmp.width and Graphics:getMouseY() > tmp.y and Graphics:getMouseY() < tmp.y + 20 then
+      drag = true
+    end
+  end
+  
+  if Graphics:isMouseDown() == true then
+    isDown = true
+  else
+    isDown = false
+    drag = false
+  end
+
+  if drag == true then
+    tmp.x = Graphics:getMouseX() - (tmp.width / 2)
+    tmp.y = Graphics:getMouseY()
+  end
+
+
   -- Modify the text (why not?)
   tmp.title = math.sqrt(math.pow(tmp.x, 2) + math.pow(tmp.y, 2))
   
