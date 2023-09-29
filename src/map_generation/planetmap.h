@@ -153,7 +153,7 @@ void PlanetMap::gen_noise() {
 
 void PlanetMap::set_noise_values() {
   
-  // Logger l("Set_Noise_Values");
+  // //Logger l("Set_Noise_Values");
   for (int y = 0; y < this->height; y++) {
     r->initLoadScreen("trash", std::string{"Set noise at : " + std::to_string(y)}, true);
     r->display();
@@ -193,7 +193,7 @@ void PlanetMap::gen_quads() {
 }
 
 void PlanetMap::set_biome_index() {
-  // Logger l("set_biome_index");
+  // //Logger l("set_biome_index");
   for (int row = 0; row < this->height; row++) {
     r->initLoadScreen("trash", std::string{"Set biome index: " + std::to_string(row)}, true);
     r->display();
@@ -202,7 +202,7 @@ void PlanetMap::set_biome_index() {
       // std::stringstream lm;
       
       // lm << "(" << row << ", " << col << ") - Biome: " << tile_biome << std::endl;
-      // l.log(lm.str());
+      // ////l.log(lm.str());
       this->map[row][col].b_seed = tile_biome;
     }
   }
@@ -211,7 +211,7 @@ void PlanetMap::set_biome_index() {
 int PlanetMap::get_closest_biome_seed(int x, int y) {
   int closest_seed_index = 0;
   int closest_seed_dist = 2147483647;
-  // Logger l("dist");
+  // //Logger l("dist");
 
   for ( int seed_index = 0; seed_index < seed_locs.size(); seed_index++ ) {
     auto seed = seed_locs[seed_index];
@@ -223,7 +223,7 @@ int PlanetMap::get_closest_biome_seed(int x, int y) {
     }
   }
 
-  // l.log(std::to_string(closest_seed_dist));
+  // ////l.log(std::to_string(closest_seed_dist));
   return closest_seed_index;
 }
 
