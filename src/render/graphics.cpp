@@ -384,47 +384,49 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
     if(uiMan){
       std::vector<UI> uis = uiMan->getUIs();
       for(int i = 0; i < uis.size(); i++){
-        // Render
-        SDL_Rect srcrect;
-        // Background
-        srcrect.x = uis[i].getX();
-        srcrect.y = uis[i].getY();
-        srcrect.w = uis[i].getWidth();
-        srcrect.h = uis[i].getHeight();
-        // Replace color with smthing else
-        SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, 255, 0, 0));
-       
-        // Render text
-        std::vector<Text> txts = uis[i].getTexts();
-        SDL_Rect stretchRect;
-        SDL_Color blackTmp = {255,255,255};
-        // Render Texts
-        SDL_Surface* txt;
-        for(int j = 0; j < txts.size(); j++){
-          // Load text
-          txt = TTF_RenderText_Blended(gFont, (txts[j].getText()).c_str(), blackTmp);
+        if(uis[i].getVisible()){
+          // Render
+          SDL_Rect srcrect;
+          // Background
+          srcrect.x = uis[i].getX();
+          srcrect.y = uis[i].getY();
+          srcrect.w = uis[i].getWidth();
+          srcrect.h = uis[i].getHeight();
+          // Replace color with smthing else
+          SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, 255, 0, 0));
+        
+          // Render text
+          std::vector<Text> txts = uis[i].getTexts();
+          SDL_Rect stretchRect;
+          SDL_Color blackTmp = {255,255,255};
+          // Render Texts
+          SDL_Surface* txt;
+          for(int j = 0; j < txts.size(); j++){
+            // Load text
+            txt = TTF_RenderText_Blended(gFont, (txts[j].getText()).c_str(), blackTmp);
+            // Load position/dimenzions
+            stretchRect.x = txts[j].getX() + uis[i].getX();
+            stretchRect.y = txts[j].getY() + uis[i].getY() + 20;
+            stretchRect.w = uis[i].getWidth();
+            stretchRect.h = 20;
+            // Draw
+            SDL_BlitScaled(txt, NULL, surface, &stretchRect);
+          }
+          // Load title text
+          srcrect.x = uis[i].getX();
+          srcrect.y = uis[i].getY();
+          srcrect.w = uis[i].getWidth();
+          srcrect.h = 20;
+          SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, 0, 0, 255));
+          txt = TTF_RenderText_Blended(gFont, uis[i].getTitle().c_str(), blackTmp); 
           // Load position/dimenzions
-          stretchRect.x = txts[j].getX() + uis[i].getX();
-          stretchRect.y = txts[j].getY() + uis[i].getY() + 20;
+          stretchRect.x = uis[i].getX();
+          stretchRect.y = uis[i].getY();
           stretchRect.w = uis[i].getWidth();
           stretchRect.h = 10;
           // Draw
           SDL_BlitScaled(txt, NULL, surface, &stretchRect);
         }
-        // Load title text
-        srcrect.x = uis[i].getX();
-        srcrect.y = uis[i].getY();
-        srcrect.w = uis[i].getWidth();
-        srcrect.h = 20;
-        SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, 0, 0, 255));
-        txt = TTF_RenderText_Blended(gFont, uis[i].getTitle().c_str(), blackTmp); 
-        // Load position/dimenzions
-        stretchRect.x = uis[i].getX();
-        stretchRect.y = uis[i].getY();
-        stretchRect.w = uis[i].getWidth();
-        stretchRect.h = 10;
-        // Draw
-        SDL_BlitScaled(txt, NULL, surface, &stretchRect);
       }
     }
   }

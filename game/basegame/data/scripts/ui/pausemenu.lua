@@ -3,7 +3,7 @@
 
 -- Create the panel
 function init(index)
-  panel = UI("Game Paused", index, 250, 500, 500, 500) 
+  panel = UI("Game Paused", index, 250, 500, 500, 500, false) 
   print("PauseMenu init function called")
 
   text = Text("Why", 0, 0)

@@ -103,11 +103,12 @@ public:
       // Expose UI
       luabridge::getGlobalNamespace(luaState)
         .beginClass<UI>("UI")
-        .addConstructor<void(*) (std::string, int, int, int, int, int)>()
+        .addConstructor<void(*) (std::string, int, int, int, int, int, bool)>()
         .addProperty("title", &UI::getTitle, &UI::setTitle)
         .addProperty("index", &UI::getIndex, &UI::setIndex)
         .addProperty("width", &UI::getWidth, &UI::setWidth)
         .addProperty("height", &UI::getHeight, &UI::setHeight)
+        .addProperty("visible", &UI::getVisible, &UI::setVisible)
         .addProperty("x", &UI::getX, &UI::setX)
         .addProperty("y", &UI::getY, &UI::setY)
         .addFunction("addText", &UI::addText)

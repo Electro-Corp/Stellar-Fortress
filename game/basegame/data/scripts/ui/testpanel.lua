@@ -16,13 +16,19 @@ drag = false
 -- The init function should return a panel
 function init(index)
   myindex = index
-  panel = UI("Test Panel", index, 200, 300, 0, 0) -- Create a new UIPanel with the name, index, height, and width
+  panel = UI("Test Panel", index, 200, 300, 0, 0, true) -- Create a new UIPanel with the name, index, height, and width
   print("TestPanel UI init function called")
   -- Lets add a small peice of text
   text = Text("Hello World.", 0, 0) -- create Text 
-  text2 = Text("X Y POS", 0, 30) -- create Text (2)
+  text2 = Text("This is one of", 0, 30) -- create Text (2)
+  text3 = Text("the panels of", 0, 50) -- create Text (3)
+  text4 = Text("all time.", 0, 70) -- create Text(4)
+
+  -- Add the text(s)
   panel.addText(panel, text)
   panel.addText(panel, text2)
+  panel.addText(panel, text3)
+  panel.addText(panel, text4)
   -- Lets add a button
   --           Button Title | X | Y | OnClick function name
   button = Button("Click me", 50, 0, "clickMeOnClick")
@@ -71,7 +77,8 @@ function update()
 
 
   -- Modify the text (why not?)
-  tmp.title = math.sqrt(math.pow(tmp.x, 2) + math.pow(tmp.y, 2))
+   --tmp.title = math.sqrt(math.pow(tmp.x, 2) + math.pow(tmp.y, 2))
+  tmp.title = "X: " .. tmp.x .. " Y: " .. tmp.y
   
   UIManager:setPanel(tmp, myindex)
   count = count + 1
