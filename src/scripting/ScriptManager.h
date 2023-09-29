@@ -22,6 +22,8 @@ extern "C"
 // Include UI
 #include "../render/ui/UIManager.h"
 #include "../render/ui/ui.h"
+// Include graphics
+#include "../render/graphics.h"
 
 
 enum ScriptTypes{
@@ -40,8 +42,9 @@ private:
   ScriptTypes sT;
   UIManager* uiMan;
   std::unique_ptr<UIManager> uiManGlob;
+  std::unique_ptr<Renderer> renderManGlob;
 public:
-  ScriptManager(std::string scriptPath, ScriptTypes sT, UIManager* uiMan = nullptr ) {
+  ScriptManager(std::string scriptPath, ScriptTypes sT, UIManager* uiMan = nullptr, Renderer* renderMan = nullptr) {
     this->sT = sT;
     
     luaState = luaL_newstate();
@@ -63,6 +66,9 @@ public:
       uiManGlob = std::unique_ptr<UIManager>(uiMan);
       runInits();
     }
+    if(renderMan){
+      renderManGlob = std::unique_ptr<Renderer>(renderMan);
+    }
   } 
   void runUpdates(){
     for(luabridge::LuaRef &ref : updates){
@@ -70,6 +76,8 @@ public:
       ref(); // pass in args based on the script type (later)
     }
   }
+
+
   void exposeUI(){
       // Expose text 
       luabridge::getGlobalNamespace(luaState)
@@ -118,6 +126,20 @@ public:
     luabridge::setGlobal(luaState, uiManGlob.get(), "UIManager");
 
   }
+
+  // Expose Graphics Utility functions
+  void exposegameGraphicsBackend(){
+    luabridge::getGlobalNamespace(luaState)
+        .beginClass<Renderer>("Graphics")
+        .addConstructor<void(*) (int)>()
+        .addFunction("getMouseX", &Renderer::getMouseX)
+        .addFunction("getMouseY", &Renderer::getMouseY)
+        .endClass();
+
+    
+    luabridge::setGlobal(luaState, renderManGlob.get(), "Graphics");
+  }
+
   /*
     Runs the init functions for
     script types that require them

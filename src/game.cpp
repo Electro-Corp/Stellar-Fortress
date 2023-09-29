@@ -60,13 +60,7 @@ void Game::load(){
   // Load scripts
   // Load scripts
   //loadingMenu("Loading unit scripts...", "");
-  l.log("GameCpp.load", "Loading scripts");
-  loadingMenu("Loading scipts...",loadFPath);
-  unitScriptMan = new ScriptManager(infoJson["Unit_Script_Dir"].asString(), ST_Unit);
-  unitScriptMan->runUpdates();
-  uiScriptMan = new ScriptManager(infoJson["UI_Script_Dir"].asString(), ST_UiPanel, &uiMan);
-  uiScriptMan->runUpdates();
-  apiScriptMan = new ScriptManager(infoJson["API_Script_Dir"].asString(), ST_Helper);
+  
   
   l.log("GameCpp.load", "Loading teams");
   loadingMenu("Loading teams...",loadFPath);
@@ -115,6 +109,15 @@ void Game::load(){
   
   mapRender = new Renderer(width, height, RM_Game);
   mapRender->initUI(&uiMan);
+
+  l.log("GameCpp.load", "Loading scripts");
+  loadingMenu("Loading scipts...",loadFPath);
+  unitScriptMan = new ScriptManager(infoJson["Unit_Script_Dir"].asString(), ST_Unit);
+  unitScriptMan->runUpdates();
+  uiScriptMan = new ScriptManager(infoJson["UI_Script_Dir"].asString(), ST_UiPanel, &uiMan, mapRender);
+  uiScriptMan->runUpdates();
+  apiScriptMan = new ScriptManager(infoJson["API_Script_Dir"].asString(), ST_Helper);
+
   // throws error that dont make sense (no it dont!)
   curMap = this->systems[0].get_planet(0).get_map(); //hmm
 

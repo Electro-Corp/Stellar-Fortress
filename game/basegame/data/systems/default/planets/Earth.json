@@ -1,7 +1,7 @@
 {
   "Name": "Earth",
   "Resources": ["water","ironOre","bauxite","silicon","oil","copper"],
-  "MapDimensions": [300, 300],
+  "MapDimensions": [500, 500],
   "Regions": [
   {
     "biome": "volcanic",

@@ -144,10 +144,14 @@ void PlanetMap::gen_tile_map()  {
 }
 
 void PlanetMap::gen_noise() {
-    r->initLoadScreen("null", "Generating Noise", true);
+    r->initLoadScreen("null", "Generating Heat Map", true);
     r->display();
     this->heatMap = new NoiseMap(this->width, this->height, seed);
+    r->initLoadScreen("null", "Generating Height Map", true);
+    r->display();
     this->heightMap = new NoiseMap(this->width, this->height, seed/2);
+    r->initLoadScreen("null", "Generating Humidity Map", true);
+    r->display();
     this->humidityMap = new NoiseMap(this->width, this->height, (seed+5)/2); 
 } 
 

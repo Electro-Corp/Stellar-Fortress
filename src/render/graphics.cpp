@@ -41,6 +41,12 @@ Renderer::Renderer(int width, int height, renderMode rm, std::string *fontPath =
 
   // l.log("Renderer.Renderer", "Logging init. Renderer in mode " + std::to_string(rm));
 }
+Renderer::Renderer(){
+
+}
+Renderer::Renderer(int){
+
+}
 
 // Initilze the menu 
 void Renderer::initMenu(std::string logoPath, std::string bgPath){
@@ -201,6 +207,8 @@ void Renderer::procEvents(){
   if(e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP){
     int x, y;
     SDL_GetMouseState(&x, &y);
+    this->mouseX = x;
+    this->mouseY = y;
     switch(e.type){
       case SDL_MOUSEBUTTONDOWN:
         //MENU_buttons[indexOfButton((x + y)/2,MENU_buttons)].onClick();
@@ -366,9 +374,8 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
           }
         }
       }
-     // printf("Rendered: %d\r", red);
     }
-    // Render UI Panels (these prob will be loaded from scripts)
+    //  Render UI Panels
     if(uiMan){
       std::vector<UI> uis = uiMan->getUIs();
       for(int i = 0; i < uis.size(); i++){
@@ -417,6 +424,13 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
     }
   }
   SDL_UpdateWindowSurface(window);
+}
+
+int Renderer::getMouseX(){
+  return mouseX;
+}
+int Renderer::getMouseY(){
+  return mouseY;
 }
 
 /*

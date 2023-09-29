@@ -39,6 +39,7 @@ int width, height;
 int mapXOff, mapYOff;
 int viewX, viewY;
 int SCALE;
+int mouseX, mouseY;
 // Menu
 SDL_Surface *logo;
 SDL_Surface *background;
@@ -53,6 +54,8 @@ UIManager* uiMan;
 // Logger l;
 public:
   Renderer(int width, int height, renderMode rm, std::string* fontPath = nullptr);
+  Renderer(int);
+  Renderer();
 
 // Menu Rendering
   void initMenu(std::string logoPath, std::string bgPath);
@@ -69,6 +72,9 @@ public:
   Uint32 getTime();
 
   void display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noLoadImage = false);
+
+  int getMouseX();
+  int getMouseY();
 
   // Kill renderer
   void endWindow();
