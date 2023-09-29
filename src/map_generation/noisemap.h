@@ -85,16 +85,16 @@ public:
       }
       noiseMap.push_back(row);
     }
-    Logger l("Noise Normalization");
+    // Logger l("Noise Normalization");
     for (int y = 0; y < this->height; ++y) {
       for (int x = 0; x < this->width; ++x) {
          /* Attempt to Normalize, Fails*/
           // Logger l;
-          l.log("noise value: " + std::to_string(noiseMap[y][x]));
-          l.log("Normalizer", "min value: " + std::to_string(minValue));
-          l.log("Normalizer", "max value: " + std::to_string(maxValue));
+          // l.log("noise value: " + std::to_string(noiseMap[y][x]));
+          // l.log("Normalizer", "min value: " + std::to_string(minValue));
+          // l.log("Normalizer", "max value: " + std::to_string(maxValue));
           noiseMap[y][x] = inverseLerp(minValue, maxValue, noiseMap[y][x]);
-          l.log("normalized value: " + std::to_string(noiseMap[y][x]));
+          // l.log("normalized value: " + std::to_string(noiseMap[y][x]));
           // l.newl();
       }
     }
