@@ -45,7 +45,7 @@ function update()
   
   -- Make it oscillate 
   tmp.x = (math.sin(math.rad(count)) * 100) + 400
-  tmp.y = (math.cos(math.rad(count)) * 100) + 200
+  tmp.y = (math.tan(math.rad(count)) * 100) + 200
   -- Modify the text (why not?)
   tmp.title = math.sqrt(math.pow(tmp.x, 2) + math.pow(tmp.y, 2))
   

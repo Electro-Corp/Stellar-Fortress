@@ -405,7 +405,7 @@ void Renderer::display(std::vector<std::vector<Tile>> *tiles = nullptr, bool noL
         srcrect.w = uis[i].getWidth();
         srcrect.h = 20;
         SDL_FillRect(surface, &srcrect, SDL_MapRGB(surface->format, 0, 0, 255));
-        txt = TTF_RenderText_Blended(gFont, uis[i].getTitle().c_str(), blackTmp);
+        txt = TTF_RenderText_Blended(gFont, uis[i].getTitle().c_str(), blackTmp); 
         // Load position/dimenzions
         stretchRect.x = uis[i].getX();
         stretchRect.y = uis[i].getY();

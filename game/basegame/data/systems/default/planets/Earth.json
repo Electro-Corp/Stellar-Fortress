@@ -8,7 +8,7 @@
     "requires": {
       "height": 0.7,
       "heat": 0.9,
-      "humidity": 0
+      "humidity": 0.01
     },
     "color": {
       "red": 219,
@@ -68,15 +68,5 @@
       "blue": 200
     }
   }
-],
-  "_comment1": "NOT USED ATM [base, required around, min_surrounding_count]",
-  "Reqs": [
-    ["water", "plains", 4],
-    ["deep_water", "water", 4], 
-    ["beach", "water", 1],
-    ["peak", "mt", 4],
-    ["mt", "bottom_mt", 2]
-  ],
-  "_comment2": "[base, exc, max_surrounding_count] (not programmed in or used or anything so you can skip this)",
-  "Exc": []
+  ]
 }
