@@ -38,6 +38,8 @@ public:
   void setVisible(bool b){this->visible = b;}
   bool getVisible() const {return visible;}
   std::vector<Text> getTexts() const { return texts;}
+  Text getText(int index) const {return texts[index];}
+  void setText(Text t, int index){texts[index] = t;}
 private:
   std::vector<Text> texts;
   std::vector<Lua_Button> buttons;

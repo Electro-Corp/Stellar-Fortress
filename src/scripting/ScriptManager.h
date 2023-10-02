@@ -112,6 +112,9 @@ public:
         .addProperty("x", &UI::getX, &UI::setX)
         .addProperty("y", &UI::getY, &UI::setY)
         .addFunction("addText", &UI::addText)
+        .addFunction("getTexts", &UI::getTexts)
+        .addFunction("setText", &UI::setText)
+        .addFunction("getText", &UI::getText)
         .addFunction("addButton", &UI::addButton)
         .endClass();
   }

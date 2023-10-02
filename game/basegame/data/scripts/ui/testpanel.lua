@@ -23,12 +23,14 @@ function init(index)
   text2 = Text("This is one of", 0, 30) -- create Text (2)
   text3 = Text("the panels of", 0, 50) -- create Text (3)
   text4 = Text("all time.", 0, 70) -- create Text(4)
+  text5 = Text("XYPOS", 0, 100)
 
   -- Add the text(s)
   panel.addText(panel, text)
   panel.addText(panel, text2)
   panel.addText(panel, text3)
   panel.addText(panel, text4)
+  panel.addText(panel, text5)
   -- Lets add a button
   --           Button Title | X | Y | OnClick function name
   button = Button("Click me", 50, 0, "clickMeOnClick")
@@ -50,10 +52,12 @@ function update()
   
   -- Get the panel from the game
   tmp = UIManager:getPanel(myindex)
-  
-  -- Make it oscillate 
-  -- tmp.x = (math.sin(math.rad(count)) * 100) + Graphics:getMouseX()
-  -- tmp.y = (math.cos(math.rad(count)) * 100) + Graphics:getMouseY()
+
+  -- Update text
+  text_tmp = tmp.getText(panel, 4)
+  text_tmp.text = "Mouse Pos: (" .. Graphics:getMouseX() .. "," .. Graphics:getMouseY() .. ")"
+  tmp.setText(tmp, text_tmp, 4)
+ 
   
   -- Make draggable
 
