@@ -68,20 +68,23 @@ function update()
   else
     isDown = false
     drag = false
+    count = 1
   end
 
   if drag == true then
     tmp.x = Graphics:getMouseX() - (tmp.width / 2)
     tmp.y = Graphics:getMouseY()
+    tmp.x = tmp.x + math.sin(math.rad(count)) * 3
+    tmp.y = tmp.y + math.cos(math.rad(count)) * 3
+    count = count + 1
   end
 
 
   -- Modify the text (why not?)
-   --tmp.title = math.sqrt(math.pow(tmp.x, 2) + math.pow(tmp.y, 2))
   tmp.title = "X: " .. tmp.x .. " Y: " .. tmp.y
   
   UIManager:setPanel(tmp, myindex)
-  count = count + 1
+  
   
   return 0
 end
