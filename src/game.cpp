@@ -124,10 +124,12 @@ void Game::load(){
   while(1){
     float time = mapRender->getTime();
     //printf("Time: %d\r", (int)(time));
-    if((int)(time) % 1 == 0){
+    std::thread t1(&Game::UIUpdate, this);
+    std::thread t2(&Game::MapUpdate, this);
+    /*if((int)(time) % 1 == 0){
       // Update screen
-      uiScriptMan->runUpdates();
-      mapRender->display(this->curMap.get());
+      
+     
     }
     if((int)time % 3 == 0){
       // Update map
@@ -137,7 +139,9 @@ void Game::load(){
       // Update scripts
       
       unitScriptMan->runUpdates();
-    }
+    }*/
+    t1.join();
+    t2.join();
   }
   l.log("GameCpp.load","Finished render map");
   // while(1){
@@ -193,14 +197,10 @@ void Game::GameLoop(){
 
 
 void Game::UIUpdate(){
-  while(1){
-    // Generate UI
-    //mainScreen.updateMouseInput();
-  }
-
+  uiScriptMan->runUpdates();
   
 }
 
 void Game::MapUpdate(){
-  
+  mapRender->display(this->curMap.get());
 }

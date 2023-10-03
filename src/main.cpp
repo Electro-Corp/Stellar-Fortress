@@ -323,7 +323,7 @@ void init_c_settings() {
   // c_settings.set("Name", "default");
   // c_settings.set("seed", "24");
   c_settings.set("height", "600");
-   c_settings.set("width", "800");
+  c_settings.set("width", "800");
   
 }
 
