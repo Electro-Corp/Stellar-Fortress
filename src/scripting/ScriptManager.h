@@ -35,45 +35,44 @@ enum ScriptTypes{
 
 class ScriptManager{
 private:
-  lua_State* luaState;
+  lua_State* m_luaState;
 // Vectors to hold all the functions
-  std::vector<luabridge::LuaRef> updates;
-  std::vector<luabridge::LuaRef> inits;
-  ScriptTypes sT;
-  UIManager* uiMan;
-  std::unique_ptr<UIManager> uiManGlob;
-  std::unique_ptr<Renderer> renderManGlob;
+  std::vector<luabridge::LuaRef> m_updates;
+  std::vector<luabridge::LuaRef> m_inits;
+  ScriptTypes m_sT;
+  UIManager* m_uiMan;
+  std::unique_ptr<UIManager> m_uiManGlob;
+  std::unique_ptr<Renderer> m_renderManGlob;
 public:
-  ScriptManager(std::string scriptPath, ScriptTypes sT, UIManager* uiMan = nullptr, Renderer* renderMan = nullptr) {
-    this->sT = sT;
+  ScriptManager(std::string p_scriptPath, ScriptTypes p_sT, UIManager* p_uiMan = nullptr, Renderer* p_renderMan = nullptr) {
+    this->m_sT = p_sT;
     
-    luaState = luaL_newstate();
-    luaL_openlibs(luaState);
-    for (const auto & entry : fs::directory_iterator("game/" + scriptPath)){
+    m_luaState = luaL_newstate();
+    luaL_openlibs(m_luaState);
+    for (const auto & entry : fs::directory_iterator("game/" + p_scriptPath)){
         std::ifstream file(entry.path().u8string());
-        int scriptLoadStatus = luaL_dofile(luaState, entry.path().u8string().c_str());
-        if(sT != ST_Helper)
-          updates.push_back(luabridge::getGlobal(luaState, "update"));
-        if(sT == ST_UiPanel){
+        int scriptLoadStatus = luaL_dofile(m_luaState, entry.path().u8string().c_str());
+        if(m_sT != ST_Helper)
+          m_updates.push_back(luabridge::getGlobal(m_luaState, "update"));
+        if(m_sT == ST_UiPanel){
           // Read init function
-          inits.push_back(luabridge::getGlobal(luaState, "init"));
+          m_inits.push_back(luabridge::getGlobal(m_luaState, "init"));
         }
        
     }
-    if(renderMan){
-      printf("RenderMAN Found\n");
-      renderManGlob = std::unique_ptr<Renderer>(renderMan);
+    if(p_renderMan){
+      m_renderManGlob = std::unique_ptr<Renderer>(p_renderMan);
     }
-    if(sT == ST_UiPanel){
-      this->uiMan = uiMan;
+    if(m_sT == ST_UiPanel){
+      this->m_uiMan = p_uiMan;
       // wow so cool (swag)
-      uiManGlob = std::unique_ptr<UIManager>(uiMan);
-      runInits();
+      m_uiManGlob = std::unique_ptr<UIManager>(p_uiMan);
+      runm_inits();
     }
     
   } 
   void runUpdates(){
-    for(luabridge::LuaRef &ref : updates){
+    for(luabridge::LuaRef &ref : m_updates){
       // Execute the update function
       ref(); // pass in args based on the script type (later)
     }
@@ -82,7 +81,7 @@ public:
 
   void exposeUI(){
       // Expose text 
-      luabridge::getGlobalNamespace(luaState)
+      luabridge::getGlobalNamespace(m_luaState)
         .beginClass<Text>("Text")
         .addConstructor<void(*) (std::string, int, int)>()
         .addProperty("text", &Text::getText, &Text::setText)
@@ -91,7 +90,7 @@ public:
         .endClass();
 
       // Expose button
-      luabridge::getGlobalNamespace(luaState)
+      luabridge::getGlobalNamespace(m_luaState)
         .beginClass<Lua_Button>("Button")
         .addConstructor<void(*) (std::string, int, int, std::string)>()
         .addProperty("text", &Lua_Button::getText, &Lua_Button::setText)
@@ -101,7 +100,7 @@ public:
         .endClass();
 
       // Expose UI
-      luabridge::getGlobalNamespace(luaState)
+      luabridge::getGlobalNamespace(m_luaState)
         .beginClass<UI>("UI")
         .addConstructor<void(*) (std::string, int, int, int, int, int, bool)>()
         .addProperty("title", &UI::getTitle, &UI::setTitle)
@@ -121,7 +120,7 @@ public:
 
   // Expose UI Utility functions
   void exposeGameUIBackend(){
-    luabridge::getGlobalNamespace(luaState)
+    luabridge::getGlobalNamespace(m_luaState)
         .beginClass<UIManager>("UIManager")
         .addConstructor<void(*) (int)>()
         .addFunction("getPanel", &UIManager::getPanel)
@@ -129,14 +128,14 @@ public:
         .endClass();
 
     
-    luabridge::setGlobal(luaState, uiManGlob.get(), "UIManager");
+    luabridge::setGlobal(m_luaState, m_uiManGlob.get(), "UIManager");
 
   }
 
   // Expose Graphics Utility functions
   void exposeGameGraphicsBackend(){
     printf("[ScriptManager] Expose Graphics backend\n");
-    luabridge::getGlobalNamespace(luaState)
+    luabridge::getGlobalNamespace(m_luaState)
         .beginClass<Renderer>("Graphics")
         .addConstructor<void(*) (int)>()
         .addFunction("getMouseX", &Renderer::getMouseX)
@@ -145,34 +144,34 @@ public:
         .endClass();
 
   
-    luabridge::setGlobal(luaState, renderManGlob.get(), "Graphics");
+    luabridge::setGlobal(m_luaState, m_renderManGlob.get(), "Graphics");
   }
 
   /*
     Runs the init functions for
     script types that require them
   */
-  void runInits(){
+  void runm_inits(){
     // UI panel init functions (each script mode is seperated so scripts only know the 
     // information they need to know) (wow)
-    if(sT == ST_UiPanel){
+    if(m_sT == ST_UiPanel){
 
         exposeUI();
         exposeGameUIBackend();
         exposeGameGraphicsBackend();
       
         int c = 0;
-        for(luabridge::LuaRef &ref : inits){
+        for(luabridge::LuaRef &ref : m_inits){
           // Execute the init function
           UI res1 = ref(c);
           // Add the panel
-          uiMan->addUIPanel(res1);
+          m_uiMan->addUIPanel(res1);
           c++;
         }
     }
     // unnesseary, i we now just expose all helper
     // funcs to lUA 
-    if(sT == ST_Helper){
+    if(m_sT == ST_Helper){
       // Expose all C++ lua functions to 
       // the scripts (including classes)
 
@@ -188,21 +187,21 @@ public:
 template <typename T, typename ... Ts>
 class SingleScriptManager{
 private:
-luabridge::LuaRef* function;
-lua_State* luaState;
+luabridge::LuaRef* m_function;
+lua_State* m_luaState;
 public:
-  SingleScriptManager(std::string path, std::string functionName){
-    int scriptLoadStatus = luaL_dofile(luaState, path.c_str());
-    function = luabridge::getGlobal(luaState, functionName.c_str());
-    if(!function){
-      printf("[SingleScriptManager] Function %s does not exist in %s\n", functionName.c_str(), path.c_str());
+  SingleScriptManager(std::string p_path, std::string p_functionName){
+    int scriptLoadStatus = luaL_dofile(m_luaState, p_path.c_str());
+    m_function = luabridge::getGlobal(m_luaState, p_functionName.c_str());
+    if(!m_function){
+      printf("[SingleScriptManager] Function %s does not exist in %s\n", p_functionName.c_str(), p_path.c_str());
       exit(-1);
     }
   } 
 
   // Exceute a function 
   T execFunction(Ts... args){
-    return function(args...);
+    return m_function(args...);
   }
   
 };
