@@ -287,6 +287,8 @@ void PlanetMap::biome_based_generate() {
   r->display(NULL, true);
   this->gen_tile_info();
 
+  r->endWindow();
+  delete(r);
   /* for (auto &[_, biome_data] : biomes_data) {
     std::cout << biome_data.average_height() << std::endl;
   } */

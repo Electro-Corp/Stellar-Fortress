@@ -53,7 +53,7 @@ function update()
   mouseY = Graphics:getMouseY()
 
   -- i would highly recommmend not to print anything during 
-  -- update functions due to how often they will probabbly be called
+  -- update functions due to how often they will probabbly bgetMouseYe called
   -- (frame) % (some number)
   
   -- Get the panel from the game
