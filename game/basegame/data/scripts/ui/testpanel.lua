@@ -13,6 +13,8 @@ myindex = 0
 count = 0
 isDown = false
 drag = false
+local mouseX = 0
+local mouseY = 0
 -- The init function should return a panel
 function init(index)
   myindex = index
@@ -46,6 +48,10 @@ end
 -- Update function
 -- Called whenever a script update is triggered
 function update()
+
+  mouseX = Graphics:getMouseX()
+  mouseY = Graphics:getMouseY()
+
   -- i would highly recommmend not to print anything during 
   -- update functions due to how often they will probabbly be called
   -- (frame) % (some number)
@@ -54,15 +60,15 @@ function update()
   tmp = UIManager:getPanel(myindex)
 
   -- Update text
-  text_tmp = tmp.getText(panel, 4)
-  text_tmp.text = "Mouse Pos: (" .. Graphics:getMouseX() .. "," .. Graphics:getMouseY() .. ")"
-  tmp.setText(tmp, text_tmp, 4)
+  -- text_tmp = tmp.getText(panel, 4)
+  -- text_tmp.text = "Mouse Pos: (" .. mouseX .. "," .. mouseY .. ")"
+  -- tmp.setText(tmp, text_tmp, 4)
  
   
   -- Make draggable
 
   if not Graphics:isMouseDown() == isDown then
-    if Graphics:getMouseX() > tmp.x and Graphics:getMouseX() < tmp.x + tmp.width and Graphics:getMouseY() > tmp.y and Graphics:getMouseY() < tmp.y + 20 then
+    if mouseX > tmp.x and mouseX < tmp.x + tmp.width and mouseY > tmp.y and mouseY < tmp.y + 20 then
       drag = true
     end
   end
@@ -76,8 +82,8 @@ function update()
   end
 
   if drag == true then
-    tmp.x = Graphics:getMouseX() - (tmp.width / 2)
-    tmp.y = Graphics:getMouseY()
+    tmp.x = mouseX - (tmp.width / 2)
+    tmp.y = mouseY
     tmp.x = tmp.x + math.sin(math.rad(count)) * 3
     tmp.y = tmp.y + math.cos(math.rad(count)) * 3
     count = count + 1

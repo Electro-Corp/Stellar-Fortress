@@ -2,7 +2,6 @@
   GRAPHICS.CPP
   Renders the game using SDL
 */
-
 #define FADE_SPEED 0.002f
 //#define BUTTON_DEBUG
 // COnstructiort
