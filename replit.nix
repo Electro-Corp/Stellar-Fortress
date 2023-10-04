@@ -1,5 +1,6 @@
 { pkgs }: {
     deps = [
+        pkgs.neofetch
         pkgs.python27Full
         pkgs.python39Full
         pkgs.cmake

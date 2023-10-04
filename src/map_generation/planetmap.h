@@ -78,6 +78,12 @@ private:
     
     void gen_tile_map();
     void gen_noise();
+    // For threads
+    void gen_heatmap();
+    void gen_heightmap();
+    void gen_humidmap();
+
+    
     void gen_seeds();
     void gen_quads();
     void gen_tile_info();
@@ -144,16 +150,35 @@ void PlanetMap::gen_tile_map()  {
 }
 
 void PlanetMap::gen_noise() {
-    r->initLoadScreen("null", "Generating Heat Map", true);
+    r->initLoadScreen("null", "Luanch Heat Map Thread", true);
     r->display(NULL, true);
-    this->heatMap = new NoiseMap(this->width, this->height, seed);
-    r->initLoadScreen("null", "Generating Height Map", true);
+    std::thread heatThread(&PlanetMap::gen_heatmap, this);
+    r->initLoadScreen("null", "Launch Height Map Thread", true);
     r->display(NULL, true);
-    this->heightMap = new NoiseMap(this->width, this->height, seed/2);
-    r->initLoadScreen("null", "Generating Humidity Map", true);
+    std::thread heightThread(&PlanetMap::gen_heightmap, this);
+    r->initLoadScreen("null", "Launch Humidity Map Thread", true);
     r->display(NULL, true);
-    this->humidityMap = new NoiseMap(this->width, this->height, (seed+5)/2); 
+    std::thread humidThread(&PlanetMap::gen_humidmap, this);
+    r->initLoadScreen("null", "Waiting for noise gen threads...", true);
+    r->display(NULL, true);
+    heatThread.join();
+    heightThread.join();
+    humidThread.join();
+    
 } 
+
+void PlanetMap::gen_heatmap(){
+  this->heatMap = new NoiseMap(this->width, this->height, seed);
+  printf("[PlanetMap] HeatMap generated at time %d\n", r->getTime());
+}
+void PlanetMap::gen_heightmap(){
+  this->heightMap = new NoiseMap(this->width, this->height, seed/2);
+  printf("[PlanetMap] HeightMap generated at time %d\n", r->getTime());
+}
+void PlanetMap::gen_humidmap(){
+  this->humidityMap = new NoiseMap(this->width, this->height, (seed+5)/2);
+  printf("[PlanetMap] HumidityMap generated at time %d\n", r->getTime());
+}
 
 void PlanetMap::set_noise_values() {
   
@@ -289,6 +314,8 @@ void PlanetMap::biome_based_generate() {
 
   r->endWindow();
   delete(r);
+  printf("[PlanetMap] PlanetMap generation finished\n");
+  printf("[PlanetMap] Map has dimensions %dx%d\n", map.size(), map[0].size());
   /* for (auto &[_, biome_data] : biomes_data) {
     std::cout << biome_data.average_height() << std::endl;
   } */
