@@ -124,11 +124,11 @@ void Game::load(){
   while(1){
     float time = mapRender->getTime();
     //printf("Time: %d\r", (int)(time));
-    std::thread t1(&Game::UIUpdate, this);
-    std::thread t2(&Game::MapUpdate, this);
-    /*if((int)(time) % 1 == 0){
+    //std::thread t1(&Game::UIUpdate, this);
+    //std::thread t2(&Game::MapUpdate, this);
+    if((int)(time) % 1 == 0){
       // Update screen
-      
+      mapRender->display(this->curMap.get());
      
     }
     if((int)time % 3 == 0){
@@ -139,9 +139,9 @@ void Game::load(){
       // Update scripts
       
       unitScriptMan->runUpdates();
-    }*/
-    t1.join();
-    t2.join();
+    }
+    //t1.join();
+    //t2.join();
   }
   l.log("GameCpp.load","Finished render map");
   // while(1){
